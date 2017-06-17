@@ -17,9 +17,9 @@ export const AppModule = angular.module('app', [CommonModule, ComponentsModule, 
         url: '/home',
         component: 'home'
       })
-      .state('about', {
-        url: '/about',
-        component: 'about'
+      .state('blog', {
+        url: '/blog',
+        component: 'blog'
       })
   })
   .name;
