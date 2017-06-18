@@ -2,18 +2,13 @@ import template from './blog.html';
 
 
 class BlogCtrl {
-  constructor() {
-
+  /* @ngInject */
+  constructor(blogService) {
+      this.blogService = blogService;
   }
 
   $onInit() {
-    this.blogItems = [
-      {title: 'some title', id: 1, description: 'this is a book'},
-      {title: 'some title', id: 2, description: 'this is a book'},
-      {title: 'some title', id: 3, description: 'this is a book'},    
-      {title: 'some title', id: 4, description: 'this is a book'}  
-    ]
-
+    this.blogItems = this.blogService.blogItems;
   }
 }
 

@@ -1,6 +1,6 @@
 <div class='main'>
   <ul>
-    <li ng-repeat='item in $ctrl.blogItems'><a target="_self" ui-sref='/blog/{{item.id}}'>{{item.title}}</a></li>
+    <li ng-repeat='item in $ctrl.blogItems'><a ui-sref='blogItem({ blogId: item.id })'>{{item.title}}</a></li>
   </ul>
   <span ng-if='$ctrl.blogItems.length === 0'>Coming Soon!</span>
 </div>

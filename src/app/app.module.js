@@ -11,7 +11,7 @@ export const AppModule = angular.module('app', [CommonModule, ComponentsModule, 
   .component('app', AppComponent)
   .config(/* @ngInject */($stateProvider, $urlRouterProvider) => {
     $urlRouterProvider.when('', '/home');
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/404')
     $stateProvider
       .state('home', {
         url: '/home',
@@ -21,5 +21,15 @@ export const AppModule = angular.module('app', [CommonModule, ComponentsModule, 
         url: '/blog',
         component: 'blog'
       })
+      .state('blogItem', {
+        name: 'blogItem',
+        url: '/blog/{blogId}',
+        component: 'blogDetail'
+  })
+    .state('404', {
+        name: '404',
+        url: '/404',
+        component: 'error'
+    })
   })
   .name;
