@@ -1,10 +1,13 @@
 export class BlogService {
-  constructor() {
-      this.blogItems = [
-      {title: 'some title', id: 1, description: 'this is a book'},
-      {title: 'some title', id: 2, description: 'this is a book'},
-      {title: 'some title', id: 3, description: 'this is a book'},    
-      {title: 'some title', id: 4, description: 'this is a book'}  
-    ];
+    /* @ngInject */
+  constructor($http) {
+    this.$http = $http;
+  }
+
+  getData () {
+    return this.$http.get('blog.json')
+    .then((resp)=> resp.data)
+    .then((data) => data)
+    .catch(console.log('error!'))
   }
 }

@@ -9,6 +9,7 @@ class BlogCtrl {
 
   $onInit() {
     this.blogItems = this.blogService.blogItems;
+    this.blogService.getData.then((data) => (console.log(data)))
   }
 }
 
