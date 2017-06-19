@@ -12,12 +12,12 @@ body {
   display:block !important; /*prevents flash of unstyled content when ng-cloak not working*/
 }
 
+
 body,html, app, app div {
   font-family: 'Lato', sans-serif;
   text-align: center;
   height: 100%;
 }
-
 
 a {
   color: #03A9F4;
@@ -25,6 +25,7 @@ a {
 
 .main {
   min-height: 100%;
+  height: auto;
   @include center();
   font-size: 15px;
 }

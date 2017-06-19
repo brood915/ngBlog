@@ -11,10 +11,12 @@ class BlogDetailCtrl {
 
   $onInit() {
     this.blogItems = this.blogService.blogItems;
+
+    if (this.blogItems){
     //find the blogitem with the same id as the one passed to param
     this.item = this.blogItems.find((each) => each.id === Number(this.$stateParams.blogId));
-    
-    if (this.item === undefined) { //if blogitem not found
+    }
+    else if (this.blogItems === undefined) { //if blogitem not found
       this.$state.go('404'); //redirect to /404 to display error message
     }
   }
