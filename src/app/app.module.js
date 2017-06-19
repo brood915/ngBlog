@@ -19,7 +19,10 @@ export const AppModule = angular.module('app', [CommonModule, ComponentsModule, 
       })
       .state('blog', {
         url: '/blog',
-        component: 'blog'
+        template:'<blog blogs=$resolve.blogs></blog>',
+        resolve: {
+          blogs: function(blogService) {  return blogService.getData();}
+        }
       })
       .state('blogItem', {
         name: 'blogItem',

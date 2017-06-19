@@ -7,7 +7,5 @@ export class BlogService {
   getData () {
     return this.$http.get('blog.json')
     .then((resp)=> resp.data)
-    .then((data) => data)
-    .catch(console.log('error!'))
   }
 }
