@@ -1,4 +1,7 @@
 <div>
-    <div ng-show='!$root.stateIsLoading'>{{$ctrl.item.id}}</div>
+    <div ng-show='!$root.stateIsLoading'>
+        <div>{{$ctrl.item.id}}</div>
+        <button ui-sref="blog" class='btn btn-primary'>Go Back</button>
+    </div>
     <i ng-show='$root.stateIsLoading' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 </div>
