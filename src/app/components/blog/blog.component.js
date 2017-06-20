@@ -8,8 +8,8 @@ class BlogCtrl {
   }
 
   $onInit() {
-    this.blogItems = this.blogs;
-    this.blogService.blogItems = this.blogItems;
+    this.blogService.getData()
+    .then((resp) => {this.blogService.blogItems = resp; this.blogItems = resp;})
   }
 }
 
@@ -18,6 +18,6 @@ class BlogCtrl {
 export const BlogComponent = {
   template,
   controller: BlogCtrl,
-  bindings: {blogs: '<'}
+  bindings: {}
 }
     

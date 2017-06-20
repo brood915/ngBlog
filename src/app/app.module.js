@@ -9,15 +9,6 @@ import uiRouter from '@uirouter/angularjs';
 
 export const AppModule = angular.module('app', [CommonModule, ComponentsModule, uiRouter])
   .component('app', AppComponent)
-  .run(/* @ngInject */($rootScope, $transitions) => {
-        $transitions.onStart({}, ()=>{
-            $rootScope.stateIsLoading = true;
-        });
-
-        $transitions.onSuccess({}, ()=>{
-            $rootScope.stateIsLoading = false;
-        });
-  })
   .config(/* @ngInject */($stateProvider, $urlRouterProvider) => {
     $urlRouterProvider.when('', '/home');
     $urlRouterProvider.otherwise('/404')
@@ -28,10 +19,7 @@ export const AppModule = angular.module('app', [CommonModule, ComponentsModule, 
       })
       .state('blog', {
         url: '/blog',
-        template:'<blog blogs=$resolve.blogs></blog>',
-        resolve: {
-          blogs: function(blogService) {  return blogService.getData();}
-        }
+        component: 'blog'
       })
       .state('blogItem', {
         name: 'blogItem',
