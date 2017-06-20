@@ -1,3 +1,4 @@
-<div class='main' ng-click="$ctrl.changeName()">
-  Hello, {{$ctrl.name}} This is the home page!
+<div class='main'>
+  <span ng-show='!$root.stateIsLoading'>This is the home page!</span>
+  <i ng-show='$root.stateIsLoading' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 </div>

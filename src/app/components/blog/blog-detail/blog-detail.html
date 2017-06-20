@@ -1,1 +1,4 @@
-<div>{{$ctrl.item.id}}</div>
+<div>
+    <div ng-show='!$root.stateIsLoading'>{{$ctrl.item.id}}</div>
+    <i ng-show='$root.stateIsLoading' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+</div>
