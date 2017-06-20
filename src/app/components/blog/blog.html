@@ -1,6 +1,6 @@
 <div class='main'>
   <i ng-show='!$ctrl.blogItems' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-  <ul ng-show='$ctrl.blogItems'>
+  <ul class="blogItems" ng-show='$ctrl.blogItems'>
     <li ng-repeat='item in $ctrl.blogItems'><a ui-sref='blogItem({ blogId: item.id })'>{{item.title}}</a></li>
   </ul>
   <span ng-if='$ctrl.blogItems.length === 0'>Coming Soon!</span>
