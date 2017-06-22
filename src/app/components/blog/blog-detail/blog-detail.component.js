@@ -16,7 +16,7 @@ class BlogDetailCtrl {
     //find the blogitem with the same id as the one passed to param
     this.item = this.blogItems.find((each) => each.id === Number(this.$stateParams.blogId));
     }
-    else if (this.blogItems === undefined) { //if blogitem not found
+    else { //if blogitem not found
       this.$state.go('404'); //redirect to /404 to display error message
     }
   }
