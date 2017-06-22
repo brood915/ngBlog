@@ -1,6 +1,19 @@
 <div>
     <div>
         <div>{{$ctrl.item.id}}</div>
+        <div>{{$ctrl.item.title}}</div>
+        <div>{{$ctrl.item.description}}</div>
+
+        <h3>Comments</h3>
+        <ul>
+            <li ng-repeat = 'comment in $ctrl.item.comments'>{{comment.text}}</li>
+        </ul>
         <button ui-sref="blog" class='btn btn-primary'>Go Back</button>
     </div>
 </div>
+
+<form ng-submit='$ctrl.addComment()'>
+    <input type='hidden' ng-model='$ctrl.comment.id'>
+    <input type='text' ng-model='$ctrl.comment.text'></input>
+    <button class='btn btn-primary' type='submit'>Submit</button>
+</form>
