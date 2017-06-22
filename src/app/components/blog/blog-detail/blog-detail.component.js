@@ -2,10 +2,11 @@ import template from './blog-detail.html';
 
 class BlogDetailCtrl {
     /* @ngInject */
-  constructor(blogService,$stateParams,$state) {
+  constructor(blogService,$stateParams,$state,$scope) {
       this.blogService = blogService;
       this.$stateParams = $stateParams;
       this.$state = $state;
+      this.$scope = $scope;
   }
 
 
@@ -25,6 +26,7 @@ class BlogDetailCtrl {
   addComment () {
     this.item.comments.push(this.comment);
     this.resetComment(); //to get the next id # after adding a comment
+     console.log(this.item.comments)
   }
 
  resetComment () {
@@ -32,6 +34,13 @@ class BlogDetailCtrl {
      "id": this.item.comments.length +1,
      "text": ""
    }
+   this.item.comments.map((each,index)=> each.id = index); //change the id #s to prevent duplicates
+ }
+
+ deleteComment (index) {
+   this.$scope.$apply(this.item.comments.splice(index,1)); //to allow confirm directive to update view after running this
+   this.resetComment();
+   console.log(this.item.comments)
  }
 
 
@@ -41,6 +50,6 @@ class BlogDetailCtrl {
 export const BlogDetailComponent = {
   controller: BlogDetailCtrl,
   template,
-  bindings: {}
+  bindings: {index:'<'}
 }
     

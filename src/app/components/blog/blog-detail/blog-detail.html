@@ -6,7 +6,9 @@
 
         <h3>Comments</h3>
         <ul>
-            <li ng-repeat = 'comment in $ctrl.item.comments'>{{comment.text}}</li>
+            <li ng-repeat = 'comment in $ctrl.item.comments'>{{comment.text}}
+                <button message = "Are you sure?" confirmed-click='$ctrl.deleteComment($index)' confirm>X</button>                
+            </li>
         </ul>
         <button ui-sref="blog" class='btn btn-primary'>Go Back</button>
     </div>
