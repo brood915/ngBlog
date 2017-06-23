@@ -8,8 +8,13 @@ class BlogCtrl {
   }
 
   $onInit() {
-    this.blogService.getData()
-    .then((resp) => {this.blogService.blogItems = resp; this.blogItems = resp;})
+    if (!this.blogService.blogItems){ //initialize data if not present yet
+      this.blogService.getData()
+      .then((resp) => {this.blogService.blogItems = resp; this.blogItems = resp;})
+    }
+    else {
+      this.blogItems = this.blogService.blogItems;
+    }
   }
 }
 

@@ -31,14 +31,14 @@ class BlogDetailCtrl {
 
  resetComment () {
    this.comment = {
-     "id": this.item.comments.length +1,
+     "id": this.item.comments.length,
      "text": ""
    }
-   this.item.comments.map((each,index)=> each.id = index); //change the id #s to prevent duplicates
  }
 
  deleteComment (index) {
    this.$scope.$apply(this.item.comments.splice(index,1)); //to allow confirm directive to update view after running this
+   this.item.comments.map((each,index)=> each.id = index); //change the id #s to prevent duplicates
    this.resetComment();
    console.log(this.item.comments)
  }
