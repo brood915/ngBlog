@@ -3,10 +3,14 @@
 * Modified https://github.com/preboot/angular-webpack for my own usage.
 
 
+### To do
+```bash
+- Add nodejs + mongodb
+- Make it a fully functioning blog with a portfolio page
+```
+
 
 ### Quick start
-
-
 ```bash
 # clone our repo
 $ git clone https://github.com/brood915/ngBlog.git

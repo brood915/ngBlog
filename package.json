@@ -1,7 +1,7 @@
 {
-  "name": "angular-webpack-workflow",
+  "name": "ng-blog",
   "version": "1.0.0",
-  "description": "A workflow for Angular made with Webpack",
+  "description": "Simple blog built in AngularJS",
   "scripts": {
     "build": "rimraf dist && webpack --bail --progress --profile",
     "server": "webpack-dev-server --history-api-fallback --inline --progress",
@@ -11,11 +11,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/brood915/ngBoilerplate.git"
+    "url": "https://github.com/brood915/ngBlog.git"
   },
   "author": "Kevin Jang",
   "license": "MIT",
-  "homepage": "https://github.com/brood915/ngBoilerplate",
+  "homepage": "https://github.com/brood915/ngBlog",
   "dependencies": {
     "@uirouter/angularjs": "^1.0.4",
     "angular": "^1.5.0",

@@ -26,7 +26,7 @@ class BlogDetailCtrl {
   addComment () {
     this.item.comments.push(this.comment);
     this.resetComment(); //to get the next id # after adding a comment
-    this.$scope.myForm.$setPristine(); //resets form
+    this.$scope.addCommentForm.$setPristine(); //resets form
   }
 
  resetComment () {

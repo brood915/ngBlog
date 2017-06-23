@@ -13,18 +13,18 @@
         </ul>
     </div>
 
-    <form name = 'myForm' novalidate ng-submit='myForm.$valid && $ctrl.addComment()'>
+    <form name = 'addCommentForm' novalidate ng-submit='addCommentForm.$valid && $ctrl.addComment()'>
         <div class="form-group commentFormGroup"
          ng-class = "{
-           'has-success has-feedback' : (myForm.comment.$dirty || myForm.$submitted) && myForm.comment.$valid,
-           'has-error has-feedback' : (myForm.comment.$dirty || myForm.$submitted) && myForm.comment.$invalid
+           'has-success has-feedback' : (addCommentForm.comment.$dirty || addCommentForm.$submitted) && addCommentForm.comment.$valid,
+           'has-error has-feedback' : (addCommentForm.comment.$dirty || addCommentForm.$submitted) && addCommentForm.comment.$invalid
          }"
         >
             <input placeholder="write a comment..." class = 'form-control' name = 'comment' type='text' ng-model='$ctrl.comment.text' required></input>
             <span class="glyphicon form-control-feedback"
             ng-class = " {
-              'glyphicon-ok': (myForm.comment.$dirty || myForm.$submitted) && myForm.comment.$valid,
-              'glyphicon-remove': (myForm.comment.$dirty || myForm.$submitted) && myForm.comment.$invalid
+              'glyphicon-ok': (addCommentForm.comment.$dirty || addCommentForm.$submitted) && addCommentForm.comment.$valid,
+              'glyphicon-remove': (addCommentForm.comment.$dirty || addCommentForm.$submitted) && addCommentForm.comment.$invalid
             }"
             />
         </div>

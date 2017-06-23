@@ -12,6 +12,15 @@ body {
   display:block !important; /*prevents flash of unstyled content when ng-cloak not working*/
 }
 
+html {
+  overflow-y: hidden;
+}
+
+body {
+  overflow-y: scroll;
+} //makes sure html + body height: 100% covers the whole height
+
+
 
 body,html, app, app div {
   font-family: 'Lato', sans-serif;
