@@ -26,7 +26,7 @@ class BlogDetailCtrl {
   addComment () {
     this.item.comments.push(this.comment);
     this.resetComment(); //to get the next id # after adding a comment
-     console.log(this.item.comments)
+    this.$scope.myForm.$setPristine(); //resets form
   }
 
  resetComment () {
@@ -40,7 +40,6 @@ class BlogDetailCtrl {
    this.$scope.$apply(this.item.comments.splice(index,1)); //to allow confirm directive to update view after running this
    this.item.comments.map((each,index)=> each.id = index); //change the id #s to prevent duplicates
    this.resetComment();
-   console.log(this.item.comments)
  }
 
 
