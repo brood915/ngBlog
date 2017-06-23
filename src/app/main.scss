@@ -20,7 +20,9 @@ body {
   overflow-y: scroll;
 } //makes sure html + body height: 100% covers the whole height
 
-
+.hide {
+    display: none;
+}
 
 body,html, app, app div {
   font-family: 'Lato', sans-serif;

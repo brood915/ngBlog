@@ -1,8 +1,8 @@
 <div>
+  <add-blog></add-blog>
   <button class="addBlogBtn btn btn-primary glyphicon glyphicon-pencil" add-blog-modal></button>
   <i ng-show='!$ctrl.blogItems' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-  <ul class="blogItems" ng-show='$ctrl.blogItems'>
-    <add-blog></add-blog>
+  <ul id = "blogItems" class="blogItems" ng-show='$ctrl.blogItems'>
     <li ng-repeat='item in $ctrl.blogItems'>
       <a ui-sref='blogItem({ blogId: item.id })'>{{item.title}}</a>
     </li>
