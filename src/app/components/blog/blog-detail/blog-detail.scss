@@ -2,7 +2,9 @@
     width: 300px;
 
     input {
-        width: 300px;
+        max-width: 300px;
+        min-width: 200px;
+        width: 80%;
         display: inline-block;
         border: 1px solid #ddd;
         border-radius: 10px;
@@ -16,12 +18,31 @@ li {
 
 
 .comments {
+    width: 80%;
     display: flex;
     flex-direction: column;
 
     li {
-        width: 80%;
+        width: 100%;
         min-width: 250px;
         align-self:center;
     }
+}
+
+.blogPostItem {
+    width: 80%;
+    margin:0 auto;
+}
+
+
+.lastItem {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.goBackBtn {
+    position: absolute;
+    right: 30px;
+    top: 0px;
+    z-index: 1000000;
 }

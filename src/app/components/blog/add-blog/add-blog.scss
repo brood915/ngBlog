@@ -16,6 +16,8 @@ ul {
 
 
 #formContainer {
+    width: 80%;
+    margin: 0 auto;
 
     .btn {
         font-weight: bold;
@@ -43,6 +45,9 @@ ul {
 
 
 @media screen and (max-width:480px){
+    #formContainer {
+        width: 100% !important;
+    }
     textarea {
         height: 150px !important;
     }

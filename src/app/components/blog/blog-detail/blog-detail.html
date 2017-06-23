@@ -1,19 +1,14 @@
+<button ui-sref="blog" class='glyphicon glyphicon-chevron-left goBackBtn btn btn-primary'></button>
 <div class = 'main'>
-    <div>
-        <button ui-sref="blog" class='btn btn-primary'>Go Back</button>
-        <div>{{$ctrl.item.id}}</div>
-        <div>{{$ctrl.item.title}}</div>
-        <div>{{$ctrl.item.description}}</div>
-
-        <h3>Comments</h3>
-        <ul class ="comments">
-            <li ng-repeat = 'comment in $ctrl.item.comments'>{{comment.text}}               
-             
-            <button message = "Are you sure?" confirmed-click='$ctrl.deleteComment($index)' type="button" class="close" confirm>&times;</button>
-            </li>
-        </ul>
-    </div>
-
+    <div class="blogPostItem">{{$ctrl.item.id}}</div>
+    <div class="blogPostItem">{{$ctrl.item.title}}</div>
+    <div class="blogPostItem lastItem">{{$ctrl.item.description}}</div>
+    <h3>Comments</h3>
+    <ul class ="comments">
+        <li ng-repeat = 'comment in $ctrl.item.comments'>{{comment.text}}               
+        <button message = "Are you sure?" confirmed-click='$ctrl.deleteComment($index)' type="button" class="close" confirm>&times;</button>
+        </li>
+    </ul>
     <form name = 'addCommentForm' novalidate ng-submit='addCommentForm.$valid && $ctrl.addComment()'>
         <div class="form-group commentFormGroup"
          ng-class = "{
