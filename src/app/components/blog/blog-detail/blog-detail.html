@@ -6,9 +6,10 @@
         <div>{{$ctrl.item.description}}</div>
 
         <h3>Comments</h3>
-        <ul>
-            <li ng-repeat = 'comment in $ctrl.item.comments'>{{comment.text}}
-                <button message = "Are you sure?" confirmed-click='$ctrl.deleteComment($index)' confirm>X</button>                
+        <ul class ="comments">
+            <li ng-repeat = 'comment in $ctrl.item.comments'>{{comment.text}}               
+             
+            <button message = "Are you sure?" confirmed-click='$ctrl.deleteComment($index)' type="button" class="close" confirm>&times;</button>
             </li>
         </ul>
     </div>

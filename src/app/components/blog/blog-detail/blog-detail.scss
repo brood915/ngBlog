@@ -13,3 +13,15 @@
 li {
     list-style: none;
 }
+
+
+.comments {
+    display: flex;
+    flex-direction: column;
+
+    li {
+        width: 80%;
+        min-width: 250px;
+        align-self:center;
+    }
+}
