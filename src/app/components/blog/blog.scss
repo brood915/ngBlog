@@ -1,13 +1,14 @@
 .blogItems {
     list-style:none;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    a {
-        color: #000000;
-        text-decoration: none !important;
-        
-        &:hover {
-            opacity: 0.5;
-        }
+    li {
+        padding: 30px;
+        margin: 10px;
+        border: 1px solid #ddd;
     }
 }
 

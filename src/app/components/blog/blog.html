@@ -4,7 +4,9 @@
   <i ng-show='!$ctrl.blogItems' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
   <ul id = "blogItems" class="blogItems" ng-show='$ctrl.blogItems'>
     <li ng-repeat='item in $ctrl.blogItems'>
-      <a ui-sref='blogItem({ blogId: item.id })'>{{item.title}}</a>
+      <h3>{{item.title}}</h3>
+      <button ui-sref='blogItem({ blogId: item.id })' class='btn btn-primary'>View</button>
+      <button class = 'btn btn-default'>Delete</button>
     </li>
   </ul>
   <span ng-if='$ctrl.blogItems.length === 0'>Coming Soon!</span>
