@@ -6,7 +6,7 @@
     <li ng-repeat='item in $ctrl.blogItems'>
       <h3>{{item.title}}</h3>
       <button ui-sref='blogItem({ blogId: item.id })' class='btn btn-primary'>View</button>
-      <button class = 'btn btn-default'>Delete</button>
+      <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog($index)' type="button" confirm>Delete</button>
     </li>
   </ul>
   <span ng-if='$ctrl.blogItems.length === 0'>Coming Soon!</span>

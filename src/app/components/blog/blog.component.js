@@ -3,8 +3,9 @@ import template from './blog.html';
 
 class BlogCtrl {
   /* @ngInject */
-  constructor(blogService) {
+  constructor(blogService, $scope) {
     this.blogService = blogService;
+    this.$scope = $scope;
   }
 
   $onInit() {
@@ -15,6 +16,11 @@ class BlogCtrl {
     else {
       this.blogItems = this.blogService.blogItems;
     }
+  }
+
+  deleteBlog (index) {
+   this.$scope.$apply(this.blogItems.splice(index,1)); //to allow confirm directive to update view after running this
+   this.blogItems.map((each,index)=> each.id = index); //change the id #s to prevent duplicates
   }
 }
 
