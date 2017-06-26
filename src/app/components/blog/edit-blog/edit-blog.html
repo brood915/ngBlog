@@ -2,17 +2,17 @@
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" form-name = "editFormContainer" modal>&times;</button>
-            <h3 class="modal-title">Add a blog post</h3>
+            <h3 class="modal-title">Edit a blog post</h3>
         </div>
         <div class="modal-body">
             <form class='addBlogForm' name='addBlogForm'>
-                <input placeholder="write a title..." type='text' name="title" ng-model = '$ctrl.blog.title '/>
-                <textarea placeholder="write description..." type='text' name="description" ng-model ='$ctrl.blog.description'></textarea>
+                <input placeholder="write a title..." type='text' name="title" ng-model = '$ctrl.modifiedBlog.title '/>
+                <textarea placeholder="write description..." type='text' name="description" ng-model ='$ctrl.modifiedBlog.description'></textarea>
             </form>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" form-name = "editFormContainer" modal>Close</button>
-            <button class='btn btn-primary' ng-click = '' form-name = "editFormContainer" modal>Edit</button>
+            <button class='btn btn-primary' ng-click = '$ctrl.editBlog()' form-name = "editFormContainer" modal>Edit</button>
         </div>
     </div>
 </div>
