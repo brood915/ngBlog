@@ -1,7 +1,13 @@
 <button ui-sref="blog" class='glyphicon glyphicon-chevron-left goBackBtn btn btn-primary'></button>
-<div class = 'main blogDetail'>
-    <h2 class="blogPostItem">{{$ctrl.item.title}}</h2>
-    <div class="blogPostItem lastItem">{{$ctrl.item.description}}</div>
+<edit-blog></edit-blog>
+<div class = 'main' id="blogDetail">
+    <div class ='blogPostItems bottomBorder'>
+    <h2 class="">{{$ctrl.item.title}}</h2>
+    <div class="">{{$ctrl.item.description}}</div>
+    <button  class='btn btn-primary' form-name = "editFormContainer" modal>Edit</button>
+    <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='' type="button" confirm>Delete</button>
+</div>
+    
     <h3>Comments</h3>
     <ul class ="comments">
         <li ng-repeat = 'comment in $ctrl.item.comments'>{{comment.text}}               

@@ -1,11 +1,10 @@
 <div>
   <add-blog blog-items = '$ctrl.blogItems'></add-blog>
-  <button class="addBlogBtn btn btn-primary glyphicon glyphicon-pencil" add-blog-modal></button>
+  <button form-name = "addFormContainer" class="addBlogBtn btn btn-primary glyphicon glyphicon-pencil" modal></button>
   <i ng-show='!$ctrl.blogItems' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
   <ul id = "blogItems" class="blogItems" ng-show='$ctrl.blogItems'>
     <li ng-repeat='item in $ctrl.blogItems'>
       <h3>{{item.title}}</h3>
-      <h3>{{item.id}}</h3>
       <button ui-sref='blogItem({ blogId: item.id })' class='btn btn-primary'>View</button>
       <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog($index)' type="button" confirm>Delete</button>
     </li>

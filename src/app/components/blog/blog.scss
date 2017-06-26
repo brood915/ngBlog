@@ -1,3 +1,10 @@
+@mixin center () {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    flex-direction: column;
+}
+
 .blogItems {
     list-style:none;
     flex-direction: row;
@@ -18,4 +25,43 @@
     position: absolute;
     right: 30px;
     z-index: 1000000;
+}
+
+#addFormContainer, #editFormContainer {
+    width: 80%;
+    margin: 0 auto;
+    padding: 40px;
+
+    .btn {
+        font-weight: bold;
+    }
+
+    .addBlogForm {
+
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 1);
+
+        textarea, input {
+            border: 1px solid #ddd;
+            padding:5px;
+            margin:5px;
+            width: 100%;
+        }
+
+        textarea {
+            resize: none;
+            outline: none;
+            height: 300px;
+        }
+    }
+}
+
+
+@media screen and (max-width:480px){
+    #addFormContainer, #editFormContainer {
+        width: 100% !important;
+    }
+    textarea {
+        height: 150px !important;
+    }
 }

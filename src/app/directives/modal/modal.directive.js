@@ -1,16 +1,17 @@
 import angular from 'angular';
 
-class AddBlogDirective {
+class ModalDirective {
   constructor() {
     this.restrict = 'A';
     this.scope = {
+        formName: '@'
     }
   }
 
   link(scope, element, attrs) { //remember that scope value is parsed and evaluted while attrs is always string.
       element.on('click', function() {
-          let form = document.getElementById('formContainer');
-          let content = document.getElementById('blogItems');
+          let form = document.getElementById(scope.formName);
+          let content = document.getElementById('blogItems') || document.getElementById('blogDetail');
 
          if (form.classList.contains("hide"))
           {
@@ -25,10 +26,10 @@ class AddBlogDirective {
   }
 
   static create() {
-    return new AddBlogDirective(...arguments);
+    return new ModalDirective(...arguments);
   }
 }
 
-AddBlogDirective.create.$inject = [];
+ModalDirective.create.$inject = [];
 
-export { AddBlogDirective };
+export { ModalDirective };
