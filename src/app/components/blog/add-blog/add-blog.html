@@ -6,13 +6,13 @@
         </div>
         <div class="modal-body">
             <form class='addBlogForm' name='addBlogForm'>
-                <input placeholder="write a title..." type='text' name="title" />
-                <textarea placeholder="write description..." type='text' name="description"></textarea>
+                <input placeholder="write a title..." type='text' name="title" ng-model = '$ctrl.blog.title '/>
+                <textarea placeholder="write description..." type='text' name="description" ng-model ='$ctrl.blog.description'></textarea>
             </form>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" add-blog-modal>Close</button>
-            <button class='btn btn-primary' add-blog-modal>Post</button>
+            <button class='btn btn-primary' ng-click = '$ctrl.addBlog()' add-blog-modal>Post</button>
         </div>
     </div>
 </div>

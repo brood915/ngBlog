@@ -1,9 +1,11 @@
 .blogItems {
     list-style:none;
     flex-direction: row;
+    flex-wrap: wrap;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 40px;
 
     li {
         padding: 30px;

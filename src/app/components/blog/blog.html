@@ -1,5 +1,5 @@
 <div>
-  <add-blog></add-blog>
+  <add-blog blog-items = '$ctrl.blogItems'></add-blog>
   <button class="addBlogBtn btn btn-primary glyphicon glyphicon-pencil" add-blog-modal></button>
   <i ng-show='!$ctrl.blogItems' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
   <ul id = "blogItems" class="blogItems" ng-show='$ctrl.blogItems'>

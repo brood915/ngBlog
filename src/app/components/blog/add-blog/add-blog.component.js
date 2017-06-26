@@ -2,23 +2,39 @@ import template from './add-blog.html';
 
 class AddBlogCtrl {
     /* @ngInject */
-  constructor(blogService,$stateParams,$state,$scope) {
+  constructor(blogService, $scope) {
       this.blogService = blogService;
-      this.$stateParams = $stateParams;
-      this.$state = $state;
       this.$scope = $scope;
   }
 
 
-  
+  $onInit () {
+    this.resetForm();
+  }
 
+  resetForm () {
+    this.blog = {
+      "title": "",
+      "description": "",
+      "comments": []
+    }
+ }
+
+  addBlog () {
+    this.blog.id = this.blogItems.length;
+    this.blogItems.push(this.blog);
+    console.log(this.blogItems);
+    this.resetForm();
+  }
 
 }
+
+
 
 
 export const AddBlogComponent = {
   controller: AddBlogCtrl,
   template,
-  bindings: {index:'<'}
+  bindings: {blogItems: '<'}
 }
     
