@@ -21,9 +21,9 @@ class AddBlogCtrl {
  }
 
   addBlog () {
+
     this.blog.id = this.blogItems.length;
     this.blogItems.push(this.blog);
-    console.log(this.blogItems);
     this.resetForm();
   }
 

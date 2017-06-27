@@ -22,6 +22,12 @@ class BlogDetailCtrl {
     }
   }
 
+  deleteBlog() {
+    this.blogItems.splice(this.item.id, 1);
+    this.blogItems.map((each,index)=> each.id = index); //resets the id #
+    this.$state.go('blog');
+  }
+
   getBlog () {
      //find the blogitem with the same id as the one passed to param
     this.item = this.blogItems.find((each) => each.id === Number(this.$stateParams.blogId));
