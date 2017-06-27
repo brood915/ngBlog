@@ -3,8 +3,8 @@ import angular from 'angular';
 
 class EditBlogCtrl {
     /* @ngInject */
-  constructor(blogService,$scope) {
-      this.blogService = blogService;
+  constructor($scope) {
+      this.$scope = $scope;
   }
 
   $onInit() {
@@ -20,8 +20,8 @@ class EditBlogCtrl {
     })
   }
 
-  cancelEdit () {
-    this.modifiedBlog = angular.copy(this.blogItem); //reset the form if user closes the form
+  resetForm () {
+    this.$scope.$apply(()=>this.modifiedBlog = angular.copy(this.blogItem)); //reset the form if user closes the form
   }
 }
 
