@@ -1,7 +1,7 @@
 <div class='hide' id="editFormContainer">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" form-name = "editFormContainer" modal>&times;</button>
+            <button ng-click = '$ctrl.cancelEdit()' type="button" class="close" form-name = "editFormContainer" modal>&times;</button>
             <h3 class="modal-title">Edit a blog post</h3>
         </div>
         <div class="modal-body">
@@ -11,7 +11,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" form-name = "editFormContainer" modal>Close</button>
+            <button ng-click = '$ctrl.cancelEdit()' type="button" class="btn btn-default" form-name = "editFormContainer" modal>Close</button>
             <button class='btn btn-primary' ng-click = '$ctrl.handleEdit()' form-name = "editFormContainer" modal>Edit</button>
         </div>
     </div>

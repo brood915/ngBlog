@@ -12,12 +12,16 @@ class EditBlogCtrl {
   }
 
   handleEdit () { //passes the new value back to blog-detail comp
-    this.blogItems[this.modifiedBlog.id] = this.modifiedBlog;
+    this.blogItems[this.modifiedBlog.id] = angular.copy(this.modifiedBlog);
     this.editBlog({
       $event: {
         blogItems: this.blogItems
       }
     })
+  }
+
+  cancelEdit () {
+    this.modifiedBlog = angular.copy(this.blogItem); //reset the form if user closes the form
   }
 }
 
@@ -25,8 +29,10 @@ class EditBlogCtrl {
 export const EditBlogComponent = {
   controller: EditBlogCtrl,
   template,
-  bindings: {blogItem: '<',
-blogItems: '<',
-editBlog:'&'}
+  bindings: {
+    blogItem: '<',
+    blogItems: '<',
+    editBlog:'&'
+  }
 }
     
