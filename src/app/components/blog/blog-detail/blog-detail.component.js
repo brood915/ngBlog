@@ -14,13 +14,22 @@ class BlogDetailCtrl {
     this.blogItems = this.blogService.blogItems;
 
     if (this.blogItems){
-    //find the blogitem with the same id as the one passed to param
-    this.item = this.blogItems.find((each) => each.id === Number(this.$stateParams.blogId));
-    this.resetComment(); //to get the next id # of comment initially
-  }
+      this.getBlog();
+      this.resetComment(); //to get the next id # of comment initially
+    }
     else { //if blogitem not found
       this.$state.go('404'); //redirect to /404 to display error message
     }
+  }
+
+  getBlog () {
+     //find the blogitem with the same id as the one passed to param
+    this.item = this.blogItems.find((each) => each.id === Number(this.$stateParams.blogId));
+  }
+
+  editBlog (event) { //passes the function down t edit-blog child comp
+    this.blogItems = event.blogItems;
+    this.getBlog();
   }
 
   addComment () {

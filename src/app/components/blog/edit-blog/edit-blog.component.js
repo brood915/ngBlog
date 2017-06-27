@@ -11,9 +11,13 @@ class EditBlogCtrl {
     this.modifiedBlog = angular.copy(this.blogItem);
   }
 
-  editBlog () {
-      this.blogItem = this.modifiedBlog;
-      console.log(this.blogItem);
+  handleEdit () { //passes the new value back to blog-detail comp
+    this.blogItems[this.modifiedBlog.id] = this.modifiedBlog;
+    this.editBlog({
+      $event: {
+        blogItems: this.blogItems
+      }
+    })
   }
 }
 
@@ -21,6 +25,8 @@ class EditBlogCtrl {
 export const EditBlogComponent = {
   controller: EditBlogCtrl,
   template,
-  bindings: {blogItem: '<'}
+  bindings: {blogItem: '<',
+blogItems: '<',
+editBlog:'&'}
 }
     
