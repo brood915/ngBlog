@@ -5,6 +5,15 @@
     flex-direction: column;
 }
 
+.names {
+    padding: 5px;
+    font-weight: bold;
+}
+
+#blogContainer {
+    padding: 40px;
+}
+
 .blogItems {
     list-style:none;
     flex-direction: row;
@@ -12,7 +21,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 20px;
 
     li {
         padding: 30px;
@@ -64,4 +73,11 @@
     textarea {
         height: 150px !important;
     }
+    .form-group {
+    margin-bottom: 15px;
+    flex-direction: column;
+    display: flex;
+    width: 200px;
+    margin: 0 auto;
+    }   
 }

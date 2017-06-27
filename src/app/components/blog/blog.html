@@ -1,9 +1,13 @@
-<div>
+<i ng-show='!$ctrl.blogItems' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+<div id = 'blogContainer' ng-show='$ctrl.blogItems'>
   <add-blog blog-items = '$ctrl.blogItems'></add-blog>
+  <div class='form-group'>
+    <span class="names">Search:</span><input placeholder='Search...' type='text' ng-model = '$ctrl.filterValue' />
+    <span class="names">Sort:</span><select id = "selectOptions" ng-model="$ctrl.sortBy" ng-options="x for x in $ctrl.selectOptions"></select>
+  </div>
   <button form-name = "addFormContainer" class="addBlogBtn btn btn-primary glyphicon glyphicon-pencil" modal></button>
-  <i ng-show='!$ctrl.blogItems' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-  <ul id = "blogItems" class="blogItems" ng-show='$ctrl.blogItems'>
-    <li ng-repeat='item in $ctrl.blogItems'>
+  <ul id = "blogItems" class="blogItems">
+    <li ng-repeat='item in $ctrl.blogItems | filter: $ctrl.filterValue | orderBy: $ctrl.sortBy'>
       <h3>{{item.title}}</h3>
       <button ui-sref='blogItem({ blogId: item.id })' class='btn btn-primary'>View</button>
       <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog($index)' type="button" confirm>Delete</button>

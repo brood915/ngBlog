@@ -9,6 +9,10 @@ class BlogCtrl {
   }
 
   $onInit() {
+    this.filterValue = "";
+    this.selectOptions = ['title', 'oldest', 'recent'];
+    this.sortBy = 'recent';
+    
     if (!this.blogService.blogItems){ //initialize data if not present yet
       this.blogService.getData()
       .then((resp) => {this.blogService.blogItems = resp; this.blogItems = resp;})
