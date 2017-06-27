@@ -1,21 +1,21 @@
 [
-      {"title": "ReactJS", "id": 0, "description": "this is about ReactJS",
+      {"title": "ReactJS", "date": "1/1/17", "id": 0, "description": "this is about ReactJS",
             "comments": [
                   {"id":0, "text": "nice book!"},
                   {"id":1, "text": "highly recommended!"}
             
             ]
       },
-      {"title": "AngularJS", "id": 1, "description": "this is about AngularJS",
+      {"title": "AngularJS", "date": "3/4/16", "id": 1, "description": "this is about AngularJS",
             "comments": [      
             ]            
       },
-      {"title": "VueJS", "id": 2, "description": "this is about VueJS",
+      {"title": "VueJS", "date": "6/15/17", "id": 2, "description": "this is about VueJS",
             "comments": [
                   {"id":0, "text": "nice book!"}
             ]             
       },    
-      {"title": "jQuery", "id": 3, "description": "this is about jQuery",
+      {"title": "jQuery", "date": "9/15/17", "id": 3, "description": "this is about jQuery",
             "comments": [
             ]      
       }

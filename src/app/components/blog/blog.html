@@ -9,6 +9,7 @@
   <ul id = "blogItems" class="blogItems">
     <li ng-repeat='item in $ctrl.blogItems | filter: $ctrl.filterValue | orderBy: $ctrl.sortBy'>
       <h3>{{item.title}}</h3>
+      <p>{{item.date}}</p>
       <button ui-sref='blogItem({ blogId: item.id })' class='btn btn-primary'>View</button>
       <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog($index)' type="button" confirm>Delete</button>
     </li>
