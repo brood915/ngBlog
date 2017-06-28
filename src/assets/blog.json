@@ -1,21 +1,21 @@
 [
-      {"title": "ReactJS", "date": "1/1/17", "id": 0, "description": "this is about ReactJS",
+      {"title": "ReactJS", "name": "Kevin Jang", "date": "1/1/17 12:00:35 PM", "id": 0, "description": "this is about ReactJS",
             "comments": [
                   {"id":0, "text": "nice book!"},
                   {"id":1, "text": "highly recommended!"}
             
             ]
       },
-      {"title": "AngularJS", "date": "3/4/16", "id": 1, "description": "this is about AngularJS",
+      {"title": "AngularJS", "name": "Kevin Jang", "date": "3/4/16 10:25:55 AM", "id": 1, "description": "this is about AngularJS",
             "comments": [      
             ]            
       },
-      {"title": "VueJS", "date": "6/15/17", "id": 2, "description": "this is about VueJS",
+      {"title": "VueJS", "name": "Kevin Jang", "date": "6/15/17 11:35:26 AM", "id": 2, "description": "this is about VueJS",
             "comments": [
                   {"id":0, "text": "nice book!"}
             ]             
       },    
-      {"title": "jQuery", "date": "9/15/17", "id": 3, "description": "this is about jQuery",
+      {"title": "jQuery", "name": "Kevin Jang", "date": "9/15/16 1:15:46 AM", "id": 3, "description": "this is about jQuery",
             "comments": [
             ]      
       }

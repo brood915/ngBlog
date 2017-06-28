@@ -20,6 +20,21 @@ li {
     list-style: none;
 }
 
+.blogItemDate, .blogItemName {
+    align-self: flex-end;
+}
+
+.blogItemName {
+    font-size: 18px;
+}
+
+.btn-group {
+    margin: 0 auto;
+    padding: 20px;
+    .btn {
+        font-weight: bold;
+    }
+}
 
 .comments {
     width: 80%;
@@ -35,7 +50,8 @@ li {
 
 .blogPostItems {
     width: 80%;
-    margin:0 auto;
+    display: flex;
+    flex-direction: column;
 }
 
 

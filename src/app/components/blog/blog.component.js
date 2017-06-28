@@ -20,11 +20,13 @@ class BlogCtrl {
         this.blogService.blogItems = resp; 
         this.blogItems = resp;
         this.sortBy = 'recent';
+        console.log(this.blogItems)
       });
     }
     else {
       this.blogItems = this.blogService.blogItems;
       this.sortBy = 'recent';
+      console.log(this.blogItems)
     }
   }
 
@@ -38,19 +40,14 @@ class BlogCtrl {
       else if (this.sortBy === 'recent') {
         this.blogItems.sort(function(a,b){
           return new Date(b.date) - new Date(a.date);        
-      });
-    }
-  }
+        });
+      }
+}
 
 
   deleteBlog (index) {
    this.$scope.$apply(()=>{
-   
-   this.blogItems.splice(index,1); 
-   //to allow confirm directive to update view after running this
-   
-   this.blogItems.map((each,index)=> each.id = index); 
-    //change the id #s to prevent duplicates
+   this.blogService.deleteBlog(this.blogItems, index);
  })}
 }
 

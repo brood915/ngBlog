@@ -15,16 +15,19 @@ class AddBlogCtrl {
   resetForm () {
     this.blog = {
       "title": "",
+      "name": "",
+      "date":"",
       "description": "",
       "comments": []
     }
  }
 
   addBlog () {
-
     this.blog.id = this.blogItems.length;
-    this.blogItems.push(this.blog);
+    this.blog.date = this.blogService.getDate();
+    this.blogItems.unshift(this.blog);
     this.resetForm();
+    console.log(this.blogItems)
   }
 
 }

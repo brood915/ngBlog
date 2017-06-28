@@ -3,8 +3,9 @@ import angular from 'angular';
 
 class EditBlogCtrl {
     /* @ngInject */
-  constructor($scope) {
+  constructor($scope, blogService) {
       this.$scope = $scope;
+      this.blogService = blogService;
   }
 
   $onInit() {
@@ -12,12 +13,18 @@ class EditBlogCtrl {
   }
 
   handleEdit () { //passes the new value back to blog-detail comp
-    this.blogItems[this.modifiedBlog.id] = angular.copy(this.modifiedBlog);
+    //find the item with the given id #
+    this.blogItems.map((each,index) =>
+    { 
+      if (each.id === this.modifiedBlog.id){
+        this.blogItems[index] = angular.copy(this.modifiedBlog);
+      }
+    });
     this.editBlog({
       $event: {
         blogItems: this.blogItems
       }
-    })
+    });
   }
 
   resetForm () {

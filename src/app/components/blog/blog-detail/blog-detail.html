@@ -2,10 +2,14 @@
 <edit-blog edit-blog = '$ctrl.editBlog($event)' blog-items='$ctrl.blogItems' blog-item = '$ctrl.item'></edit-blog>
 <div class = 'main' id="blogDetail">
     <div class ='blogPostItems bottomBorder'>
-    <h2 class="">{{$ctrl.item.title}}</h2>
+    <h1 class="">{{$ctrl.item.title}}</h1>
+    <p class="name blogItemName">{{$ctrl.item.name}}</p>
+    <p class="date blogItemDate">{{$ctrl.item.date}}</p>
     <div class="">{{$ctrl.item.description}}</div>
-    <button  class='btn btn-primary' form-name = "editFormContainer" modal>Edit</button>
-    <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog()' type="button" confirm>Delete</button>
+    <div class="btn-group">
+        <button  class='btn btn-primary' form-name = "editFormContainer" modal>Edit</button>
+        <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog()' type="button" confirm>Delete</button>
+    </div>
 </div>
     
     <h3>Comments</h3>

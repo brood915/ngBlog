@@ -5,6 +5,15 @@
     flex-direction: column;
 }
 
+.date, .name {
+    font-size: 12px;
+    font-style: italic;
+}
+
+.name {
+    font-size: 15px;
+}
+
 .names {
     padding: 5px;
     font-weight: bold;

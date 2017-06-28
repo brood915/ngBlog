@@ -23,8 +23,7 @@ class BlogDetailCtrl {
   }
 
   deleteBlog() {
-    this.blogItems.splice(this.item.id, 1);
-    this.blogItems.map((each,index)=> each.id = index); //resets the id #
+    this.blogService.deleteBlog(this.blogItems, this.item.id);
     this.$state.go('blog');
   }
 
@@ -33,9 +32,10 @@ class BlogDetailCtrl {
     this.item = this.blogItems.find((each) => each.id === Number(this.$stateParams.blogId));
   }
 
-  editBlog (event) { //passes the function down t edit-blog child comp
+  editBlog (event) { //passes the function down to edit-blog child comp
     this.blogItems = event.blogItems;
     this.getBlog();
+    console.log(this.blogItems)
   }
 
   addComment () {
