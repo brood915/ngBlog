@@ -20,16 +20,22 @@ class BlogCtrl {
         this.blogService.blogItems = resp; 
         this.blogItems = resp;
         this.sortBy = 'recent';
-        console.log(this.blogItems)
       });
     }
     else {
       this.blogItems = this.blogService.blogItems;
       this.sortBy = 'recent';
-      console.log(this.blogItems)
     }
   }
 
+  isShort (desc) {
+    if (desc.length < 100) {
+      return true;
+    }
+
+    this.shortened = desc.substr(0, 99) + "...";
+    return false;
+  }
 
   handleSort (){
       if (this.sortBy === 'oldest') {

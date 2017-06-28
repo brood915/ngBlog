@@ -13,6 +13,10 @@ class EditBlogCtrl {
   }
 
   handleEdit () { //passes the new value back to blog-detail comp
+    
+    //get the time when the blog was editted
+    let dateEdited = this.blogService.getDate();
+    this.modifiedBlog.dateEdited = dateEdited;
     //find the item with the given id #
     this.blogItems.map((each,index) =>
     { 

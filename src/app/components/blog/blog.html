@@ -9,8 +9,9 @@
   <ul id = "blogItems" class="blogItems">
     <li ng-repeat='item in $ctrl.blogItems | filter: $ctrl.filterValue | orderBy: $ctrl.sortBy'>
       <h2>{{item.title}}</h2>
-      <p class="name">{{item.name}}</p>
-      <p class="date">{{item.date}}</p>
+      <p ng-show = '$ctrl.isShort(item.description)' class="desc">{{item.description}}</p>
+      <p ng-show = '!$ctrl.isShort(item.description)' class = "desc">{{$ctrl.shortened}}</p>
+      <p class="date"><span>{{item.name}} - </span>{{item.date}}</p>
       <button ui-sref='blogItem({ blogId: item.id })' class='btn btn-primary'>View</button>
       <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog(item.id)' type="button" confirm>Delete</button>
     </li>

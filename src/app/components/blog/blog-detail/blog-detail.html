@@ -2,9 +2,10 @@
 <edit-blog edit-blog = '$ctrl.editBlog($event)' blog-items='$ctrl.blogItems' blog-item = '$ctrl.item'></edit-blog>
 <div class = 'main' id="blogDetail">
     <div class ='blogPostItems bottomBorder'>
-    <h1 class="">{{$ctrl.item.title}}</h1>
+    <h1>{{$ctrl.item.title}}</h1>
     <p class="name blogItemName">{{$ctrl.item.name}}</p>
-    <p class="date blogItemDate">{{$ctrl.item.date}}</p>
+    <p class="date blogItemDate"><span ng-show="$ctrl.item.dateEdited">Posted: </span>{{$ctrl.item.date}}</p>
+    <p ng-show="$ctrl.item.dateEdited" class="date blogItemDate">Edited: {{$ctrl.item.dateEdited}}</p>
     <div class="">{{$ctrl.item.description}}</div>
     <div class="btn-group">
         <button  class='btn btn-primary' form-name = "editFormContainer" modal>Edit</button>

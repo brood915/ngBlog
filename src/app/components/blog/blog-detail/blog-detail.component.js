@@ -35,7 +35,6 @@ class BlogDetailCtrl {
   editBlog (event) { //passes the function down to edit-blog child comp
     this.blogItems = event.blogItems;
     this.getBlog();
-    console.log(this.blogItems)
   }
 
   addComment () {
