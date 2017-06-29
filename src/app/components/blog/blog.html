@@ -10,13 +10,13 @@
     <li ng-repeat='item in filtered = ($ctrl.blogItems | filter: $ctrl.filterValue | orderBy: $ctrl.sortBy)'>
       <h2>{{item.title}}<span class="new" ng-show="$ctrl.isNew(item.date)">New!</span></h2>
       <p ng-show = '$ctrl.isShort(item.description)' class="desc">{{item.description}}</p>
-      <p ng-show = '!$ctrl.isShort(item.description)' class = "desc">{{$ctrl.shortened}}</p>
+      <p ng-show = '!$ctrl.isShort(item.description)' class = "desc">{{$ctrl.shortened}}<span ui-sref='blogItem({ blogId: item.id })' class="readMore">Read More</span></p>
       <p class="date"><span>{{item.name}} - </span>{{item.date}}</p>
       <div class="countsContainer">
-        <span class="counts glyphicon glyphicon-search"></span> {{item.views}}
         <span class="counts glyphicon glyphicon-thumbs-up"></span> {{item.likes}}
         <span class="counts glyphicon glyphicon-thumbs-down"></span> {{item.dislikes}}
         <span class="counts glyphicon glyphicon-pencil"></span> {{item.comments.length}}
+        <span class="counts glyphicon glyphicon-search"></span> {{item.views}}   
       </div>
       <button ui-sref='blogItem({ blogId: item.id })' class='btn btn-primary'>View</button>
       <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog(item.id)' type="button" confirm>Delete</button>

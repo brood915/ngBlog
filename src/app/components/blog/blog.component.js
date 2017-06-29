@@ -11,7 +11,7 @@ class BlogCtrl {
 
   $onInit() {
     this.filterValue = "";
-    this.selectOptions = ['title', 'oldest', 'recent'];
+    this.selectOptions = ['title', 'oldest', 'recent', 'liked' ,'viewed'];
 
     if (!this.blogService.blogItems){ //initialize data if not present yet
       this.blogService.getData()
@@ -61,7 +61,19 @@ class BlogCtrl {
           return new Date(b.date) - new Date(a.date);        
         });
       }
-}
+
+      else if (this.sortBy === "liked") {
+        this.blogItems.sort(function(a,b) {
+          return b.likes - a.likes;
+        });
+      }
+
+      else if (this.sortBy === "viewed") {
+        this.blogItems.sort(function(a,b) {
+          return b.views - a.views;
+        });
+      }
+    }
 
 
   deleteBlog (index) {
