@@ -7,7 +7,7 @@
   </div>
   <button form-name = "addFormContainer" class="addBlogBtn btn btn-primary glyphicon glyphicon-pencil" modal></button>
   <ul id = "blogItems" class="blogItems">
-    <li ng-repeat='item in $ctrl.blogItems | filter: $ctrl.filterValue | orderBy: $ctrl.sortBy'>
+    <li ng-repeat='item in filtered = ($ctrl.blogItems | filter: $ctrl.filterValue | orderBy: $ctrl.sortBy)'>
       <h2>{{item.title}}</h2>
       <p ng-show = '$ctrl.isShort(item.description)' class="desc">{{item.description}}</p>
       <p ng-show = '!$ctrl.isShort(item.description)' class = "desc">{{$ctrl.shortened}}</p>
@@ -16,5 +16,6 @@
       <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog(item.id)' type="button" confirm>Delete</button>
     </li>
   </ul>
-  <span ng-if='$ctrl.blogItems.length === 0'>Coming Soon!</span>
+  <h3 ng-show="!filtered.length">Blog posts with that name do not exist</h3>
+  <h3 ng-if='$ctrl.blogItems.length === 0'>Be the first one to write a blog post!</h3>
 </div>

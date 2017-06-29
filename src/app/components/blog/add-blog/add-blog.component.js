@@ -27,7 +27,6 @@ class AddBlogCtrl {
     this.blog.date = this.blogService.getDate();
     this.blogItems.unshift(this.blog);
     this.resetForm();
-    console.log(this.blogItems)
   }
 
 }
