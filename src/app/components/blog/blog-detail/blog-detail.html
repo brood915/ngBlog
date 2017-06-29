@@ -6,14 +6,34 @@
     <p class="name blogItemName">{{$ctrl.item.name}}</p>
     <p class="date blogItemDate"><span ng-show="$ctrl.item.dateEdited">Posted: </span>{{$ctrl.item.date}}</p>
     <p ng-show="$ctrl.item.dateEdited" class="date blogItemDate">Edited: {{$ctrl.item.dateEdited}}</p>
-    <div class="">{{$ctrl.item.description}}</div>
+    <div class="item-desc">{{$ctrl.item.description}}</div>
     <div class="btn-group">
         <button  class='btn btn-primary' form-name = "editFormContainer" modal>Edit</button>
         <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog()' type="button" confirm>Delete</button>
     </div>
+    <div class="badgesContainer">
+        <div class = "clickable" ng-click="$ctrl.likeBlog()">
+            <span class="badge">
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+            </span>
+            {{$ctrl.item.likes}}
+        </div>
+        <div class = "clickable" ng-click="$ctrl.dislikeBlog()">
+            <span class="badge">
+                <span class="glyphicon glyphicon-thumbs-down"></span>
+            </span>
+            {{$ctrl.item.dislikes}}
+        </div>
+        <div>
+            <span class="badge">
+                <span class="glyphicon glyphicon-search"></span>
+            </span>
+            {{$ctrl.item.views}}
+        </div>        
+    </div>
 </div>
     
-    <h3>Comments</h3>
+    <h3>Comments <span>({{$ctrl.item.comments.length}})</span></h3>
     <ul class ="comments">
         <li ng-repeat = 'comment in $ctrl.item.comments'>{{comment.text}}               
         <button message = "Are you sure?" confirmed-click='$ctrl.deleteComment($index)' type="button" class="close" confirm>&times;</button>
@@ -26,7 +46,7 @@
            'has-error has-feedback' : (addCommentForm.comment.$dirty || addCommentForm.$submitted) && addCommentForm.comment.$invalid
          }"
         >
-            <input placeholder="write a comment..." class = 'form-control' name = 'comment' type='text' ng-model='$ctrl.comment.text' required></input>
+            <input autocomplete="off" placeholder="write a comment..." class = 'form-control' name = 'comment' type='text' ng-model='$ctrl.comment.text' required></input>
             <span class="glyphicon form-control-feedback"
             ng-class = " {
               'glyphicon-ok': (addCommentForm.comment.$dirty || addCommentForm.$submitted) && addCommentForm.comment.$valid,

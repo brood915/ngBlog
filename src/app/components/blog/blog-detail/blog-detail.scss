@@ -16,8 +16,33 @@
 
 }
 
+.badge {
+    background-color: #337ab7;
+    margin: 5px;
+}
+
+.badgesContainer {
+    div {
+        display: inline-block;
+        font-weight: bold;
+        font-size: 12px;
+    }
+}
+
+.clickable {
+    cursor: pointer;
+    &:hover {
+        opacity:0.8;
+    }
+}
+
 li {
     list-style: none;
+}
+
+
+.item-desc {
+    padding: 20px;
 }
 
 .blogItemDate, .blogItemName {

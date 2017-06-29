@@ -16,12 +16,21 @@ class BlogDetailCtrl {
     if (this.blogItems){
       this.getBlog();
       this.resetComment(); //to get the next id # of comment initially
+      this.item.views++; //increases view count when this page is activated
     }
     else { //if blogitem not found
       this.$state.go('404'); //redirect to /404 to display error message
     }
   }
 
+  likeBlog() {
+    this.item.likes++;
+  }
+
+  dislikeBlog() {
+    this.item.dislikes++;
+  }
+ 
   deleteBlog() {
     this.blogService.deleteBlog(this.blogItems, this.item.id);
     this.$state.go('blog');

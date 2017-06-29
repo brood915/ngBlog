@@ -15,6 +15,9 @@ class AddBlogCtrl {
   resetForm () {
     this.blog = {
       "title": "",
+      "views": 0,
+      "likes": 0,
+      "dislikes": 0,
       "name": "",
       "date":"",
       "description": "",
