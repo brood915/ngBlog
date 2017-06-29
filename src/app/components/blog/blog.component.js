@@ -37,6 +37,19 @@ class BlogCtrl {
     return false;
   }
 
+ isNew(blogDate) {
+    let date = new Date();
+    let isNew = date - new Date(blogDate);
+    let hours = isNew/3600000; //converts ms to hr
+  
+    
+    if(hours < 72 ) {
+      return true;
+    }
+
+    return false;
+  }
+
   handleSort (){
       if (this.sortBy === 'oldest') {
         this.blogItems.sort(function(a,b){

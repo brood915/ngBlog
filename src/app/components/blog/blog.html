@@ -8,7 +8,7 @@
   <button form-name = "addFormContainer" class="addBlogBtn btn btn-primary glyphicon glyphicon-pencil" modal></button>
   <ul id = "blogItems" class="blogItems">
     <li ng-repeat='item in filtered = ($ctrl.blogItems | filter: $ctrl.filterValue | orderBy: $ctrl.sortBy)'>
-      <h2>{{item.title}}</h2>
+      <h2>{{item.title}}<span class="new" ng-show="$ctrl.isNew(item.date)">New!</span></h2>
       <p ng-show = '$ctrl.isShort(item.description)' class="desc">{{item.description}}</p>
       <p ng-show = '!$ctrl.isShort(item.description)' class = "desc">{{$ctrl.shortened}}</p>
       <p class="date"><span>{{item.name}} - </span>{{item.date}}</p>

@@ -18,7 +18,6 @@ export class BlogService {
     return date;
   }
 
-
   deleteBlog(items, target){
    items.map((each,index) =>
     { 
