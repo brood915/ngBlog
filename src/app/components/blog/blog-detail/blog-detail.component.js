@@ -50,7 +50,7 @@ class BlogDetailCtrl {
   addComment () {
     this.item.comments.push(this.comment);
     this.resetComment(); //to get the next id # after adding a comment
-    this.$timeut (() => 
+    this.$timeout (() => 
       this.$scope.addCommentForm.$setPristine()
     ); //resets form
   }
@@ -58,7 +58,9 @@ class BlogDetailCtrl {
  resetComment () {
    this.comment = {
      "id": this.item.comments.length,
-     "text": ""
+     "text": "",
+     "comments":"",
+     "name":""
    }
  }
 
