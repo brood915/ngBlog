@@ -42,15 +42,15 @@
     <form name = 'addCommentForm' novalidate ng-submit='addCommentForm.$valid && $ctrl.addComment()'>
         <div class="form-group commentFormGroup"
          ng-class = "{
-           'has-success has-feedback' : (addCommentForm.comment.$dirty || addCommentForm.$submitted) && addCommentForm.comment.$valid,
-           'has-error has-feedback' : (addCommentForm.comment.$dirty || addCommentForm.$submitted) && addCommentForm.comment.$invalid
+           'has-success has-feedback' : (addCommentForm.comment.$dirty && addCommentForm.$submitted) && addCommentForm.comment.$valid,
+           'has-error has-feedback' : (addCommentForm.comment.$dirty && addCommentForm.$submitted) && addCommentForm.comment.$invalid
          }"
         >
             <input autocomplete="off" placeholder="write a comment..." class = 'form-control' name = 'comment' type='text' ng-model='$ctrl.comment.text' required></input>
             <span class="glyphicon form-control-feedback"
             ng-class = " {
-              'glyphicon-ok': (addCommentForm.comment.$dirty || addCommentForm.$submitted) && addCommentForm.comment.$valid,
-              'glyphicon-remove': (addCommentForm.comment.$dirty || addCommentForm.$submitted) && addCommentForm.comment.$invalid
+              'glyphicon-ok': (addCommentForm.comment.$dirty && addCommentForm.$submitted) && addCommentForm.comment.$valid,
+              'glyphicon-remove': (addCommentForm.comment.$dirty && addCommentForm.$submitted) && addCommentForm.comment.$invalid
             }"
             />
         </div>

@@ -2,14 +2,16 @@ import template from './add-blog.html';
 
 class AddBlogCtrl {
     /* @ngInject */
-  constructor(blogService, $scope) {
+  constructor(blogService, $scope, $timeout) {
       this.blogService = blogService;
       this.$scope = $scope;
+      this.$timeout = $timeout;
   }
 
 
   $onInit () {
     this.resetForm();
+    this.added = false;
   }
 
   resetForm () {
@@ -30,6 +32,11 @@ class AddBlogCtrl {
     this.blog.date = this.blogService.getDate();
     this.blogItems.unshift(this.blog);
     this.resetForm();
+
+    this.$timeout(() =>{
+      this.$scope.addBlogForm.$setPristine();
+      this.added = true;
+    });//resets form
   }
 
 }

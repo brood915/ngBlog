@@ -25,6 +25,7 @@ body {
 }
 
 body,html, app, app div {
+  word-wrap: break-word;
   font-family: 'Lato', sans-serif;
   text-align: center;
   height: 100%;

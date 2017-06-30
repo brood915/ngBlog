@@ -1,19 +1,65 @@
 <div class="hide" id="addFormContainer">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" form-name = "addFormContainer" modal>&times;</button>
+            <button type="button" class="close" form-name = "addFormContainer" ng-click = "$ctrl.added = false" modal>&times;</button>
             <h3 class="modal-title">Add a blog post</h3>
         </div>
         <div class="modal-body">
-            <form class='addBlogForm' name='addBlogForm'>
-                <input autocomplete="off" placeholder="write a title..." type='text' name="title" ng-model = '$ctrl.blog.title'/>
-                <input autocomplete="off" placeholder="write your name..." type='text' name="name" ng-model = '$ctrl.blog.name'/>
-                <textarea placeholder="write description..." type='text' name="description" ng-model ='$ctrl.blog.description'></textarea>
+            <form class='addBlogForm' novalidate name='addBlogForm'>
+                <div class="form-group"
+                    ng-class = "{
+                    'has-success has-feedback' : ((addBlogForm.title.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.title.$valid,
+                    'has-error has-feedback' : ((addBlogForm.title.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.title.$invalid
+                    }"
+                >
+                    <input ng-click = "$ctrl.added = false" class = "form-control" autocomplete="off" placeholder="write a title..." type='text' name="title" ng-model = '$ctrl.blog.title' ng-minlength = "2" ng-maxlength="100" required/>
+                    <span class="glyphicon form-control-feedback"
+                    ng-class = " {
+                    'glyphicon-ok': ((addBlogForm.title.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.title.$valid,
+                    'glyphicon-remove': ((addBlogForm.title.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.title.$invalid
+                    }"
+                    />  
+                </div>
+                    <p ng-if = "((addBlogForm.title.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.title.$invalid" class="text-danger errorMsg">Your title must be 2-100 characters long.</p>                  
+                <div class="form-group"
+                    ng-class = "{
+                    'has-success has-feedback' : ((addBlogForm.name.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.name.$valid,
+                    'has-error has-feedback' : ((addBlogForm.name.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.name.$invalid
+                    }"
+                >                
+                    <input ng-click = "$ctrl.added = false" class= "form-control" autocomplete="off" placeholder="write your name..." type='text' name="name" ng-model = '$ctrl.blog.name' ng-minlength = "2" ng-maxlength="50" required/>
+                    <span class="glyphicon form-control-feedback"
+                    ng-class = " {
+                    'glyphicon-ok': ((addBlogForm.name.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.name.$valid,
+                    'glyphicon-remove': ((addBlogForm.name.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.name.$invalid
+                    }"
+                    />
+                </div>
+                    <p ng-if = "((addBlogForm.name.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.name.$invalid" class="text-danger errorMsg">Your name must be 2-50 characters long.</p>                 
+                <div class="form-group"
+                    ng-class = "{
+                    'has-success has-feedback' : ((addBlogForm.description.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.description.$valid,
+                    'has-error has-feedback' : ((addBlogForm.description.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.description.$invalid
+                    }"
+                >                
+                    <textarea ng-click = "$ctrl.added = false" placeholder="write description..." type='text' name="description" ng-model ='$ctrl.blog.description' ng-minlength = "100" required></textarea>
+                    <span class="glyphicon form-control-feedback"
+                        ng-class = " {
+                        'glyphicon-ok': ((addBlogForm.description.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.description.$valid,
+                        'glyphicon-remove': ((addBlogForm.description.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.description.$invalid
+                        }"
+                    />  
+                </div>    
+                    <p ng-if = "((addBlogForm.description.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.description.$invalid" class="text-danger errorMsg">Your post needs to be at least 100 characters long.</p>   
+                    <button type="button" class="btn btn-default" form-name = "addFormContainer" ng-click = "$ctrl.added = false" modal>Close</button>
+                    <button class='btn btn-primary' ng-click = "addBlogForm.$valid && $ctrl.addBlog()">Post</button>
+                    <h4 class = "text-primary" ng-show ="$ctrl.added">Your post was submitted!</h4>
+            
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" form-name = "addFormContainer" modal>Close</button>
-            <button class='btn btn-primary' ng-click = '$ctrl.addBlog()' form-name = "addFormContainer" modal>Post</button>
+            <p class="errorMsg text-success" ng-show="addBlogForm.$submitted && addBlogForm.$valid">Your form is now valid to be submitted!</p>
+            <p class="errorMsg text-danger" ng-show="addBlogForm.$submitted && addBlogForm.$invalid">Please fill in all the required fields!</p>
         </div>
     </div>
 </div>

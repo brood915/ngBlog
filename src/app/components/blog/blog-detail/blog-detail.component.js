@@ -2,11 +2,12 @@ import template from './blog-detail.html';
 
 class BlogDetailCtrl {
     /* @ngInject */
-  constructor(blogService,$stateParams,$state,$scope) {
+  constructor(blogService,$stateParams,$state,$scope, $timeout) {
       this.blogService = blogService;
       this.$stateParams = $stateParams;
       this.$state = $state;
       this.$scope = $scope;
+      this.$timeout = $timeout;
   }
 
 
@@ -43,13 +44,15 @@ class BlogDetailCtrl {
 
   editBlog (event) { //passes the function down to edit-blog child comp
     this.blogItems = event.blogItems;
-    this.getBlog();
+    this.getBlog();  
   }
 
   addComment () {
     this.item.comments.push(this.comment);
     this.resetComment(); //to get the next id # after adding a comment
-    this.$scope.addCommentForm.$setPristine(); //resets form
+    this.$timeut (() => 
+      this.$scope.addCommentForm.$setPristine()
+    ); //resets form
   }
 
  resetComment () {
