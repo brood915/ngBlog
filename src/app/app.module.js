@@ -1,3 +1,4 @@
+import "babel-polyfill";
 import angular from 'angular';
 import 'bootstrap/dist/css/bootstrap.css';
 import './main.scss';
