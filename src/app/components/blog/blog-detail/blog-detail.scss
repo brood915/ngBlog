@@ -10,10 +10,15 @@
         min-width: 200px;
         width: 80%;
         display: inline-block;
-        border: 1px solid #ddd;
-        border-radius: 10px;
+        padding: 5px;
     }
 
+}
+
+.replies {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding:5px;
 }
 
 .badge {
@@ -54,7 +59,8 @@ li {
 }
 
 .btn-group {
-    margin: 0 auto;
+    display:flex;
+    justify-content: center;
     padding: 20px;
     .btn {
         font-weight: bold;
@@ -70,6 +76,22 @@ li {
         width: 100%;
         min-width: 250px;
         align-self:center;
+        padding: 10px;
+
+        .btn-group {
+            padding:5px;
+        }
+    }
+}
+
+.commentBtns {
+    border: none;
+    background-color: white;
+    color: gray;
+    font-size: 10px;
+    font-weight: bold;
+    &:hover {
+        opacity: 0.5;
     }
 }
 
@@ -88,6 +110,6 @@ li {
 .goBackBtn {
     position: absolute;
     right: 30px;
-    top: 0px;
+    top: 0;
     z-index: 1000000;
 }

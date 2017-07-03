@@ -5,7 +5,7 @@
     <span class="names">Search:</span><input placeholder='Search...' type='text' ng-model = '$ctrl.filterValue' />
     <span class="names">Sort:</span><select id = "selectOptions" ng-model="$ctrl.sortBy" ng-options="x for x in $ctrl.selectOptions"></select>
   </div>
-  <button form-name = "addFormContainer" class="addBlogBtn btn btn-primary glyphicon glyphicon-pencil" modal></button>
+  <button form-name = "addFormContainer" class="addBlogBtn btn btn-primary" modal><i class="fa fa-pencil" aria-hidden="true"></i></button>
   <ul id = "blogItems" class="blogItems">
     <li ng-repeat='item in filtered = ($ctrl.blogItems | filter: $ctrl.filterValue | orderBy: $ctrl.sortBy)'>
       <h2>{{item.title}}<span class="new" ng-show="$ctrl.isNew(item.date)">New!</span></h2>
@@ -13,10 +13,10 @@
       <p ng-show = '!$ctrl.isShort(item.description)' class = "desc">{{$ctrl.shortened}}<span ui-sref='blogItem({ blogId: item.id })' class="readMore">Read More</span></p>
       <p class="date"><span>{{item.name}} - </span>{{item.date}}</p>
       <div class="countsContainer">
-        <span class="counts glyphicon glyphicon-thumbs-up"></span> {{item.likes}}
-        <span class="counts glyphicon glyphicon-thumbs-down"></span> {{item.dislikes}}
-        <span class="counts glyphicon glyphicon-pencil"></span> {{item.comments.length}}
-        <span class="counts glyphicon glyphicon-search"></span> {{item.views}}   
+        <span class="counts"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span> {{item.likes}}
+        <span class="counts"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></span> {{item.dislikes}}
+        <span class="counts"><i class="fa fa-pencil" aria-hidden="true"></i></span> {{item.comments.length}}
+        <span class="counts"><i class="fa fa-search" aria-hidden="true"></i></span> {{item.views}}   
       </div>
       <button ui-sref='blogItem({ blogId: item.id })' class='btn btn-primary'>View</button>
       <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog(item.id)' type="button" confirm>Delete</button>

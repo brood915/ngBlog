@@ -60,7 +60,10 @@ class BlogDetailCtrl {
      "id": this.item.comments.length,
      "text": "",
      "comments":"",
-     "name":""
+     "name":"",
+     "date" : "",
+     "expanding": false,
+     "replying": false
    }
  }
 
