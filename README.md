@@ -5,8 +5,7 @@
 
 ### To do
 ```bash
-- Add nodejs + mongodb
-- Make it a fully functioning blog with a portfolio page
+- Make it a fully functioning blog with NodeJS and MongoDB
 ```
 
 
