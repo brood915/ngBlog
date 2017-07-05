@@ -6,7 +6,7 @@
                   "text": "nice book!", 
                   "name":"Jason",
                   "date": "6/26/16 13:00:00 PM",           
-                  "comments": [
+                  "replies": [
                         {"id":0, 
                         "text": "Agreed!", 
                         "name": "Benson", 
@@ -22,7 +22,7 @@
                   "text": "highly recommended!",
                   "name": "Daniel",
                   "date": "6/26/16 13:00:00 PM",
-                  "comments": []
+                  "replies": []
                   } 
             ],
             "views": 2500,
@@ -41,7 +41,7 @@
                   "text": "nice book!",
                   "name":"Jason",
                   "date": "3/18/15 13:00:00 PM",
-                  "comments" : []
+                  "replies" : []
                   }
             ],
             "views": 256,
