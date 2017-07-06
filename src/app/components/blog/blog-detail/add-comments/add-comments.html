@@ -1,0 +1,28 @@
+<ul class ="comments">
+    <!--comments-->
+    <li class = "commentContainer" ng-repeat = 'comment in $ctrl.item.comments'>
+        <span ng-if = "comment.text.length > 100 && !comment.expanding">{{comment.text.substr(0,99) + "..."}}<button ng-click = "comment.expanding = true" type="button" class="commentBtns">Continue</button></span>
+        <span ng-if = "comment.text.length < 100 || comment.expanding">{{comment.text}}</span>
+        <div class="btn-group">               
+            <button type="button" class="commentBtns">Like</button>
+            <button type="button" class="commentBtns">Dislike</button>
+            <button type="button" class="commentBtns">Edit</button>
+            <button message = "Are you sure?" confirmed-click='$ctrl.deleteComment($index)' type="button" class="commentBtns" confirm>Delete</button>
+            <button ng-click = "$ctrl.startReplying($index)" type="button" class="commentBtns">Reply</button>
+        </div>
+        <!--replies-->
+        <ul ng-if = "comment.seeReplies" class="replies">
+            <li ng-repeat="reply in comment.replies">{{reply.text}}</li>
+        </ul>
+        <button ng-click = "comment.seeReplies = true" ng-if = "comment.replies.length > 0 && !comment.seeReplies" class="repliesLabel">Show Replies ({{comment.replies.length}})</button>
+        <button ng-click = "comment.seeReplies = false" ng-if = "comment.seeReplies" class="repliesLabel">Hide Replies</button>
+        <!--form for replies-->
+        <form ng-submit="addReplyForm.$valid && $ctrl.addReply($index)" ng-if = "comment.replying" class="replyFormGroup" name = "addReplyForm" novalidate>
+            <input ng-model="comment.reply.text" class = "replyInput" autocomplete="off" placeholder="Reply..." name = 'reply' type='text' required></input>
+        </form>
+    </li>
+</ul>
+<!--form for comments-->
+<form class="commentFormGroup" name = 'addCommentForm' novalidate ng-submit='addCommentForm.$valid && $ctrl.addComment()'>
+    <input autocomplete="off" placeholder="write a comment..."  name = 'comment' type='text' ng-model='$ctrl.comment.text' required></input>
+</form>
