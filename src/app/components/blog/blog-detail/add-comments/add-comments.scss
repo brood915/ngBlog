@@ -11,23 +11,20 @@
 
 }
 
-.replyInput {
+.replyInputs {
     border: 1px solid #ddd;
     border-radius: 10px;
     padding:5px;
 }
 
+
 .comments {
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
 
     li {
-        width: 100%;
         min-width: 250px;
-        align-self:center;
-        padding: 10px;
-
         .btn-group {
             padding:5px;
         }
@@ -35,12 +32,15 @@
 
     .commentContainer {
         border-bottom: #ddd 1px solid;
+        padding: 5px;
     }
 
-    .replies {
+    .alignLeft {
         text-align: left;
-        width: 300px;
-        margin: 0 auto;
+    } 
+
+    .replies {
+    margin-left: 20px;
     }
 }
 
@@ -55,6 +55,12 @@
     }
 }
 
+.commentNames {
+    font-weight: bold;
+    font-size: 11px;
+    font-style: italic;
+}
+
 .repliesLabel {
     width: 100px;
     border: none;
@@ -65,12 +71,6 @@
     &:hover {
         opacity: 0.5;
     }
-}
-
-.blogPostItems {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
 }
 
 .repliesLabel {

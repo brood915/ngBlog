@@ -3,17 +3,21 @@ import angular from "angular";
 
 class AddCommentsCtrl {
     /* @ngInject */
-  constructor($scope) {
+  constructor($scope, blogService) {
       this.$scope = $scope;
+      this.blogService = blogService;
   }
 
 
   $onInit() {
+    if (this.blogItems){
       this.resetComment();
+    }
   }
 
 
   addComment () {
+    this.comment.date = this.blogService.getDate();
     let comment = angular.copy(this.comment);
     this.item.comments.push(comment);
     this.resetComment(); //to get the next id # after adding a comment
@@ -25,9 +29,11 @@ class AddCommentsCtrl {
   }
 
   addReply (index) {
+    this.item.comments[index].reply.date = this.blogService.getDate();
     let reply = angular.copy(this.item.comments[index].reply);
     this.item.comments[index].replies.push(reply);
     this.item.comments[index].seeReplies = true; //shows replies after adding reply to the comment
+    console.log(reply)
     this.resetComment(); 
     this.resetReply(index);
   }
@@ -74,6 +80,6 @@ class AddCommentsCtrl {
 export const AddCommentsComponent = {
   controller: AddCommentsCtrl,
   template,
-  bindings: {item:"<"}
+  bindings: {item: "<", blogItems: "<"}
 }
     

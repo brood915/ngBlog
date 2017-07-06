@@ -1,8 +1,13 @@
 <ul class ="comments">
     <!--comments-->
     <li class = "commentContainer" ng-repeat = 'comment in $ctrl.item.comments'>
-        <span ng-if = "comment.text.length > 100 && !comment.expanding">{{comment.text.substr(0,99) + "..."}}<button ng-click = "comment.expanding = true" type="button" class="commentBtns">Continue</button></span>
-        <span ng-if = "comment.text.length < 100 || comment.expanding">{{comment.text}}</span>
+        <div class = "alignLeft">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <span class = "commentNames">{{comment.name}} - </span>
+            <span class = "commentNames">{{comment.date}}</span>
+        </div>
+        <div ng-if = "comment.text.length > 100 && !comment.expanding">{{comment.text.substr(0,99) + "..."}}<button ng-click = "comment.expanding = true" type="button" class="commentBtns">Continue</button></div>
+        <div ng-if = "comment.text.length < 100 || comment.expanding">{{comment.text}}</div>
         <div class="btn-group">               
             <button type="button" class="commentBtns">Like</button>
             <button type="button" class="commentBtns">Dislike</button>
@@ -11,18 +16,34 @@
             <button ng-click = "$ctrl.startReplying($index)" type="button" class="commentBtns">Reply</button>
         </div>
         <!--replies-->
-        <ul ng-if = "comment.seeReplies" class="replies">
-            <li ng-repeat="reply in comment.replies">{{reply.text}}</li>
+        <ul ng-if = "comment.seeReplies" class="alignLeft">
+            <li ng-repeat="reply in comment.replies">
+                <div class = "alignLeft replies">
+                    <i class="fa fa-share" aria-hidden="true"></i>
+                    <span class = "commentNames">{{reply.name}} - </span>
+                    <span class = "commentNames">{{reply.date}}</span>
+                </div>
+                <div>{{reply.text}}</div>
+            
+            </li>
         </ul>
         <button ng-click = "comment.seeReplies = true" ng-if = "comment.replies.length > 0 && !comment.seeReplies" class="repliesLabel">Show Replies ({{comment.replies.length}})</button>
         <button ng-click = "comment.seeReplies = false" ng-if = "comment.seeReplies" class="repliesLabel">Hide Replies</button>
         <!--form for replies-->
         <form ng-submit="addReplyForm.$valid && $ctrl.addReply($index)" ng-if = "comment.replying" class="replyFormGroup" name = "addReplyForm" novalidate>
-            <input ng-model="comment.reply.text" class = "replyInput" autocomplete="off" placeholder="Reply..." name = 'reply' type='text' required></input>
+            <input ng-model="comment.reply.name" maxlength = "20" class = "replyInputs" autocomplete="off" placeholder="Name..." name = 'replyName' type='text' required></input>
+            <input ng-model="comment.reply.text" class = "replyInputs" autocomplete="off" placeholder="Reply..." name = 'replyText' type='text' required></input>
+            <!--to submit form with enter with multiple inputs-->
+            <input type="submit" style="position: absolute; left: -9999px; 
+            width: 1px; height: 1px;"/>             
         </form>
     </li>
 </ul>
 <!--form for comments-->
 <form class="commentFormGroup" name = 'addCommentForm' novalidate ng-submit='addCommentForm.$valid && $ctrl.addComment()'>
+    <input ng-model="$ctrl.comment.name" maxlength = "20" autocomplete="off" placeholder="Name..." name = 'commentName' type='text' required></input>  
     <input autocomplete="off" placeholder="write a comment..."  name = 'comment' type='text' ng-model='$ctrl.comment.text' required></input>
+    <!--to submit form with enter with multiple inputs-->
+    <input type="submit" style="position: absolute; left: -9999px; 
+    width: 1px; height: 1px;"/>   
 </form>

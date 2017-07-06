@@ -12,23 +12,16 @@ body {
   display:block !important; /*prevents flash of unstyled content when ng-cloak not working*/
 }
 
-html {
-  overflow-y: hidden;
-}
-
-body {
-  overflow-y: scroll;
-} //makes sure html + body height: 100% covers the whole height
-
 .hide {
     display: none;
 }
 
 body,html, app, app div {
-  word-wrap: break-word;
+  word-break: break-word;
   font-family: 'Lato', sans-serif;
   text-align: center;
   height: 100%;
+  overflow-x: hidden;
 }
 
 a {

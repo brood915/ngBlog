@@ -1,8 +1,12 @@
 #blogDetail {
-    padding: 40px;
+    padding: 20px;
 }
 
-
+add-comments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .badge {
     background-color: #337ab7;
@@ -33,6 +37,13 @@ li {
     padding: 20px;
 }
 
+.blogPostItems {
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
 .blogItemDate, .blogItemName {
     align-self: flex-end;
 }
@@ -60,4 +71,11 @@ li {
     right: 30px;
     top: 0;
     z-index: 1000000;
+}
+
+
+@media screen and (min-width: 768px) {
+    add-comments {
+        width: 700px;
+    }
 }
