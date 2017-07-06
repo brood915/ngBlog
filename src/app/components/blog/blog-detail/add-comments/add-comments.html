@@ -6,8 +6,8 @@
             <span class = "commentNames">{{comment.name}} - </span>
             <span class = "commentNames">{{comment.date}}</span>
         </div>
-        <div ng-if = "comment.text.length > 100 && !comment.expanding">{{comment.text.substr(0,99) + "..."}}<button ng-click = "comment.expanding = true" type="button" class="commentBtns">Continue</button></div>
-        <div ng-if = "comment.text.length < 100 || comment.expanding">{{comment.text}}</div>
+        <div ng-if = "comment.text.length > 100 && !comment.expanding">{{comment.text.substr(0,99) + "..."}}<button ng-click = "comment.expanding = true" type="button" class="commentBtns text">Continue</button></div>
+        <div class = "text" ng-if = "comment.text.length < 100 || comment.expanding">{{comment.text}}</div>
         <div class="btn-group">               
             <button type="button" class="commentBtns">Like</button>
             <button type="button" class="commentBtns">Dislike</button>
@@ -17,13 +17,13 @@
         </div>
         <!--replies-->
         <ul ng-if = "comment.seeReplies" class="alignLeft">
-            <li ng-repeat="reply in comment.replies">
+            <li ng-repeat="reply in comment.replies" class = "replyContainer">
                 <div class = "alignLeft replies">
                     <i class="fa fa-share" aria-hidden="true"></i>
                     <span class = "commentNames">{{reply.name}} - </span>
                     <span class = "commentNames">{{reply.date}}</span>
                 </div>
-                <div>{{reply.text}}</div>
+                <div class ="text">{{reply.text}}</div>
             
             </li>
         </ul>
