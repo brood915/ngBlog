@@ -21,7 +21,10 @@ class EditBlogCtrl {
     this.blogItems.map((each,index) =>
     { 
       if (each.id === this.modifiedBlog.id){
-        this.blogItems[index] = angular.copy(this.modifiedBlog);
+        let copy = angular.copy(this.modifiedBlog);
+        this.blogItems[index].description = copy.description;
+        this.blogItems[index].title = copy.title;
+        this.blogItems[index].dateEdited = copy.dateEdited;
       }
     });
     this.editBlog({

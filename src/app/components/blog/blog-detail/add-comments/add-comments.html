@@ -6,8 +6,8 @@
             <span class = "commentNames">{{comment.name}} - </span>
             <span class = "commentNames">{{comment.date}}</span>
         </div>
-        <div ng-if = "comment.text.length > 100 && !comment.expanding">{{comment.text.substr(0,99) + "..."}}<button ng-click = "comment.expanding = true" type="button" class="commentBtns text">Continue</button></div>
-        <div class = "text" ng-if = "comment.text.length < 100 || comment.expanding">{{comment.text}}</div>
+        <div ng-if = "comment.text.length > 100 && !comment.expanding">{{comment.text.substr(0,99) + "..."}}<button ng-click = "comment.expanding = true" type="button" class="commentBtns text alignLeft">Continue</button></div>
+        <div class = "text alignLeft" ng-if = "comment.text.length < 100 || comment.expanding">{{comment.text}}</div>
         <div class="btn-group">               
             <button type="button" class="commentBtns">Like</button>
             <button type="button" class="commentBtns">Dislike</button>
@@ -23,7 +23,7 @@
                     <span class = "commentNames">{{reply.name}} - </span>
                     <span class = "commentNames">{{reply.date}}</span>
                 </div>
-                <div class ="text">{{reply.text}}</div>
+                <div class ="text alignLeft">{{reply.text}}</div>
             
             </li>
         </ul>
