@@ -33,6 +33,7 @@ class AddCommentsCtrl {
     let reply = angular.copy(this.item.comments[index].reply);
     this.item.comments[index].replies.push(reply);
     this.item.comments[index].seeReplies = true; //shows replies after adding reply to the comment
+    this.item.comments[index].replying = false;
     console.log(reply)
     this.resetComment(); 
     this.resetReply(index);

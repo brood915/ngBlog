@@ -44,6 +44,10 @@
     } 
 }
 
+.text {
+    padding:0 10px;
+}
+
 .commentBtns {
     border: none;
     background-color: white;
@@ -53,6 +57,10 @@
     &:hover {
         opacity: 0.5;
     }
+}
+
+.commentBtnGroup {
+    justify-content: flex-start !important;
 }
 
 .commentNames {
@@ -78,11 +86,16 @@
 }
 
 @media screen and (max-width: 320px) {
-    .text {
-        padding:0 10px;
-    }
 
     .alignLeft {
         margin-left: 10px;
     }
+
+    .replyContainer {
+            margin-left: 30px !important;
+        }
+    .commentBtnGroup {
+        margin-left: 10px;
+    }
+
 }

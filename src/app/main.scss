@@ -16,13 +16,22 @@ body {
     display: none;
 }
 
-body,html, app, app div {
-  word-break: break-word;
+body,html, app, .mainContainer {
+  word-break: break-all;
   font-family: 'Lato', sans-serif;
   text-align: center;
   height: 100%;
-  overflow-x: hidden;
 }
+
+html {
+  overflow-y: hidden;
+}
+
+body {
+  overflow-y: scroll;
+  overflow-x: hidden;
+} //makes sure html + body height: 100% covers the whole height
+
 
 a {
   color: #03A9F4;

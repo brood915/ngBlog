@@ -6,9 +6,9 @@
             <span class = "commentNames">{{comment.name}} - </span>
             <span class = "commentNames">{{comment.date}}</span>
         </div>
-        <div ng-if = "comment.text.length > 100 && !comment.expanding">{{comment.text.substr(0,99) + "..."}}<button ng-click = "comment.expanding = true" type="button" class="commentBtns text alignLeft">Continue</button></div>
+        <div class = "text alignLeft" ng-if = "comment.text.length > 100 && !comment.expanding">{{comment.text.substr(0,99) + "..."}}<button ng-click = "comment.expanding = true" type="button" class="commentBtns">Continue</button></div>
         <div class = "text alignLeft" ng-if = "comment.text.length < 100 || comment.expanding">{{comment.text}}</div>
-        <div class="btn-group">               
+        <div class="btn-group commentBtnGroup">               
             <button type="button" class="commentBtns">Like</button>
             <button type="button" class="commentBtns">Dislike</button>
             <button type="button" class="commentBtns">Edit</button>
@@ -24,7 +24,12 @@
                     <span class = "commentNames">{{reply.date}}</span>
                 </div>
                 <div class ="text alignLeft">{{reply.text}}</div>
-            
+                <div class="btn-group commentBtnGroup">               
+                    <button type="button" class="commentBtns">Like</button>
+                    <button type="button" class="commentBtns">Dislike</button>
+                    <button type="button" class="commentBtns">Edit</button>
+                    <button message = "Are you sure?" confirmed-click='$ctrl.deleteComment($index)' type="button" class="commentBtns" confirm>Delete</button>
+                </div>
             </li>
         </ul>
         <button ng-click = "comment.seeReplies = true" ng-if = "comment.replies.length > 0 && !comment.seeReplies" class="repliesLabel">Show Replies ({{comment.replies.length}})</button>
