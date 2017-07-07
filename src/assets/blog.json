@@ -5,16 +5,22 @@
                   "id":0, 
                   "text": "nice book!", 
                   "name":"Jason",
-                  "date": "6/26/16 13:00:00 PM",           
+                  "date": "6/26/16 13:00:00 PM", 
+                  "likes": 5,
+                  "dislikes": 2,          
                   "replies": [
                         {"id":0, 
                         "text": "Agreed!", 
                         "name": "Benson", 
-                        "date": "6/27/16 12:10 PM"},
+                        "date": "6/27/16 12:10 PM",
+                        "likes": 0,
+                        "dislikes": 4},
                          {"id":1, 
                         "text": "It was okay... Could've been better.", 
                         "name": "Joon", 
-                        "date": "6/28/16 14:10 PM"}                     
+                        "date": "6/28/16 14:10 PM",
+                        "likes": 3,
+                        "dislikes": 1}                     
                         ]
                   },
                   {
@@ -22,6 +28,8 @@
                   "text": "highly recommended!",
                   "name": "Daniel",
                   "date": "6/26/16 13:00:00 PM",
+                  "likes": 3,
+                  "dislikes": 0,
                   "replies": []
                   } 
             ],
@@ -41,6 +49,8 @@
                   "text": "nice book!",
                   "name":"Jason",
                   "date": "3/18/15 13:00:00 PM",
+                  "likes": 10,
+                  "dislikes": 2,               
                   "replies" : []
                   }
             ],

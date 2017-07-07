@@ -33,6 +33,15 @@
     .commentContainer {
         border-bottom: #ddd 1px solid;
         padding: 5px;
+
+        .likesContainer {
+            padding: 0 10px;
+            font-size: 12px;
+            font-weight: bold;
+            .likes {
+                display: inline-block;
+            }
+        }
     }
 
     .replyContainer {

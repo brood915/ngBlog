@@ -6,11 +6,21 @@
             <span class = "commentNames">{{comment.name}} - </span>
             <span class = "commentNames">{{comment.date}}</span>
         </div>
+        <div class="alignLeft likesContainer">
+            <div class="likes">
+                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                {{comment.likes}}
+            </div>
+            <div class="likes">
+                <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                {{comment.dislikes}}
+            </div>
+        </div>
         <div class = "text alignLeft" ng-if = "comment.text.length > 100 && !comment.expanding">{{comment.text.substr(0,99) + "..."}}<button ng-click = "comment.expanding = true" type="button" class="commentBtns">Continue</button></div>
         <div class = "text alignLeft" ng-if = "comment.text.length < 100 || comment.expanding">{{comment.text}}</div>
         <div class="btn-group commentBtnGroup">               
-            <button type="button" class="commentBtns">Like</button>
-            <button type="button" class="commentBtns">Dislike</button>
+            <button ng-click = "$ctrl.likeComment($index)" type="button" class="commentBtns">Like</button>
+            <button ng-click = "$ctrl.dislikeComment($index)" type="button" class="commentBtns">Dislike</button>
             <button type="button" class="commentBtns">Edit</button>
             <button message = "Are you sure?" confirmed-click='$ctrl.deleteComment($index)' type="button" class="commentBtns" confirm>Delete</button>
             <button ng-click = "$ctrl.startReplying($index)" type="button" class="commentBtns">Reply</button>

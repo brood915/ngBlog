@@ -15,6 +15,13 @@ class AddCommentsCtrl {
     }
   }
 
+  likeComment(index) {
+    this.item.comments[index].likes++;
+  }
+
+  dislikeComment(index) {
+    this.item.comments[index].dislikes++;
+  }
 
   addComment () {
     this.comment.date = this.blogService.getDate();
@@ -59,6 +66,8 @@ class AddCommentsCtrl {
       "text": "",
       "name": "",
       "date":"",
+      "likes": 0,
+      "dislikes": 0
     }
   }
 
@@ -72,7 +81,9 @@ class AddCommentsCtrl {
      "date" : "",
      "expanding": false,
      "replying": false,
-     "seeReplies": false
+     "seeReplies": false,
+     "likes": 0,
+     "dislikes": 0
    }
  }
 }
