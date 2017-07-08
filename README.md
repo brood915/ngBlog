@@ -22,9 +22,12 @@ $ npm install
 
 # start the server
 $ npm start
+
+# start the app
+$ Go to http://localhost:8080 in your browser.
 ```
 
-$ Go to http://localhost:8080 in your browser.
+
 
 
 
