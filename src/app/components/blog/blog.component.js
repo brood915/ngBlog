@@ -11,7 +11,7 @@ class BlogCtrl {
 
   $onInit() {
     this.filterValue = "";
-    this.selectOptions = ['title', 'oldest', 'recent', 'liked' ,'viewed'];
+    this.selectOptions = ['title', 'oldest', 'recent', 'liked' ,'viewed', 'discussed'];
 
     if (!this.blogService.blogItems){ //initialize data if not present yet
       this.blogService.getData()
@@ -73,6 +73,11 @@ class BlogCtrl {
           return b.views - a.views;
         });
       }
+      else if (this.sortBy === "discussed") {
+        this.blogItems.sort(function(a,b) {
+          return b.comments.length - a.comments.length;
+        });
+      }      
     }
 
 
