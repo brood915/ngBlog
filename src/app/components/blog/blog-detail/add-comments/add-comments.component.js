@@ -50,7 +50,6 @@ class AddCommentsCtrl {
     this.item.comments[index].replies.push(reply);
     this.item.comments[index].seeReplies = true; //shows replies after adding reply to the comment
     this.item.comments[index].replying = false;
-    console.log(reply)
     this.resetComment(); 
     this.resetReply(index);
   }
@@ -61,12 +60,13 @@ class AddCommentsCtrl {
     this.resetComment();
  }
 
-  deleteReply (ind) {
-    const replies = this.item.comments[ind].replies;
+  deleteReply (comment, parentInd, ind) {
+    const replies = comment.replies;
     this.$scope.$apply(replies.splice(ind,1));
     replies.map((each,index)=> each.id = index);
     this.resetComment();
-    this.resetReply(ind);   
+    this.resetReply(parentInd); 
+    console.log(replies)  
   }
 
   resetReply (index) {
