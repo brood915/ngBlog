@@ -33,10 +33,20 @@
                     <span class = "commentNames">{{reply.name}} - </span>
                     <span class = "commentNames">{{reply.date}}</span>
                 </div>
+                <div class="alignLeft likesContainer">
+                    <div class="likes">
+                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                        {{reply.likes}}
+                    </div>
+                    <div class="likes">
+                        <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                        {{reply.dislikes}}
+                    </div>
+                </div>
                 <div class ="text alignLeft">{{reply.text}}</div>
                 <div class="btn-group commentBtnGroup">               
-                    <button type="button" class="commentBtns">Like</button>
-                    <button type="button" class="commentBtns">Dislike</button>
+                    <button type="button" ng-click = "$ctrl.likeReply(reply)" class="commentBtns">Like</button>
+                    <button type="button" ng-click = "$ctrl.dislikeReply(reply)" class="commentBtns">Dislike</button>
                     <button type="button" class="commentBtns">Edit</button>
                     <button message = "Are you sure?" confirmed-click='$ctrl.deleteComment($index)' type="button" class="commentBtns" confirm>Delete</button>
                 </div>

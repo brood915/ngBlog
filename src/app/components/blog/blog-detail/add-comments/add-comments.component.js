@@ -23,6 +23,15 @@ class AddCommentsCtrl {
     this.item.comments[index].dislikes++;
   }
 
+  likeReply(reply) {
+    reply.likes++;
+  }
+
+  dislikeReply(reply) {
+    reply.dislikes++;
+  }
+
+
   addComment () {
     this.comment.date = this.blogService.getDate();
     let comment = angular.copy(this.comment);
