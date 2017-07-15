@@ -53,7 +53,7 @@
             </li>
         </ul>
         <button ng-click = "comment.seeReplies = true" ng-if = "comment.replies.length > 0 && !comment.seeReplies" class="repliesLabel">Show Replies ({{comment.replies.length}})</button>
-        <button ng-click = "comment.seeReplies = false" ng-if = "comment.seeReplies" class="repliesLabel">Hide Replies</button>
+        <button ng-click = "comment.seeReplies = false" ng-if = "comment.replies.length > 0 && comment.seeReplies" class="repliesLabel">Hide Replies</button>
         <!--form for replies-->
         <form ng-submit="addReplyForm.$valid && $ctrl.addReply($index)" ng-if = "comment.replying" class="replyFormGroup" name = "addReplyForm" novalidate>
             <input ng-model="comment.reply.name" maxlength = "20" class = "replyInputs" autocomplete="off" placeholder="Name..." name = 'replyName' type='text' required></input>
