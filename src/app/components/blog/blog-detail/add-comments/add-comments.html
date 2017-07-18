@@ -4,7 +4,7 @@
         <div class = "alignLeft">
             <i class="fa fa-pencil" aria-hidden="true"></i>
             <span class = "commentNames">{{comment.name}} - </span>
-            <span class = "commentNames">{{comment.date}}</span>
+            <span class = "commentNames">{{comment.date}}<span ng-if="comment.edited"> Edited</span></span>
         </div>
         <div class="alignLeft likesContainer">
             <div class="likes">
@@ -16,14 +16,18 @@
                 {{comment.dislikes}}
             </div>
         </div>
-        <div class = "text alignLeft" ng-if = "comment.text.length > 100 && !comment.expanding">{{comment.text.substr(0,99) + "..."}}
+        <div class = "text alignLeft" ng-if = "comment.text.length > 100 && !comment.expanding && !comment.editing">{{comment.text.substr(0,99) + "..."}}
             <button ng-click = "comment.expanding = true" type="button" class="commentBtns">Continue</button>
         </div>
-        <div class = "text alignLeft" ng-if = "comment.text.length < 100 || comment.expanding">{{comment.text}}</div>
+        <div class = "text alignLeft" ng-if = "(comment.text.length < 100 || comment.expanding) && !comment.editing">{{comment.text}}</div>
+        <div class="alignLeft" ng-if="comment.editing">
+            <input ng-model="comment.text"></input>
+            <button class="btn btn-primary" ng-click="$ctrl.edit(comment)">Edit</button>
+        </div>
         <div class="btn-group commentBtnGroup">               
             <button ng-click = "$ctrl.likeComment($index)" type="button" class="commentBtns">Like</button>
             <button ng-click = "$ctrl.dislikeComment($index)" type="button" class="commentBtns">Dislike</button>
-            <button type="button" class="commentBtns">Edit</button>
+            <button type="button" class="commentBtns" ng-click="$ctrl.edit(comment)">Edit</button>
             <button message = "Are you sure?" confirmed-click='$ctrl.deleteComment($index)' type="button" class="commentBtns" confirm>Delete</button>
             <button ng-click = "$ctrl.startReplying($index)" type="button" class="commentBtns">Reply</button>
         </div>

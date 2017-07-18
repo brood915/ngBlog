@@ -68,6 +68,16 @@ class AddCommentsCtrl {
     this.resetReply(parentInd);
   }
 
+  edit(comment) { //pass comment or reply
+    if (comment.editing === undefined){
+      comment.editing = true;
+    }
+    else {
+    comment.editing = !comment.editing;
+    }
+    comment.edited = true;
+  }
+
   resetReply (index) {
     this.item.comments[index].reply = {
       "id": this.item.comments[index].replies.length,
