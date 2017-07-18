@@ -65,8 +65,7 @@ class AddCommentsCtrl {
     this.$scope.$apply(replies.splice(ind,1));
     replies.map((each,index)=> each.id = index);
     this.resetComment();
-    this.resetReply(parentInd); 
-    console.log(replies)  
+    this.resetReply(parentInd);
   }
 
   resetReply (index) {

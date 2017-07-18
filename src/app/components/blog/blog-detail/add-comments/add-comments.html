@@ -16,7 +16,9 @@
                 {{comment.dislikes}}
             </div>
         </div>
-        <div class = "text alignLeft" ng-if = "comment.text.length > 100 && !comment.expanding">{{comment.text.substr(0,99) + "..."}}<button ng-click = "comment.expanding = true" type="button" class="commentBtns">Continue</button></div>
+        <div class = "text alignLeft" ng-if = "comment.text.length > 100 && !comment.expanding">{{comment.text.substr(0,99) + "..."}}
+            <button ng-click = "comment.expanding = true" type="button" class="commentBtns">Continue</button>
+        </div>
         <div class = "text alignLeft" ng-if = "comment.text.length < 100 || comment.expanding">{{comment.text}}</div>
         <div class="btn-group commentBtnGroup">               
             <button ng-click = "$ctrl.likeComment($index)" type="button" class="commentBtns">Like</button>
@@ -43,7 +45,10 @@
                         {{reply.dislikes}}
                     </div>
                 </div>
-                <div class ="text alignLeft">{{reply.text}}</div>
+                <div class ="text alignLeft" ng-if="reply.text.length < 100 || reply.expanding">{{reply.text}}</div>
+                <div class ="text alignLeft" ng-if="reply.text.length > 100 && !reply.expanding">{{reply.text.substr(0,99) + "..."}}
+                     <button ng-click = "reply.expanding = true" type="button" class="commentBtns">Continue</button>
+                </div>
                 <div class="btn-group commentBtnGroup">               
                     <button type="button" ng-click = "$ctrl.likeReply(reply)" class="commentBtns">Like</button>
                     <button type="button" ng-click = "$ctrl.dislikeReply(reply)" class="commentBtns">Dislike</button>
