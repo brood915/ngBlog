@@ -37,7 +37,7 @@
                 <div class = "alignLeft replies">
                     <i class="fa fa-share" aria-hidden="true"></i>
                     <span class = "commentNames">{{reply.name}} - </span>
-                    <span class = "commentNames">{{reply.date}}</span>
+                    <span class = "commentNames">{{reply.date}}<span ng-if="reply.edited"> Edited</span></span>
                 </div>
                 <div class="alignLeft likesContainer">
                     <div class="likes">
@@ -49,14 +49,18 @@
                         {{reply.dislikes}}
                     </div>
                 </div>
-                <div class ="text alignLeft" ng-if="reply.text.length < 100 || reply.expanding">{{reply.text}}</div>
-                <div class ="text alignLeft" ng-if="reply.text.length > 100 && !reply.expanding">{{reply.text.substr(0,99) + "..."}}
+                <div class ="text alignLeft" ng-if="(reply.text.length < 100 || reply.expanding) && !reply.editing">{{reply.text}}</div>
+                <div class ="text alignLeft" ng-if="reply.text.length > 100 && !reply.expanding && !reply.editing">{{reply.text.substr(0,99) + "..."}}
                      <button ng-click = "reply.expanding = true" type="button" class="commentBtns">Continue</button>
+                </div>
+                <div class="alignLeft" ng-if="reply.editing">
+                    <input ng-model="reply.text"></input>
+                    <button class="btn btn-primary" ng-click="$ctrl.edit(reply)">Edit</button>
                 </div>
                 <div class="btn-group commentBtnGroup">               
                     <button type="button" ng-click = "$ctrl.likeReply(reply)" class="commentBtns">Like</button>
                     <button type="button" ng-click = "$ctrl.dislikeReply(reply)" class="commentBtns">Dislike</button>
-                    <button type="button" class="commentBtns">Edit</button>
+                    <button type="button" class="commentBtns" ng-click="$ctrl.edit(reply)">Edit</button>
                     <button message = "Are you sure?" confirmed-click='$ctrl.deleteReply(comment, $parent.$index, $index)' type="button" class="commentBtns" confirm>Delete</button>
                 </div>
             </li>
