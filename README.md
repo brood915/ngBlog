@@ -5,7 +5,7 @@
 
 ### To do
 ```bash
-- Make it a fully functioning blog with NodeJS and MongoDB
+- Make it a fully functioning blog with Node, Express, and MongoDB
 - Add tests
 - Make stylesheets more readable
 ```
