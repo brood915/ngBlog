@@ -31,6 +31,13 @@
             {{$ctrl.item.views}}
         </div>        
     </div>
+    <div class="btn-group">
+        <button ng-if = "$ctrl.item.id < $ctrl.lastItem" ui-sref='blogItem({ blogId: $ctrl.item.id+1 })' class='btn btn-primary'>Prev</button>
+        <button ng-if = "!($ctrl.item.id < $ctrl.lastItem)" class='btn btn-primary' disabled>Prev</button>
+        
+        <button ng-if = "$ctrl.item.id > 0" ui-sref='blogItem({ blogId: $ctrl.item.id-1 })' class='btn btn-primary'>Next</button>
+        <button ng-if = "!($ctrl.item.id > 0)" class='btn btn-primary' disabled>Next</button>
+    </div>
 </div> 
     <h3>Comments <span>({{$ctrl.item.comments.length}})</span></h3>
     <add-comments blog-items = "$ctrl.blogItems" item = "$ctrl.item"></add-comments>

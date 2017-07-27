@@ -25,6 +25,6 @@ export class BlogService {
         items.splice(index, 1);
       }
     });
-    items.map((each,index)=> each.id = index); //resets the id #
+    items.map((each,index,arr)=> each.id = arr.length-(index+1)); //resets the id #
   } 
 } 

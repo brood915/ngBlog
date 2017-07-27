@@ -18,7 +18,8 @@ class BlogDetailCtrl {
     if (this.blogItems){
       this.getBlog();
       this.item.views++; //increases view count when this page is activated
-    }
+      this.lastItem = this.blogItems.length - 1; //gets the id # of item
+  }
     else { //if blogitem not found
       this.$state.go('404'); //redirect to /404 to display error message
     }
