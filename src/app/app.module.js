@@ -11,8 +11,8 @@ import uiRouter from '@uirouter/angularjs';
 
 export const AppModule = angular.module('app', [CommonModule, ComponentsModule, DirectivesModule, uiRouter])
   .component('app', AppComponent)
-  .config(/* @ngInject */($stateProvider, $urlRouterProvider) => {
-    $urlRouterProvider.when('', '/home');
+  .config(/* @ngInject */($stateProvider, $urlRouterProvider, $locationProvider) => {
+    $urlRouterProvider.when('/', '/home');
     $urlRouterProvider.otherwise('/404')
     $stateProvider
       .state('home', {
@@ -27,11 +27,14 @@ export const AppModule = angular.module('app', [CommonModule, ComponentsModule, 
         name: 'blogItem',
         url: '/blog/{blogId}',
         component: 'blogDetail'
-  })
-    .state('404', {
+      })
+      .state('404', {
         name: '404',
         url: '/404',
         component: 'error'
-    })
+      })
+      
+      $locationProvider.html5Mode(true);
+      //to remove # from urls
   })
   .name;
