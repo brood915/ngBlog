@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const path = require('path');
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 // const promisify = require('es6-promisify');
 // const expressValidator = require('express-validator');
 
@@ -11,8 +11,6 @@ const routes = require('./routes/index');
 const app = express();
 
 app.use(express.static(path.join(__dirname, '/../dist')));
-
-app.use(express.static(path.join(__dirname, '/../src/assets')));
 
 const ignoredPaths = ['/api'];
 
@@ -37,8 +35,8 @@ function startsWith(string, array) {
 app.use("/api", routes)
 
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // app.use(expressValidator());
 

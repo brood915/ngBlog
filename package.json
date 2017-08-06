@@ -4,11 +4,11 @@
   "description": "Simple blog built in AngularJS",
   "scripts": {
     "build": "rimraf dist && webpack --bail --progress --profile",
-    "server": "webpack-dev-server --history-api-fallback --inline --progress",
-    "express-server": "node ./server/server",
+    "server": "webpack-dev-server --history-api-fallback --inline",
+    "express-server": "nodemon ./server/server.js --ignore src/",
     "test": "karma start",
     "test-watch": "karma start --auto-watch --no-single-run",
-    "start": "concurrently --kill-others \"npm run server\" \"npm run exress-server\"",
+    "start": "concurrently \"npm run server\" \"npm run express-server\"",
     "deploy": "npm run build&&gh-pages -d dist"
   },
   "repository": {

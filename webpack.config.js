@@ -223,11 +223,9 @@ module.exports = function makeWebpackConfig() {
     contentBase: './src/assets',
     stats: 'minimal',
     proxy: {
-      '^/api/*': {
-        target: 'http://localhost:1337/'
+       "/api": "http://localhost:1337"
       }
-    }
-  };
+    };
 
   return config;
 }();
