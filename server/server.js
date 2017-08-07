@@ -8,7 +8,7 @@
 // });
 
 // require('./models/Store');
-// require('./models/Users');
+require('./models/Post');
 
 const app = require('./app');
 app.set('port', process.env.PORT || 1337);
