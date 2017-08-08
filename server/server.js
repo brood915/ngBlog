@@ -1,13 +1,13 @@
-// const mongoose = require('mongoose');
-// require('dotenv').config({ path: 'variables.env' });
+const mongoose = require('mongoose');
+require('dotenv').config({ path: 'variables.env' });
 
-// mongoose.connect(process.env.DATABASE);
-// mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
-// mongoose.connection.on('error', (err) => {
-//   console.error(`${err.message}`);
-// });
+mongoose.connect(process.env.DATABASE);
+mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
+mongoose.connection.on('error', (err) => {
+  console.error(`${err.message}`);
+});
 
-// require('./models/Store');
+require('./models/User');
 require('./models/Post');
 
 const app = require('./app');
