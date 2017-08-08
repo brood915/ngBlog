@@ -4,10 +4,13 @@ const path = require('path');
 const bodyParser = require('body-parser');
 // const promisify = require('es6-promisify');
 // const expressValidator = require('express-validator');
-
 // const errorHandlers = require('./handlers/errorHandlers');
 const routes = require('./routes/index');
-require('./passport');
+const passport = require('passport');
+require('./models/User');
+require('./models/Post');
+require('./config/passport');
+require('dotenv').config({ path: 'variables.env' });
 
 const app = express();
 
@@ -32,6 +35,8 @@ function startsWith(string, array) {
     next();
     }
 });
+
+app.use(passport.initialize());
 
 app.use("/api", routes)
 
