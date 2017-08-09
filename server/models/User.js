@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
 const validator = require('validator');

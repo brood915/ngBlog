@@ -2,9 +2,8 @@ const mongoose = require('mongoose');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-// const promisify = require('es6-promisify');
-// const expressValidator = require('express-validator');
-// const errorHandlers = require('./handlers/errorHandlers');
+const promisify = require('es6-promisify');
+const expressValidator = require('express-validator');
 const routes = require('./routes/index');
 const passport = require('passport');
 require('./models/User');
@@ -38,14 +37,11 @@ function startsWith(string, array) {
 
 app.use(passport.initialize());
 
-app.use("/api", routes)
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.use(expressValidator());
+app.use(expressValidator());
 
-// app.use('/api', routes);
+app.use("/api", routes)
 
 module.exports = app;

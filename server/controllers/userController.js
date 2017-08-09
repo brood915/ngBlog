@@ -13,5 +13,4 @@ exports.register = async (req, res, next) => {
     
     const token = user.generateJWT()
     res.json({token: token});
-    next();
 }
