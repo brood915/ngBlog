@@ -22,6 +22,11 @@ const userSchema = new Schema({
         required: 'Please supply a name',
         trim: true
     },
+
+    admin: {
+        type: Boolean,
+        default: false
+    },
     resetPasswordToken: String,
     resetPasswordExpires: Date
 });
@@ -39,7 +44,8 @@ userSchema.methods.generateJWT = () => {
         _id: this._id,
         email: this.email,
         name: this.name,
-        expiry: parseInt(expiry.getTime()/1000)
+        admin: this.admin,
+        exp: parseInt(expiry.getTime()/1000)
     }, process.env.secret)
 }
 
