@@ -4,9 +4,11 @@
 }
 
 
-.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand  {
+.navbar-inverse .navbar-nav > li, .navbar-inverse .navbar-brand  {
     color: #FFFFFF;
     font-weight: bold;
+    position: relative;
+    display: block;
 }
 
 .navbar-inverse .navbar-brand  {
@@ -15,20 +17,33 @@
     }
 }
 
-.navbar-inverse .navbar-nav > li > a {
+.typeahead {
+    padding:10px;
+    
+    input {
+        font-size: 15px;
+        padding: 5px;
+        border: 2px white solid;
+        color: #333;
+    }
+}
+
+.navbar-inverse .navbar-nav > li.add {
+    position: relative;
+    display: block;
+    font-size: 25px;
+    padding: 10px 20px 10px 20px;
+    
     &:hover {
         background-color: #FFFFFF;
         color: #337ab7;
-    }
-
-    &:focus, &:active {
-        background-color: white;
-        color: #337ab7;
+        cursor: pointer;
     }
 }
 
 .navbar-inverse .navbar-collapse {
     background-color: #337ab7;
+    border-color: #FFFFFF;
 }
 
 

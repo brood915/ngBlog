@@ -1,6 +1,6 @@
 import angular from 'angular';
-import { HomeModule } from './home/home.module';
+import { LoginModule } from './login/login.module';
 import { BlogModule } from './blog/blog.module';
 
-export const ComponentsModule = angular.module('componentsModule', [HomeModule, BlogModule])
+export const ComponentsModule = angular.module('componentsModule', [LoginModule, BlogModule])
   .name;

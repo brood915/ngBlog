@@ -1,4 +1,4 @@
-import template from './home.html';
+import template from './login.html';
 import angular from 'angular';
 
 class ctrl {
@@ -15,7 +15,7 @@ $onInit() {
   
 }
 }
-export const HomeComponent = {
+export const LoginComponent = {
   template,
   controller: ctrl,
   bindings: {}

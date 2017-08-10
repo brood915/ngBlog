@@ -12,12 +12,12 @@ import uiRouter from '@uirouter/angularjs';
 export const AppModule = angular.module('app', [CommonModule, ComponentsModule, DirectivesModule, uiRouter])
   .component('app', AppComponent)
   .config(/* @ngInject */($stateProvider, $urlRouterProvider, $locationProvider) => {
-    $urlRouterProvider.when('/', '/home');
+    $urlRouterProvider.when('/', '/blog');
     $urlRouterProvider.otherwise('/404')
     $stateProvider
-      .state('home', {
-        url: '/home',
-        component: 'home'
+      .state('login', {
+        url: '/login',
+        component: 'login'
       })
       .state('blog', {
         url: '/blog',
