@@ -5,7 +5,7 @@ export class BlogService {
     this.$filter = $filter;
     this.blogItems = null;
     this.typeahead = {
-      filterValue: ""
+      searchValue: ""
     }
   }
 
