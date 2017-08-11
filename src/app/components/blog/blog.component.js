@@ -10,6 +10,7 @@ class BlogCtrl {
   }
 
   $onInit() {
+    this.typeahead = this.blogService.typeahead;
     this.filterValue = "";
     this.selectOptions = ['title', 'oldest', 'recent', 'liked' ,'viewed', 'discussed'];
 

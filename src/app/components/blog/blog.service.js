@@ -4,6 +4,9 @@ export class BlogService {
     this.$http = $http;
     this.$filter = $filter;
     this.blogItems = null;
+    this.typeahead = {
+      filterValue: ""
+    }
   }
 
   getData () {

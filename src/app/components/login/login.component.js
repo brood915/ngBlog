@@ -1,7 +1,8 @@
-import template from './home.html';
+import template from './login.html';
 import angular from 'angular';
 
 class ctrl {
+  /* @ngInject */
   constructor($http) {
   this.$http = $http;
   }
@@ -15,7 +16,7 @@ $onInit() {
   
 }
 }
-export const HomeComponent = {
+export const LoginComponent = {
   template,
   controller: ctrl,
   bindings: {}

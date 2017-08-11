@@ -7,6 +7,7 @@ exports.createPost = async (req,res) => {
     res.redirect(`/blog/${post._id}`);
 }
 
+/*NEED TO ADD LOGICS TO CHECK IF THE USER IS THE ORIGINAL POSTER/ADMIN */
 exports.editPost = async (req,res) => {
     const post = await Post.findOneAndUpdate({_id:req.params.id}, req.body, {
         new: true, // return the new post instead of old one
@@ -14,6 +15,7 @@ exports.editPost = async (req,res) => {
         res.redirect(`/blog/${post._id}`);
 }
 
+/*NEED TO ADD LOGICS TO CHECK IF THE USER IS THE ORIGINAL POSTER/ADMIN */
 exports.deletePost = async (req,res) => {
     await Post.findByIdAndRemove(req.params.id);
     res.redirect(`/blog/${post._id}`);
@@ -28,6 +30,7 @@ exports.getPosts = async (req, res) => {
     res.json(posts);
 }
 
-// exports.getPost = async (req, res) => {
-//        const post = await Post.findOne({_id: req.params.id}); 
-// }
+exports.getPost = async (req, res) => {
+    const post = await Post.findOne({_id: req.params.id}); 
+    res.json(post);
+}
