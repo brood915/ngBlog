@@ -11,7 +11,7 @@
     <div class="navbar-collapse" ng-class="{collapse: $ctrl.isCollapsed}">
       <ul class="nav navbar-nav">
         <li class="add">+</li>
-        <li class="typeahead"><input type="text" placeholder="Search..."></li>
+        <li class="typeahead"><input type="text" placeholder="Search..." ng-model="$ctrl.typeahead.filterValue"></li>
       </ul>
     </div>
   </div>

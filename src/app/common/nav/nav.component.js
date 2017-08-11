@@ -2,9 +2,11 @@ import template from './nav.html';
 
 class NavCtrl {
   /* @ngInject */
-  constructor() {
+  constructor(blogService) {
+    this.blogService = blogService;
   }
   $onInit() {
+    this.typeahead = this.blogService.typeahead;
     this.isCollapsed = true;
   }
 }

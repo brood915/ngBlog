@@ -2,12 +2,11 @@
 <add-blog blog-items = '$ctrl.blogItems'></add-blog>
 <div id = 'blogContainer' ng-show='$ctrl.blogItems'>
   <div class='form-group'>
-    <span class="names">Search:</span><input placeholder='Search...' type='text' ng-model = '$ctrl.filterValue' />
     <span class="names">Sort:</span><select id = "selectOptions" ng-model="$ctrl.sortBy" ng-options="x for x in $ctrl.selectOptions"></select>
   </div>
   <button form-name = "addFormContainer" class="addBlogBtn btn btn-primary" modal><i class="fa fa-pencil" aria-hidden="true"></i></button>
   <ul id = "blogItems" class="blogItems">
-    <li ng-repeat='item in filtered = ($ctrl.blogItems | filter: $ctrl.filterValue | orderBy: $ctrl.sortBy)'>
+    <li ng-repeat='item in filtered = ($ctrl.blogItems | filter: $ctrl.typeahead.filterValue | orderBy: $ctrl.sortBy)'>
       <h2>{{item.title}}<span class="new" ng-show="$ctrl.isNew(item.date)">New!</span></h2>
       <p ng-show = '$ctrl.isShort(item.description)' class="desc">{{item.description}}</p>
       <p ng-show = '!$ctrl.isShort(item.description)' class = "desc">{{$ctrl.shortened}}<span ui-sref='blogItem({ blogId: item.id })' class="readMore">Read More</span></p>
