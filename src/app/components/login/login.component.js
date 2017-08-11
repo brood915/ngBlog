@@ -2,6 +2,7 @@ import template from './login.html';
 import angular from 'angular';
 
 class ctrl {
+  /* @ngInject */
   constructor($http) {
   this.$http = $http;
   }
