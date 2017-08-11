@@ -2,16 +2,22 @@ import template from './add-blog.html';
 
 class AddBlogCtrl {
     /* @ngInject */
-  constructor(blogService, $scope, $timeout) {
+  constructor(blogService, $scope, $timeout, $window) {
       this.blogService = blogService;
       this.$scope = $scope;
       this.$timeout = $timeout;
+      this.$window = $window;
   }
 
 
   $onInit () {
-    this.resetForm();
+    this.blogItems = this.blogService.blogItems;
     this.added = false;
+    this.resetForm();
+  }
+
+  goBack () {
+    this.$window.history.back();
   }
 
   resetForm () {
@@ -47,6 +53,6 @@ class AddBlogCtrl {
 export const AddBlogComponent = {
   controller: AddBlogCtrl,
   template,
-  bindings: {blogItems: '<'}
+  bindings: {}
 }
     

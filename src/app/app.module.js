@@ -23,6 +23,10 @@ export const AppModule = angular.module('app', [CommonModule, ComponentsModule, 
         url: '/blog',
         component: 'blog'
       })
+      .state('addBlog', {
+        url: '/blog/add',
+        component: 'addBlog'
+      })
       .state('blogItem', {
         name: 'blogItem',
         url: '/blog/{blogId}',
