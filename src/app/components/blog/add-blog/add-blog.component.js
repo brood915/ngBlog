@@ -17,7 +17,8 @@ class AddBlogCtrl {
   }
 
   goBack () {
-    this.$window.history.back();
+    this.$window.history.back(); 
+    //go back to where user was right before
   }
 
   resetForm () {

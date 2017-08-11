@@ -13,16 +13,19 @@ class BlogDetailCtrl {
 
 
   $onInit() {
-    this.blogItems = this.blogService.blogItems;
-
-    if (this.blogItems){
-      this.getBlog();
-      this.item.views++; //increases view count when this page is activated
-      this.lastItem = this.blogItems.length - 1; //gets the id # of item
-  }
-    else { //if blogitem not found
-      this.$state.go('404'); //redirect to /404 to display error message
+    if (!this.blogService.blogItems)
+    this.blogService.getData()
+    .then(data => {
+      this.blogItems = data;
+      this.getBlog(data);
+    });
+    else {
+      this.blogItems = this.blogService.blogItems;
+      this.getBlog(this.blogItems);
     }
+
+
+
   }
 
   likeBlog() {
@@ -38,9 +41,9 @@ class BlogDetailCtrl {
     this.$state.go('blog');
   }
 
-  getBlog () {
+  getBlog (items) {
      //find the blogitem with the same id as the one passed to param
-    this.item = this.blogItems.find((each) => each.id === Number(this.$stateParams.blogId));
+    this.item = items.find((each) => each.id === Number(this.$stateParams.blogId));
   }
 
   editBlog (event) { //passes the function down to edit-blog child comp

@@ -12,20 +12,12 @@ class BlogCtrl {
   $onInit() {
     this.filterValue = "";
     this.selectOptions = ['title', 'oldest', 'recent', 'liked' ,'viewed', 'discussed'];
-
-    if (!this.blogService.blogItems){ //initialize data if not present yet
-      this.blogService.getData()
-      .then((resp) => 
-      {
-        this.blogService.blogItems = resp; 
-        this.blogItems = resp;
-        this.sortBy = 'recent';
-      });
-    }
-    else {
-      this.blogItems = this.blogService.blogItems;
-      this.sortBy = 'recent';
-    }
+    this.sortBy = 'recent';
+    this.blogService.getData()
+    .then(data => {
+      this.blogItems = data;
+      this.blogService.blogItems = data;
+    });
   }
 
   isShort (desc) {

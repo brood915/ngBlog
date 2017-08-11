@@ -7,10 +7,12 @@ import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { DirectivesModule } from './directives/directives.module';
 import uiRouter from '@uirouter/angularjs';
+import mockBackend from './mockBackend';
+import ngMock from 'angular-mocks';
 
-
-export const AppModule = angular.module('app', [CommonModule, ComponentsModule, DirectivesModule, uiRouter])
+export const AppModule = angular.module('app', ['ngMockE2E', CommonModule, ComponentsModule, DirectivesModule, uiRouter])
   .component('app', AppComponent)
+  .run(mockBackend)
   .config(/* @ngInject */($stateProvider, $urlRouterProvider, $locationProvider) => {
     $urlRouterProvider.when('/', '/blog');
     $urlRouterProvider.otherwise('/404')

@@ -3,14 +3,13 @@ export class BlogService {
   constructor($http, $filter) {
     this.$http = $http;
     this.$filter = $filter;
-    this.blogItems = null;
     this.typeahead = {
       searchValue: null
     }
   }
 
   getData () {
-    return this.$http.get('blog.json')
+    return this.$http.get('/posts')
     .then((resp)=> resp.data)
   }
 
