@@ -6,17 +6,17 @@ class BlogCtrl {
   constructor(blogService, $scope) {
     this.blogService = blogService;
     this.$scope = $scope;
-    this.$scope.$watch(()=>this.sortBy, ()=>this.handleSort());
   }
 
   $onInit() {
     this.filterValue = "";
     this.selectOptions = ['title', 'oldest', 'recent', 'liked' ,'viewed', 'discussed'];
-    this.sortBy = 'recent';
     this.blogService.getData()
     .then(data => {
       this.blogItems = data;
       this.blogService.blogItems = data;
+      this.sortBy = 'recent';
+      this.handleSort();
     });
   }
 

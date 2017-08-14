@@ -8,9 +8,13 @@ export class BlogService {
     }
   }
 
+  addData (url, data) {
+    return this.$http.post(url, data);
+  }
+
   getData () {
     return this.$http.get('/posts')
-    .then((resp)=> resp.data)
+    .then((resp)=> resp.data);
   }
 
   getDate() {

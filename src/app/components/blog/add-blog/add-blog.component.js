@@ -1,4 +1,5 @@
 import template from './add-blog.html';
+import uuid from 'uuid/v4';
 
 class AddBlogCtrl {
     /* @ngInject */
@@ -24,6 +25,7 @@ class AddBlogCtrl {
   resetForm () {
     this.blog = {
       "title": "",
+      "id": "",
       "views": 0,
       "likes": 0,
       "dislikes": 0,
@@ -35,9 +37,9 @@ class AddBlogCtrl {
  }
 
   addBlog () {
-    this.blog.id = this.blogItems.length;
+    this.blog.id = uuid();
     this.blog.date = this.blogService.getDate();
-    this.blogItems.unshift(this.blog);
+    this.blogService.addData('/posts/add', this.blog);
     this.resetForm();
 
     this.$timeout(() =>{

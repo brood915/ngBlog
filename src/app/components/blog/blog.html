@@ -2,7 +2,7 @@
 <div id = 'blogContainer' ng-show='$ctrl.blogItems'>
   <div class='form-group'>
     <span class="names">Search:</span><input placeholder='Search...' type='text' ng-model = '$ctrl.filterValue' />
-    <span class="names">Sort:</span><select id = "selectOptions" ng-model="$ctrl.sortBy" ng-options="x for x in $ctrl.selectOptions"></select>
+    <span class="names">Sort:</span><select id = "selectOptions" ng-model="$ctrl.sortBy" ng-change="$ctrl.handleSort()" ng-options="x for x in $ctrl.selectOptions"></select>
   </div>
   <button ui-sref="addBlog" class="addBlogBtn btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
   <ul id = "blogItems" class="blogItems">
