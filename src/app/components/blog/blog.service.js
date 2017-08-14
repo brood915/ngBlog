@@ -25,12 +25,11 @@ export class BlogService {
   }
 
   deleteBlog(items, target){
-   items.map((each,index) =>
-    { 
-      if (each.id === target){
-        items.splice(index, 1);
-      }
-    });
-    items.map((each,index,arr)=> each.id = arr.length-(index+1)); //resets the id #
+  //  items.map((each,index) =>
+  //   { 
+  //     if (each.id === target){
+  //       items.splice(index, 1);
+  //     }
+  //   });
   } 
 } 

@@ -3,29 +3,19 @@ import angular from "angular";
 
 class BlogDetailCtrl {
     /* @ngInject */
-  constructor(blogService,$stateParams,$state,$scope, $timeout) {
+  constructor(blogService,$stateParams, $state,$scope, $timeout, $http) {
       this.blogService = blogService;
       this.$stateParams = $stateParams;
       this.$state = $state;
       this.$scope = $scope;
       this.$timeout = $timeout;
+      this.$http = $http;
   }
 
 
   $onInit() {
-    if (!this.blogService.blogItems)
-    this.blogService.getData()
-    .then(data => {
-      this.blogItems = data;
-      this.getBlog(data);
-    });
-    else {
-      this.blogItems = this.blogService.blogItems;
-      this.getBlog(this.blogItems);
-    }
-
-
-
+    this.$http.get(`/post/${this.$stateParams.blogId}`)
+    .then(resp=>this.item = resp.data);
   }
 
   likeBlog() {
@@ -41,10 +31,6 @@ class BlogDetailCtrl {
     this.$state.go('blog');
   }
 
-  getBlog (items) {
-     //find the blogitem with the same id as the one passed to param
-    this.item = items.find((each) => each.id === Number(this.$stateParams.blogId));
-  }
 
   editBlog (event) { //passes the function down to edit-blog child comp
     this.blogItems = event.blogItems;

@@ -9,6 +9,12 @@ export default function($httpBackend) {
     return [200, posts, {}];
   });
 
+    $httpBackend.whenRoute('GET', '/post/:id')
+    .respond((method, url, data, headers, params) => {
+      const post = posts.find((each,index) => each.id === params.id);
+      return [200, post];
+    });
+
   $httpBackend.whenRoute('PUT', '/posts/edit/:id')
     .respond((method, url, data, headers, params) => {
       const updated = posts.find((each,index) => each.id === params.id);
