@@ -14,12 +14,19 @@ class BlogDetailCtrl {
 
 
   $onInit() {
-    this.blogService.getBlog(this.$stateParams.blogId)
-    .then(data=>{
-      this.item = data;
+    if (this.blogService.blogItems) {
+      this.blogItems = this.blogService.blogItems;
+      this.item = this.blogItems.find(each=>each.id === this.$stateParams.blogId);
+      this.current = this.getCurrentIndex();
+    }
+    else {
+      this.blogService.getBlogs().then(data => {
+      this.blogItems = data;
+      this.item = data.find(each=>each.id === this.$stateParams.blogId);
+      this.current = this.getCurrentIndex();
     });
+    }
 
-    this.blogService.getBlogs().then(data => this.blogItems = data);
 
   }
 
@@ -31,12 +38,8 @@ class BlogDetailCtrl {
       4. go to next/prev post
       */
 
-  isLast() {
-    return this.blogItems.indexOf(this.item) === this.blogItems.length - 1;
-  }
-
-  isFirst() {
-    return this.blogItems.indexOf(this.item) === 0;
+  getCurrentIndex () {
+    return this.blogItems.map(each => each.id).indexOf(this.item.id);
   }
 
   likeBlog() {

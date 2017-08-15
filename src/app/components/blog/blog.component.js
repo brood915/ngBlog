@@ -10,7 +10,7 @@ class BlogCtrl {
 
   $onInit() {
     this.filterValue = "";
-    this.selectOptions = ['title', 'oldest', 'recent', 'liked' ,'viewed', 'discussed'];
+    this.selectOptions = ['titles', 'oldest', 'recent', 'liked' ,'viewed', 'discussed'];
     this.blogService.getBlogs()
     .then(data => {
       this.blogItems = data;
@@ -43,7 +43,17 @@ class BlogCtrl {
   }
 
   handleSort (){
-      if (this.sortBy === 'oldest') {
+      if (this.sortBy === "titles") {
+        function asc(a, b) {
+          const title1 = a.title.toLowerCase();
+          const title2 = b.title.toLowerCase();
+          if (title1 < title2) return -1;
+          else if (title1 > title2) return 1;
+          else return 0;
+        }
+        this.blogItems.sort(asc);
+      }
+      else if (this.sortBy === 'oldest') {
         this.blogItems.sort(function(a,b){
           return new Date(a.date) - new Date(b.date);
         });
