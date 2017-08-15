@@ -14,8 +14,29 @@ class BlogDetailCtrl {
 
 
   $onInit() {
-    this.$http.get(`/post/${this.$stateParams.blogId}`)
-    .then(resp=>this.item = resp.data);
+    this.blogService.getBlog(this.$stateParams.blogId)
+    .then(data=>{
+      this.item = data;
+    });
+
+    this.blogService.getBlogs().then(data => this.blogItems = data);
+
+  }
+
+        /*
+        try using resolve
+      1. need to get the list of posts
+      2. need to get the indexof current post
+      3. check whether it's the last post/first post
+      4. go to next/prev post
+      */
+
+  isLast() {
+    return this.blogItems.indexOf(this.item) === this.blogItems.length - 1;
+  }
+
+  isFirst() {
+    return this.blogItems.indexOf(this.item) === 0;
   }
 
   likeBlog() {
@@ -25,10 +46,11 @@ class BlogDetailCtrl {
   dislikeBlog() {
     this.item.dislikes++;
   }
- 
-  deleteBlog() {
-    this.blogService.deleteBlog(this.blogItems, this.item.id);
-    this.$state.go('blog');
+
+  deleteBlog (id) {
+    this.$scope.$apply(()=>{ 
+    this.blogService.deleteBlog(id).then(()=>{this.$state.go('blog')}); 
+    });
   }
 
 

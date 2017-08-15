@@ -10,9 +10,7 @@ class AddCommentsCtrl {
 
 
   $onInit() {
-    if (this.blogItems){
-      this.resetComment();
-    }
+
   }
 
   findItem (item, arr) {

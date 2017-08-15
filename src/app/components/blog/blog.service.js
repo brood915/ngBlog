@@ -6,13 +6,19 @@ export class BlogService {
     this.typeahead = {
       searchValue: null
     }
+    this.blogItems = null;
   }
 
   addData (url, data) {
     return this.$http.post(url, data);
   }
 
-  getData () {
+  getBlog (id) {
+    return this.$http.get(`/post/${id}`)
+    .then(resp=>resp.data);
+  }
+
+  getBlogs () {
     return this.$http.get('/posts')
     .then((resp)=> resp.data);
   }
@@ -24,12 +30,7 @@ export class BlogService {
     return date;
   }
 
-  deleteBlog(items, target){
-  //  items.map((each,index) =>
-  //   { 
-  //     if (each.id === target){
-  //       items.splice(index, 1);
-  //     }
-  //   });
+  deleteBlog(id){
+    return this.$http.delete(`/posts/delete/${id}`)
   } 
 } 

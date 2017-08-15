@@ -11,7 +11,7 @@ class BlogCtrl {
   $onInit() {
     this.filterValue = "";
     this.selectOptions = ['title', 'oldest', 'recent', 'liked' ,'viewed', 'discussed'];
-    this.blogService.getData()
+    this.blogService.getBlogs()
     .then(data => {
       this.blogItems = data;
       this.blogService.blogItems = data;
@@ -73,9 +73,9 @@ class BlogCtrl {
     }
 
 
-  deleteBlog (index) {
+  deleteBlog (id) {
    this.$scope.$apply(()=>{
-   this.blogService.deleteBlog(this.blogItems, index);
+   this.blogService.deleteBlog(id).then(resp => this.blogItems = resp.data);
  })}
 }
 

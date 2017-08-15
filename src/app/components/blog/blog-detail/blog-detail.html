@@ -9,7 +9,7 @@
     <div class="item-desc">{{$ctrl.item.description}}</div>
     <div class="btn-group">
         <button  class='btn btn-primary' form-name = "editFormContainer" modal>Edit</button>
-        <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog()' type="button" confirm>Delete</button>
+        <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog($ctrl.item.id)' type="button" confirm>Delete</button>
     </div>
     <div class="badgesContainer">
         <div class = "clickable" ng-click="$ctrl.likeBlog()">
@@ -32,11 +32,11 @@
         </div>        
     </div>
     <div class="btn-group">
-        <button ng-if = "$ctrl.item.id < $ctrl.lastItem" ui-sref='blogItem({ blogId: $ctrl.item.id+1 })' class='btn btn-primary'>Prev</button>
-        <button ng-if = "!($ctrl.item.id < $ctrl.lastItem)" class='btn btn-primary' disabled>Prev</button>
+        <button ng-if = "$ctrl.isFirst()" ui-sref='blogItem({ blogId: $ctrl.item.id+1 })' class='btn btn-primary'>Prev</button>
+        <button ng-if = "!$ctrl.isFirst()" class='btn btn-primary' disabled>Prev</button>
         
-        <button ng-if = "$ctrl.item.id > 0" ui-sref='blogItem({ blogId: $ctrl.item.id-1 })' class='btn btn-primary'>Next</button>
-        <button ng-if = "!($ctrl.item.id > 0)" class='btn btn-primary' disabled>Next</button>
+        <button ng-if = "$ctrl.isLast()" ui-sref='blogItem({ blogId: $ctrl.item.id-1 })' class='btn btn-primary'>Next</button>
+        <button ng-if = "!$ctrl.isLast()" class='btn btn-primary' disabled>Next</button>
     </div>
 </div> 
     <h3>Comments <span>({{$ctrl.item.comments.length}})</span></h3>

@@ -39,7 +39,7 @@ class AddBlogCtrl {
   addBlog () {
     this.blog.id = uuid();
     this.blog.date = this.blogService.getDate();
-    this.blogService.addData('/posts/add', this.blog);
+    this.blogService.addData('/posts/add', this.blog).then((resp)=>this.blogService.blogItems = resp.data);
     this.resetForm();
 
     this.$timeout(() =>{

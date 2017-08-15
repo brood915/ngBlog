@@ -21,6 +21,6 @@
       <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog(item.id)' type="button" confirm>Delete</button>
     </li>
   </ul>
-  <h3 ng-show="!filtered.length">Blog posts with that name do not exist</h3>
+  <h3 ng-show="!filtered.length && $ctrl.blogItems.length > 0">Blog posts with that name do not exist</h3>
   <h3 ng-if='$ctrl.blogItems.length === 0'>Be the first one to write a blog post!</h3>
 </div>
