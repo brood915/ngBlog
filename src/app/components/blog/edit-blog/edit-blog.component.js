@@ -3,9 +3,10 @@ import angular from 'angular';
 
 class EditBlogCtrl {
     /* @ngInject */
-  constructor($scope, blogService) {
+  constructor($scope, blogService, $http) {
       this.$scope = $scope;
       this.blogService = blogService;
+      this.$http = $http;
   }
 
   $onInit() {
@@ -13,25 +14,19 @@ class EditBlogCtrl {
   }
 
   handleEdit () { //passes the new value back to blog-detail comp
-    
-    //get the time when the blog was editted
-    let dateEdited = this.blogService.getDate();
+    const dateEdited = this.blogService.getDate();
     this.modifiedBlog.dateEdited = dateEdited;
-    //find the item with the given id #
-    this.blogItems.map((each,index) =>
-    { 
-      if (each.id === this.modifiedBlog.id){
-        let copy = angular.copy(this.modifiedBlog);
-        this.blogItems[index].description = copy.description;
-        this.blogItems[index].title = copy.title;
-        this.blogItems[index].dateEdited = copy.dateEdited;
-      }
-    });
+    const copy = angular.copy(this.modifiedBlog);
+    this.blogItem.title = copy.title;
+    this.blogItem.description = copy.description;
+
     this.editBlog({
       $event: {
-        blogItems: this.blogItems
+        blogItem: this.blogItem
       }
     });
+
+    this.blogService.update(this.params, this.blogItem);
   }
 
   resetForm () {
@@ -46,7 +41,8 @@ export const EditBlogComponent = {
   bindings: {
     blogItem: '<',
     blogItems: '<',
-    editBlog:'&'
+    editBlog:'&',
+    param: '<'
   }
 }
     

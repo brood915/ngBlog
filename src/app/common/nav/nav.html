@@ -10,8 +10,8 @@
     </div>
     <div class="navbar-collapse" ng-class="{collapse: $ctrl.isCollapsed}">
       <ul class="nav navbar-nav">
-        <li class="add">+</li>
-        <li class="typeahead"><input type="text" placeholder="Search..." ng-model="$ctrl.typeahead.filterValue"></li>
+        <li class="add" ui-sref="addBlog">+</li>
+        <li class="typeahead"><form ng-submit="$ctrl.test()"><input type="text" placeholder="Search..." ng-model="$ctrl.typeahead.searchValue"></form></li>
       </ul>
     </div>
   </div>

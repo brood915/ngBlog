@@ -1,10 +1,9 @@
-<div class="hide" id="addFormContainer">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" form-name = "addFormContainer" ng-click = "$ctrl.added = false" modal>&times;</button>
-            <h3 class="modal-title">Add a blog post</h3>
+<div id="addFormContainer">
+    <div>
+        <div>
+            <h3>Add a blog post</h3>
         </div>
-        <div class="modal-body">
+        <div>
             <form class='addBlogForm' novalidate name='addBlogForm'>
                 <div class="form-group">
                     <input ng-click = "$ctrl.added = false" class = "form-control" autocomplete="off" placeholder="write a title..." type='text' name="title" ng-model = '$ctrl.blog.title' maxlength = "100" ng-minlength = "2" ng-maxlength="100" required/>
@@ -18,12 +17,14 @@
                     <textarea ng-click = "$ctrl.added = false" placeholder="write description..." type='text' name="description" ng-model ='$ctrl.blog.description' ng-minlength = "100" required></textarea>
                 </div>    
                     <p ng-if = "((addBlogForm.description.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.description.$invalid" class="text-danger errorMsg">Your post needs to be at least 100 characters long.</p>   
-                    <button type="button" class="btn btn-default" form-name = "addFormContainer" ng-click = "$ctrl.added = false" modal>Close</button>
-                    <button class='btn btn-primary' ng-click = "addBlogForm.$valid && $ctrl.addBlog()">Post</button>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" form-name = "addFormContainer" ng-click = "$ctrl.goBack()">Back</button>
+                        <button class='btn btn-primary' ng-click = "addBlogForm.$valid && $ctrl.addBlog()">Post</button>
+                    </div>
                     <h4 class = "text-primary" ng-show ="$ctrl.added">Your post was submitted!</h4>
             </form>
         </div>
-        <div class="modal-footer">
+        <div>
             <p class="errorMsg text-success" ng-show="addBlogForm.$submitted && addBlogForm.$valid">Your form is now valid to be submitted!</p>
             <p class="errorMsg text-danger" ng-show="addBlogForm.$submitted && addBlogForm.$invalid">Please fill in all the required fields!</p>
         </div>

@@ -6,27 +6,18 @@ class BlogCtrl {
   constructor(blogService, $scope) {
     this.blogService = blogService;
     this.$scope = $scope;
-    this.$scope.$watch(()=>this.sortBy, ()=>this.handleSort());
   }
 
   $onInit() {
-    this.typeahead = this.blogService.typeahead;
     this.filterValue = "";
-    this.selectOptions = ['title', 'oldest', 'recent', 'liked' ,'viewed', 'discussed'];
-
-    if (!this.blogService.blogItems){ //initialize data if not present yet
-      this.blogService.getData()
-      .then((resp) => 
-      {
-        this.blogService.blogItems = resp; 
-        this.blogItems = resp;
-        this.sortBy = 'recent';
-      });
-    }
-    else {
-      this.blogItems = this.blogService.blogItems;
+    this.selectOptions = ['titles', 'oldest', 'recent', 'liked' ,'viewed', 'discussed'];
+    this.blogService.getBlogs()
+    .then(data => {
+      this.blogItems = data;
+      this.blogService.blogItems = data;
       this.sortBy = 'recent';
-    }
+      this.handleSort();
+    });
   }
 
   isShort (desc) {
@@ -52,7 +43,17 @@ class BlogCtrl {
   }
 
   handleSort (){
-      if (this.sortBy === 'oldest') {
+      if (this.sortBy === "titles") {
+        function asc(a, b) {
+          const title1 = a.title.toLowerCase();
+          const title2 = b.title.toLowerCase();
+          if (title1 < title2) return -1;
+          else if (title1 > title2) return 1;
+          else return 0;
+        }
+        this.blogItems.sort(asc);
+      }
+      else if (this.sortBy === 'oldest') {
         this.blogItems.sort(function(a,b){
           return new Date(a.date) - new Date(b.date);
         });
@@ -82,9 +83,9 @@ class BlogCtrl {
     }
 
 
-  deleteBlog (index) {
+  deleteBlog (id) {
    this.$scope.$apply(()=>{
-   this.blogService.deleteBlog(this.blogItems, index);
+   this.blogService.deleteBlog(id).then(resp => this.blogItems = resp.data);
  })}
 }
 

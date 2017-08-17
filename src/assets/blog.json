@@ -1,7 +1,7 @@
 [
-      {"title": "VueJS", "name": "Kevin Jang", "date": "3/15/15 11:35:26 AM", "id": 0, "description": "VueJS is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable.",
+      {"title": "VueJS", "name": "Kevin Jang", "date": "3/15/15 11:35:26 AM", "id": "0", "description": "VueJS is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable.",
             "comments": [
-                  {"id":0, 
+                  {"id":"0", 
                   "text": "nice book!",
                   "name":"Jason",
                   "date": "3/18/15 13:00:00 PM",
@@ -14,30 +14,30 @@
             "likes": 100,
             "dislikes": 10             
       }, 
-      {"title": "AngularJS", "name": "Kevin Jang", "date": "3/4/16 10:25:55 AM", "id": 1, "description": "AngularJS is a structural framework for dynamic web apps. It lets you use HTML as your template language and lets you extend HTML's syntax to express your application's components clearly and succinctly. AngularJS's data binding and dependency injection eliminate much of the code you would otherwise have to write.",
+      {"title": "AngularJS", "name": "Kevin Jang", "date": "3/4/16 10:25:55 AM", "id": "1", "description": "AngularJS is a structural framework for dynamic web apps. It lets you use HTML as your template language and lets you extend HTML's syntax to express your application's components clearly and succinctly. AngularJS's data binding and dependency injection eliminate much of the code you would otherwise have to write.",
             "comments": [],
             "views": 1657,
             "likes": 1400,
             "dislikes": 1            
       },
 
-      {"title": "ReactJS", "name": "Kevin Jang", "date": "6/26/16 12:00:35 PM", "id": 2, "description": "React is an open-source JavaScript library for building user interfaces. React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. ",
+      {"title": "ReactJS", "name": "Kevin Jang", "date": "6/26/16 12:00:35 PM", "id": "2", "description": "React is an open-source JavaScript library for building user interfaces. React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. ",
             "comments": [
                   {
-                  "id":0, 
+                  "id":"0", 
                   "text": "nice book!", 
                   "name":"Jason",
                   "date": "6/26/16 13:00:00 PM", 
                   "likes": 5,
                   "dislikes": 2,          
                   "replies": [
-                        {"id":0, 
+                        {"id":"0", 
                         "text": "Agreed!", 
                         "name": "Benson", 
                         "date": "6/27/16 12:10 PM",
                         "likes": 0,
                         "dislikes": 4},
-                         {"id":1, 
+                         {"id":"1", 
                         "text": "It was okay... Could've been better.", 
                         "name": "Joon", 
                         "date": "6/28/16 14:10 PM",
@@ -46,7 +46,7 @@
                         ]
                   },
                   {
-                  "id":1, 
+                  "id":"1", 
                   "text": "highly recommended!",
                   "name": "Daniel",
                   "date": "6/26/16 13:15:00 PM",
@@ -61,7 +61,7 @@
       },
 
    
-      {"title": "jQuery", "name": "Kevin Jang", "date": "6/29/17 1:15:46 PM", "id": 3, "description": "jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.",
+      {"title": "jQuery", "name": "Kevin Jang", "date": "6/29/17 1:15:46 PM", "id": "3", "description": "jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.",
             "comments": [],
             "views": 100,
             "likes": 15,

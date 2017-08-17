@@ -3,15 +3,28 @@ export class BlogService {
   constructor($http, $filter) {
     this.$http = $http;
     this.$filter = $filter;
-    this.blogItems = null;
     this.typeahead = {
-      filterValue: ""
+      searchValue: null
     }
+    this.blogItems = null;
   }
 
-  getData () {
-    return this.$http.get('blog.json')
-    .then((resp)=> resp.data)
+  addData (url, data) {
+    return this.$http.post(url, data);
+  }
+  
+  update (url ,data) {
+    this.$http.put(`/posts/edit/${url}`, data);
+  }
+
+  getBlog (id) {
+    return this.$http.get(`/post/${id}`)
+    .then(resp=>resp.data);
+  }
+
+  getBlogs () {
+    return this.$http.get('/posts')
+    .then((resp)=> resp.data);
   }
 
   getDate() {
@@ -21,13 +34,7 @@ export class BlogService {
     return date;
   }
 
-  deleteBlog(items, target){
-   items.map((each,index) =>
-    { 
-      if (each.id === target){
-        items.splice(index, 1);
-      }
-    });
-    items.map((each,index,arr)=> each.id = arr.length-(index+1)); //resets the id #
+  deleteBlog(id){
+    return this.$http.delete(`/posts/delete/${id}`)
   } 
 } 

@@ -3,49 +3,63 @@ import angular from "angular";
 
 class BlogDetailCtrl {
     /* @ngInject */
-  constructor(blogService,$stateParams,$state,$scope, $timeout) {
+  constructor(blogService,$stateParams, $state,$scope, $timeout, $http) {
       this.blogService = blogService;
       this.$stateParams = $stateParams;
       this.$state = $state;
       this.$scope = $scope;
       this.$timeout = $timeout;
+      this.$http = $http;
   }
 
 
   $onInit() {
-    this.blogItems = this.blogService.blogItems;
-
-    if (this.blogItems){
-      this.getBlog();
-      this.item.views++; //increases view count when this page is activated
-      this.lastItem = this.blogItems.length - 1; //gets the id # of item
-  }
-    else { //if blogitem not found
-      this.$state.go('404'); //redirect to /404 to display error message
+    this.param = this.$stateParams.blogId;
+    if (this.blogService.blogItems) {
+      this.blogItems = this.blogService.blogItems;
+      this.item = this.blogItems.find(each=>each.id === this.param);
+      this.increaseView();
+      this.current = this.getCurrentIndex();
     }
+    else {
+      this.blogService.getBlogs().then(data => {
+      this.blogItems = data;
+      this.item = data.find(each=>each.id === this.param);
+      this.increaseView();
+      this.current = this.getCurrentIndex();
+    });
+    }
+  }
+
+  getCurrentIndex () {
+    return this.blogItems.map(each => each.id).indexOf(this.item.id);
+  }
+
+  increaseView () {
+    this.item.views++;
+    this.blogService.update(this.param, this.item);
+    //need to fix this after adding user authentication
   }
 
   likeBlog() {
     this.item.likes++;
+    this.blogService.update(this.param, this.item);
   }
 
   dislikeBlog() {
     this.item.dislikes++;
-  }
- 
-  deleteBlog() {
-    this.blogService.deleteBlog(this.blogItems, this.item.id);
-    this.$state.go('blog');
+    this.blogService.update(this.param, this.item);
   }
 
-  getBlog () {
-     //find the blogitem with the same id as the one passed to param
-    this.item = this.blogItems.find((each) => each.id === Number(this.$stateParams.blogId));
+  deleteBlog (id) {
+    this.$scope.$apply(()=>{ 
+    this.blogService.deleteBlog(id).then(()=>{this.$state.go('blog')}); 
+    });
   }
+
 
   editBlog (event) { //passes the function down to edit-blog child comp
-    this.blogItems = event.blogItems;
-    this.getBlog();  
+    this.item = event.blogItem;  
   }
 }
 
