@@ -1,5 +1,6 @@
 import template from './add-comments.html';
 import angular from "angular";
+import uuid from 'uuid/v4';
 
 class AddCommentsCtrl {
     /* @ngInject */
@@ -10,42 +11,44 @@ class AddCommentsCtrl {
 
 
   $onInit() {
-
-  }
-
-  findItem (item, arr) {
-    let ele = arr.find((element) => element.id === item.id);
-    let index = arr.indexOf(ele);
-    return index;
+    this.resetComment();
   }
 
   deleteItem (item, arr) {
-    let index = this.findItem(item, arr);
+    const ele = arr.find((element) => element.id === item.id);
+    const index = arr.indexOf(ele);
     arr.splice(index, 1);
   }
 
   likeComment(comment) {
     comment.likes++;
+    this.blogService.update(this.param, this.item);
+    
   }
 
   dislikeComment(comment) {
     comment.dislikes++;
+    this.blogService.update(this.param, this.item);
   }
 
   likeReply(reply) {
     reply.likes++;
+    this.blogService.update(this.param, this.item);
   }
 
   dislikeReply(reply) {
     reply.dislikes++;
+    this.blogService.update(this.param, this.item);
   }
 
 
   addComment () {
     this.comment.date = this.blogService.getDate();
     let comment = angular.copy(this.comment);
+    comment.id = uuid();
     this.item.comments.push(comment);
-    this.resetComment(); //to get the next id # after adding a comment
+    this.blogService.update(this.param, this.item);
+    this.resetComment();
   }
 
   startReplying (comment) {
@@ -56,25 +59,25 @@ class AddCommentsCtrl {
   addReply (comment) {
     comment.reply.date = this.blogService.getDate();
     let reply = angular.copy(comment.reply);
+    reply.id = uuid();
     comment.replies.push(reply);
     comment.seeReplies = true; //shows replies after adding reply to the comment
     comment.replying = false;
+    this.blogService.update(this.param, this.item);
     this.resetComment(); 
-    this.resetReply(comment);
   }
 
    deleteComment (comment) {
     this.$scope.$apply(this.deleteItem(comment, this.item.comments)); //apply used to allow confirm directive to update view after running this
-    this.item.comments.map((each,index)=> each.id = index); //change the id #s to prevent duplicates
+    this.blogService.update(this.param, this.item);
     this.resetComment();
  }
 
   deleteReply (comment, reply) {
     const replies = comment.replies;
     this.$scope.$apply(this.deleteItem(reply, replies));
-    replies.map((each,index)=> each.id = index);
+    this.blogService.update(this.param, this.item);
     this.resetComment();
-    this.resetReply(comment);
   }
 
   edit(comment) { //pass comment or reply
@@ -85,11 +88,12 @@ class AddCommentsCtrl {
     comment.editing = !comment.editing;
     }
     comment.edited = true;
+    this.blogService.update(this.param, this.item);
   }
 
   resetReply (comment) {
     comment.reply = {
-      "id": comment.replies.length,
+      "id": "",
       "text": "",
       "name": "",
       "date":"",
@@ -101,7 +105,7 @@ class AddCommentsCtrl {
   
  resetComment () {
    this.comment = {
-     "id": this.item.comments.length,
+     "id": "",
      "text": "",
      "replies":[],
      "name":"",
@@ -119,6 +123,10 @@ class AddCommentsCtrl {
 export const AddCommentsComponent = {
   controller: AddCommentsCtrl,
   template,
-  bindings: {item: "<", blogItems: "<"}
+  bindings: {
+    item: "<", 
+    blogItems: "<",
+    param: "<"
+  }
 }
     

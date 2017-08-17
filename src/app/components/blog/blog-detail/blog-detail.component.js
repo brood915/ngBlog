@@ -18,12 +18,14 @@ class BlogDetailCtrl {
     if (this.blogService.blogItems) {
       this.blogItems = this.blogService.blogItems;
       this.item = this.blogItems.find(each=>each.id === this.param);
+      this.increaseView();
       this.current = this.getCurrentIndex();
     }
     else {
       this.blogService.getBlogs().then(data => {
       this.blogItems = data;
       this.item = data.find(each=>each.id === this.param);
+      this.increaseView();
       this.current = this.getCurrentIndex();
     });
     }
@@ -33,12 +35,20 @@ class BlogDetailCtrl {
     return this.blogItems.map(each => each.id).indexOf(this.item.id);
   }
 
+  increaseView () {
+    this.item.views++;
+    this.blogService.update(this.param, this.item);
+    //need to fix this after adding user authentication
+  }
+
   likeBlog() {
     this.item.likes++;
+    this.blogService.update(this.param, this.item);
   }
 
   dislikeBlog() {
     this.item.dislikes++;
+    this.blogService.update(this.param, this.item);
   }
 
   deleteBlog (id) {

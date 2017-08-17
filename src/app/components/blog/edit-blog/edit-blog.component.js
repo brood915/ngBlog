@@ -26,7 +26,7 @@ class EditBlogCtrl {
       }
     });
 
-    this.$http.put(`/posts/edit/${this.param}`, this.blogItem);
+    this.blogService.update(this.params, this.blogItem);
   }
 
   resetForm () {

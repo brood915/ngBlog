@@ -29,7 +29,7 @@
             <span class="badge">
                 <i class="fa fa-search" aria-hidden="true"></i>
             </span>
-            {{$ctrl.current}}
+            {{$ctrl.item.views}}
         </div>        
     </div>
     <div class="btn-group">
@@ -41,5 +41,5 @@
     </div>
 </div> 
     <h3>Comments <span>({{$ctrl.item.comments.length}})</span></h3>
-    <add-comments blog-items = "$ctrl.blogItems" item = "$ctrl.item"></add-comments>
+    <add-comments param = "$ctrl.param" blog-items = "$ctrl.blogItems" item = "$ctrl.item"></add-comments>
 </div>

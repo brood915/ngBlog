@@ -12,6 +12,10 @@ export class BlogService {
   addData (url, data) {
     return this.$http.post(url, data);
   }
+  
+  update (url ,data) {
+    this.$http.put(`/posts/edit/${url}`, data);
+  }
 
   getBlog (id) {
     return this.$http.get(`/post/${id}`)
