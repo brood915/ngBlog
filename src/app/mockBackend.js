@@ -17,9 +17,10 @@ export default function($httpBackend) {
 
   $httpBackend.whenRoute('PUT', '/posts/edit/:id')
     .respond((method, url, data, headers, params) => {
-      const updated = posts.find((each,index) => each.id === params.id);
-      const index = posts.indexOf(updated);
-      posts[index] = data;
+      const parsedData = JSON.parse(data);
+      const ids = posts.map((each) => Number(each.id));
+      const index = ids.indexOf(Number(parsedData.id));
+      posts[index] = parsedData;
       return [200, posts];
     });
 

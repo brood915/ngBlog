@@ -14,29 +14,20 @@ class BlogDetailCtrl {
 
 
   $onInit() {
+    this.param = this.$stateParams.blogId;
     if (this.blogService.blogItems) {
       this.blogItems = this.blogService.blogItems;
-      this.item = this.blogItems.find(each=>each.id === this.$stateParams.blogId);
+      this.item = this.blogItems.find(each=>each.id === this.param);
       this.current = this.getCurrentIndex();
     }
     else {
       this.blogService.getBlogs().then(data => {
       this.blogItems = data;
-      this.item = data.find(each=>each.id === this.$stateParams.blogId);
+      this.item = data.find(each=>each.id === this.param);
       this.current = this.getCurrentIndex();
     });
     }
-
-
   }
-
-        /*
-        try using resolve
-      1. need to get the list of posts
-      2. need to get the indexof current post
-      3. check whether it's the last post/first post
-      4. go to next/prev post
-      */
 
   getCurrentIndex () {
     return this.blogItems.map(each => each.id).indexOf(this.item.id);
@@ -58,8 +49,7 @@ class BlogDetailCtrl {
 
 
   editBlog (event) { //passes the function down to edit-blog child comp
-    this.blogItems = event.blogItems;
-    this.getBlog();  
+    this.item = event.blogItem;  
   }
 }
 
