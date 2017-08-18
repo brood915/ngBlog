@@ -6,10 +6,7 @@ const promisify = require('es6-promisify');
 const expressValidator = require('express-validator');
 const routes = require('./routes/index');
 const passport = require('passport');
-require('./models/User');
-require('./models/Post');
 require('./config/passport');
-require('dotenv').config({ path: 'variables.env' });
 
 const app = express();
 
@@ -42,6 +39,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(expressValidator());
 
-app.use("/api", routes)
+app.use("/api", routes);
 
 module.exports = app;
