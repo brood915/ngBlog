@@ -3,7 +3,7 @@ import angular from "angular";
 
 class BlogDetailCtrl {
     /* @ngInject */
-  constructor(blogService,$stateParams, $state,$scope, $timeout, $http) {
+  constructor(blogService, $stateParams, $state,$scope, $timeout, $http) {
       this.blogService = blogService;
       this.$stateParams = $stateParams;
       this.$state = $state;
@@ -29,6 +29,13 @@ class BlogDetailCtrl {
       this.current = this.getCurrentIndex();
     });
     }
+    this.$timeout(()=>{
+        if (!this.item) {
+          this.$state.go('404');
+        }
+      }
+    )
+
   }
 
   getCurrentIndex () {
