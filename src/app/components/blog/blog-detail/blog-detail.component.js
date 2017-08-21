@@ -17,27 +17,28 @@ class BlogDetailCtrl {
     this.param = this.$stateParams.blogId;
     if (this.blogService.blogItems) {
       this.blogItems = this.blogService.blogItems;
-      this.item = this.blogItems.find(each=>each.id === this.param);
-      this.increaseView();
-      this.current = this.getCurrentIndex();
+      this.handleInitialLoading(this.blogItems);
     }
     else {
       this.blogService.getBlogs().then(data => {
       this.blogItems = data;
-      this.item = data.find(each=>each.id === this.param);
-      this.increaseView();
-      this.current = this.getCurrentIndex();
+      this.handleInitialLoading(data);
     });
     }
-    this.$timeout(()=>{
-        if (!this.item) {
-          this.$state.go('404');
-        }
-      }
-    )
-
   }
 
+  handleInitialLoading(data) {
+      this.item = data.find(each=>each.id === this.param);
+                
+      if (!this.item) {
+        this.$state.go('404');
+      }
+      else {
+      this.increaseView();
+      this.current = this.getCurrentIndex();
+      }
+  }
+    
   getCurrentIndex () {
     return this.blogItems.map(each => each.id).indexOf(this.item.id);
   }
