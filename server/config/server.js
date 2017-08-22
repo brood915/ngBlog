@@ -7,6 +7,9 @@ mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
 mongoose.connection.on('error', (err) => {
   console.error(`${err.message}`);
 });
+mongoose.connection.once('open', () => {
+  console.log('Connected to mongoDB!');
+});
 
 require('../models/User');
 require('../models/Post');
