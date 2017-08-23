@@ -1,0 +1,26 @@
+<div class="formContainer">
+    <div>
+        <div>
+            <h3>Register</h3>
+        </div>
+        <div>
+            <form class='form' novalidate>
+                <div class="form-group">
+                    <input class = "form-control" autocomplete="off" placeholder="display name" type='text' name = "name" ng-model = '$ctrl.name' maxlength = "20" required/>
+                </div>  
+                <div class="form-group">
+                    <input class = "form-control" autocomplete="off" placeholder="email" type='email' name = "email" ng-model = '$ctrl.email' maxlength = "20" required/>
+                </div>                
+                <div class="form-group">                
+                    <input class= "form-control" autocomplete="off" placeholder="password" type='password' name = "password" ng-model = '$ctrl.password' maxlength = "20" required/>
+                </div>
+                <div class="form-group">
+                    <input class = "form-control" autocomplete="off" placeholder="confirm password" type='password' name="password-confirm" ng-model = '$ctrl.confirmPassword' maxlength = "20" required/>
+                </div>   
+                    <div class="btn-group">
+                        <button class='btn btn-primary' ng-click = "$ctrl.register()">Register</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>

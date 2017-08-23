@@ -1,10 +1,10 @@
-<div id="addFormContainer">
+<div class="formContainer">
     <div>
         <div>
             <h3>Add a blog post</h3>
         </div>
         <div>
-            <form class='addBlogForm' novalidate name='addBlogForm'>
+            <form class='form' novalidate name='addBlogForm'>
                 <div class="form-group">
                     <input ng-click = "$ctrl.added = false" class = "form-control" autocomplete="off" placeholder="write a title..." type='text' name="title" ng-model = '$ctrl.blog.title' maxlength = "100" ng-minlength = "2" ng-maxlength="100" required/>
                 </div>

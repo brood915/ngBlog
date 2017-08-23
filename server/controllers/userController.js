@@ -24,16 +24,19 @@ exports.validateRegister = (req, res, next) => {
 }
 
 exports.register = async (req, res) => {
-    const user = new User({
-        email: req.body.email,
-        name: req.body.name
-    });
+    console.log(req.body.name);
+    // const user = new User({
+    //     email: req.body.email,
+    //     name: req.body.name
+    // });
     
-    const register = promisify(User.register, User);
-    await register(user, req.body.password);
+    // const register = promisify(User.register, User);
+    // await register(user, req.body.password);
     
-    const token = user.generateJWT()
-    res.json({token: token});
+    // const token = user.generateJWT()
+    // res.json({token: token});
+
+    // console.log('user registered!')
 }
 
 exports.changePassword = async (req, res) => {

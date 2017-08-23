@@ -9,10 +9,6 @@ class NavCtrl {
     this.typeahead = this.blogService.typeahead;
     this.isCollapsed = true;
   }
-
-  test(){
-    alert('ha');
-  }
 }
 
 

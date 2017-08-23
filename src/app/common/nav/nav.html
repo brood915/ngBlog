@@ -6,12 +6,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" ui-sref="blog">JSBlog</a>
+      <a ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed" class="navbar-brand" ui-sref="blog">JSBlog</a>
     </div>
     <div class="navbar-collapse" ng-class="{collapse: $ctrl.isCollapsed}">
       <ul class="nav navbar-nav">
-        <li class="add" ui-sref="addBlog">+</li>
-        <li class="typeahead"><form ng-submit="$ctrl.test()"><input type="text" placeholder="Search..." ng-model="$ctrl.typeahead.searchValue"></form></li>
+        <li ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed" class="add" ui-sref="addBlog">+</li>
+        <li class="typeahead"><form><input type="text" placeholder="Search..." ng-model="$ctrl.typeahead.searchValue"></form></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed" ui-sref="register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed" ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
     </div>
   </div>
