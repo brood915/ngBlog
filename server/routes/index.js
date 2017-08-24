@@ -12,7 +12,7 @@ const auth = jwt({
 
 //USERS
 router.post('/register', 
-    // userController.validateRegister,
+    userController.validateRegister,
     userController.register);
 
 router.post('/account/password',

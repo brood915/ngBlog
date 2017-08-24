@@ -14,17 +14,17 @@ class BlogDetailCtrl {
 
 
   $onInit() {
-    this.param = this.$stateParams.blogId;
-    if (this.blogService.blogItems) {
-      this.blogItems = this.blogService.blogItems;
-      this.handleInitialLoading(this.blogItems);
-    }
-    else {
-      this.blogService.getBlogs().then(data => {
-      this.blogItems = data;
-      this.handleInitialLoading(data);
-    });
-    }
+    // this.param = this.$stateParams.blogId;
+    // if (this.blogService.blogItems) {
+    //   this.blogItems = this.blogService.blogItems;
+    //   this.handleInitialLoading(this.blogItems);
+    // }
+    // else {
+    //   this.blogService.getBlogs().then(data => {
+    //   this.blogItems = data;
+    //   this.handleInitialLoading(data);
+    // });
+    // }
   }
 
   handleInitialLoading(data) {

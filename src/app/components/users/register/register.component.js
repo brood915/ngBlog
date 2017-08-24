@@ -3,23 +3,30 @@ import angular from 'angular';
 
 class RegisterCtrl {
   /* @ngInject */
-  constructor($http) {
+  constructor($http, $window, userService) {
   this.$http = $http;
+  this.userService = userService;
   }
 
   $onInit() {
+    console.log(this.userService.getToken())
   }
 
   register() {
     const user = {
       name: this.name,
       email: this.email,
-      password: this.password
+      password: this.password,
+      passwordConfirm: this.passwordConfirm
     }
 
-    this.$http.post('/api/register', user)
-    .then(()=> console.log('success!'))
-    .catch(()=>console.log('error!!!!'))
+    this.userService.register(user)
+    .then((resp)=> {
+      console.log(resp.data.token);
+      this.userService.saveToken(resp.data.token);
+      this.registered = true;
+    })
+    .catch(() => this.registered = false);
   }
 
 }

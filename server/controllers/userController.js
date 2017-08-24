@@ -12,31 +12,31 @@ exports.validateRegister = (req, res, next) => {
         gmail_remove_subaddress: false
     });
     req.checkBody('password', 'Password cannot be blank!').notEmpty();
-    req.checkBody('password-confirm', 'Confirmed password cannot be blank!').notEmpty();
-    req.checkBody('password-confirm', 'Oops! Your passwords do not match!').equals(req.body.password);
+    req.checkBody('passwordConfirm', 'Confirmed password cannot be blank!').notEmpty();
+    req.checkBody('passwordConfirm', 'Oops! Your passwords do not match!').equals(req.body.password);
 
     const errors = req.validationErrors();
     if(errors) {
-        console.log('register validation error!');
+        errors.map((each)=>console.log(each.msg));
         return;
     }
     next();
 }
 
 exports.register = async (req, res) => {
-    console.log(req.body.name);
-    // const user = new User({
-    //     email: req.body.email,
-    //     name: req.body.name
-    // });
+    const user = new User({
+        email: req.body.email,
+        name: req.body.name
+    });
     
-    // const register = promisify(User.register, User);
-    // await register(user, req.body.password);
+    const register = promisify(User.register, User);
+    await register(user, req.body.password);
     
-    // const token = user.generateJWT()
-    // res.json({token: token});
+    const token = user.generateJWT();
+    res.status(200);
+    res.json({token: token});
 
-    // console.log('user registered!')
+    console.log('user registered!!')
 }
 
 exports.changePassword = async (req, res) => {
