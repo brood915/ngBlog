@@ -36,7 +36,7 @@ userSchema.virtual('gravatar').get(function() {
     return `https://gravatar.com/avatar/${hash}?s=200`
 });
 
-userSchema.methods.generateJWT = () => {
+userSchema.methods.generateJWT = function() {
     const expiry = new Date();
     expiry.setDate(expiry.getDate() + 7);
 

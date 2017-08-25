@@ -7,8 +7,9 @@ import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { DirectivesModule } from './directives/directives.module';
 import uiRouter from '@uirouter/angularjs';
+import 'angular-jwt';
 
-export const AppModule = angular.module('app', [CommonModule, ComponentsModule, DirectivesModule, uiRouter])
+export const AppModule = angular.module('app', ['angular-jwt', CommonModule, ComponentsModule, DirectivesModule, uiRouter])
   .component('app', AppComponent)
   .config(/* @ngInject */($stateProvider, $urlRouterProvider, $locationProvider) => {
     $urlRouterProvider.when('/', '/blog');

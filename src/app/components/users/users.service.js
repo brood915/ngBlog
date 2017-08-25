@@ -14,7 +14,7 @@ export class UserService {
   }
 
   getToken () {
-    this.$window.localStorage['token'];
+    return this.$window.localStorage['token'];
   }
 
   login () {

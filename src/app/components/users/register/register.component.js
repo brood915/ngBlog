@@ -3,13 +3,16 @@ import angular from 'angular';
 
 class RegisterCtrl {
   /* @ngInject */
-  constructor($http, $window, userService) {
+  constructor($http, $window, userService, jwtHelper) {
   this.$http = $http;
   this.userService = userService;
+  this.jwtHelper = jwtHelper;
   }
 
   $onInit() {
-    console.log(this.userService.getToken())
+    const token = this.userService.getToken();
+    console.log(token, this.jwtHelper.decodeToken(token));
+
   }
 
   register() {
@@ -22,13 +25,11 @@ class RegisterCtrl {
 
     this.userService.register(user)
     .then((resp)=> {
-      console.log(resp.data.token);
       this.userService.saveToken(resp.data.token);
       this.registered = true;
     })
     .catch(() => this.registered = false);
   }
-
 }
 export const RegisterComponent = {
   template,
