@@ -6,13 +6,12 @@ class RegisterCtrl {
   constructor($http, $window, userService, jwtHelper) {
   this.$http = $http;
   this.userService = userService;
-  this.jwtHelper = jwtHelper;
+
   }
 
   $onInit() {
-    const token = this.userService.getToken();
-    console.log(token, this.jwtHelper.decodeToken(token));
-
+    console.log(this.userService.getToken());
+    console.log(this.userService.getUser())
   }
 
   register() {

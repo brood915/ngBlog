@@ -1,8 +1,9 @@
 export class UserService {
     /* @ngInject */
-  constructor($http, $window) {
+  constructor($http, $window, jwtHelper) {
     this.$http = $http;
     this.$window = $window;
+    this.jwtHelper = jwtHelper;
   }
 
   register (user) {
@@ -17,15 +18,32 @@ export class UserService {
     return this.$window.localStorage['token'];
   }
 
-  login () {
+  logIn () {
 
   }
 
-  isLogged() {
-    const token  = this.getToken();
+  logOut() {
+    this.$window.localStorage.removeItem('token');
+    console.log(this.getToken())
+  }
 
- 
-      console.log(token)
-  
+  isLoggedIn() {
+    const token  = this.getToken();
+    if (token) {
+      return !this.jwtHelper.isTokenExpired(token);
+      //we want to check if token is NOT expired. So, added !
+    }
+    else { 
+      return false;
+    }
+  }
+
+  getUser () {
+    if (this.isLoggedIn()) {
+      const token  = this.getToken();
+      const payload = this.jwtHelper.decodeToken(token);
+      console.log(payload);
+      return payload;
+    }
   }
 } 
