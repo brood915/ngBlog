@@ -4,6 +4,10 @@ export class UserService {
     this.$http = $http;
     this.$window = $window;
     this.jwtHelper = jwtHelper;
+    this.user ={
+      isLoggedIn: this.isLoggedIn(),
+      payload: this.getUser()
+    }
   }
 
   register (user) {
@@ -19,12 +23,11 @@ export class UserService {
   }
 
   logIn () {
-
+    return this.$http.post('/api/login')
   }
 
   logOut() {
     this.$window.localStorage.removeItem('token');
-    console.log(this.getToken())
   }
 
   isLoggedIn() {
@@ -42,7 +45,6 @@ export class UserService {
     if (this.isLoggedIn()) {
       const token  = this.getToken();
       const payload = this.jwtHelper.decodeToken(token);
-      console.log(payload);
       return payload;
     }
   }

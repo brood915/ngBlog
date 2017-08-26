@@ -2,18 +2,22 @@ import template from './nav.html';
 
 class NavCtrl {
   /* @ngInject */
-  constructor(blogService, userService, $state) {
+  constructor(blogService, userService, $state, $timeout) {
     this.blogService = blogService;
     this.userService = userService;
+    this.$state = $state;
+    this.$timeout= $timeout;
   }
   $onInit() {
     this.typeahead = this.blogService.typeahead;
     this.isCollapsed = true;
-    this.user = this.userService.getUser();
+    this.user = this.userService.user;
   }
 
   logOut () {
     this.userService.logOut();
+    this.user.isLoggedIn = this.userService.isLoggedIn();
+    this.$state.go('blog');
   }
 }
 

@@ -3,15 +3,15 @@ import angular from 'angular';
 
 class RegisterCtrl {
   /* @ngInject */
-  constructor($http, $window, userService, jwtHelper) {
-  this.$http = $http;
-  this.userService = userService;
+  constructor($http, $window, userService, jwtHelper, $state) {
+    this.$http = $http;
+    this.userService = userService;
+    this.$state = $state;
 
   }
 
   $onInit() {
-    console.log(this.userService.getToken());
-    console.log(this.userService.getUser())
+    this.user = this.userService.user;
   }
 
   register() {
@@ -25,7 +25,9 @@ class RegisterCtrl {
     this.userService.register(user)
     .then((resp)=> {
       this.userService.saveToken(resp.data.token);
-      this.registered = true;
+      this.user.isLoggedIn = this.userService.isLoggedIn();
+      this.user.payload = this.userService.getUser();
+      this.$state.go('blog');
     })
     .catch(() => this.registered = false);
   }

@@ -3,13 +3,18 @@ import angular from 'angular';
 
 class LoginCtrl {
   /* @ngInject */
-  constructor($http) {
-  this.$http = $http;
+  constructor($http, userService) {
+    this.$http = $http;
+    this.userService = userService;
   }
 
 
   $onInit() {
-    
+  }
+
+  login () {
+    this.userService.login()
+
   }
 }
 

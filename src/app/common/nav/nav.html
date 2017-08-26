@@ -13,13 +13,13 @@
         <li ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed" class="add" ui-sref="addBlog">+</li>
         <li class="typeahead"><form><input type="text" placeholder="Search..." ng-model="$ctrl.typeahead.searchValue"></form></li>
       </ul>
-      <ul ng-if="!$ctrl.user" class="nav navbar-nav navbar-right">
+      <ul ng-if="!$ctrl.user.isLoggedIn" class="nav navbar-nav navbar-right">
         <li><a ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed" ui-sref="register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed" ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>{{$ctrl.user.name}}</li>
-        <li ng-click="$ctrl.logOut()">Logout</li>
+      <ul ng-if="$ctrl.user.isLoggedIn" class="nav navbar-nav navbar-right">
+        <li><a>{{$ctrl.user.payload.name}}</a></li>
+        <li><a ng-click="$ctrl.logOut()">Logout</a></li>
       </ul>
     </div>
   </div>
