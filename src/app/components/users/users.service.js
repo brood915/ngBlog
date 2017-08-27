@@ -22,8 +22,8 @@ export class UserService {
     return this.$window.localStorage['token'];
   }
 
-  logIn () {
-    return this.$http.post('/api/login')
+  logIn (user) {
+    return this.$http.post('/api/login', user);
   }
 
   logOut() {

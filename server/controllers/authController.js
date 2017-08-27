@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const passport = require('passport');
 
 exports.login = (req, res) => {
   passport.authenticate('local', function (err, user, info) {

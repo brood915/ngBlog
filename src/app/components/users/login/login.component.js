@@ -3,17 +3,31 @@ import angular from 'angular';
 
 class LoginCtrl {
   /* @ngInject */
-  constructor($http, userService) {
+  constructor($http, userService, $state) {
     this.$http = $http;
     this.userService = userService;
+    this.$state = $state;
   }
 
 
   $onInit() {
+    this.user = this.userService.user;
   }
 
-  login () {
-    this.userService.login()
+  logIn () {
+   
+    const user = {
+      email: this.email,
+      password: this.password
+    }
+    this.userService.logIn(user)
+      .then((resp)=> {
+        this.userService.saveToken(resp.data.token);
+        this.user.isLoggedIn = this.userService.isLoggedIn();
+        this.user.payload = this.userService.getUser();
+        this.$state.go('blog');
+      })
+      .catch(() => this.loggedIn = false)
 
   }
 }
