@@ -3,7 +3,7 @@ import angular from "angular";
 
 class BlogDetailCtrl {
     /* @ngInject */
-  constructor(blogService,$stateParams, $state,$scope, $timeout, $http) {
+  constructor(blogService, $stateParams, $state,$scope, $timeout, $http) {
       this.blogService = blogService;
       this.$stateParams = $stateParams;
       this.$state = $state;
@@ -14,23 +14,31 @@ class BlogDetailCtrl {
 
 
   $onInit() {
-    this.param = this.$stateParams.blogId;
-    if (this.blogService.blogItems) {
-      this.blogItems = this.blogService.blogItems;
-      this.item = this.blogItems.find(each=>each.id === this.param);
-      this.increaseView();
-      this.current = this.getCurrentIndex();
-    }
-    else {
-      this.blogService.getBlogs().then(data => {
-      this.blogItems = data;
-      this.item = data.find(each=>each.id === this.param);
-      this.increaseView();
-      this.current = this.getCurrentIndex();
-    });
-    }
+    // this.param = this.$stateParams.blogId;
+    // if (this.blogService.blogItems) {
+    //   this.blogItems = this.blogService.blogItems;
+    //   this.handleInitialLoading(this.blogItems);
+    // }
+    // else {
+    //   this.blogService.getBlogs().then(data => {
+    //   this.blogItems = data;
+    //   this.handleInitialLoading(data);
+    // });
+    // }
   }
 
+  handleInitialLoading(data) {
+      this.item = data.find(each=>each.id === this.param);
+                
+      if (!this.item) {
+        this.$state.go('404');
+      }
+      else {
+      this.increaseView();
+      this.current = this.getCurrentIndex();
+      }
+  }
+    
   getCurrentIndex () {
     return this.blogItems.map(each => each.id).indexOf(this.item.id);
   }

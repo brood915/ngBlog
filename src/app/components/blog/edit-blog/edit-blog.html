@@ -1,11 +1,11 @@
-<div class='hide' id="editFormContainer">
+<div class='hide' class="formContainer">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" form-name = "editFormContainer" modal>&times;</button>
             <h3 class="modal-title">Edit a blog post</h3>
         </div>
         <div class="modal-body">
-            <form class='addBlogForm' name='addBlogForm'>
+            <form class='form' name='addBlogForm'>
                 <input placeholder="write a title..." type='text' name="title" ng-model = '$ctrl.modifiedBlog.title '/>
                 <textarea placeholder="write description..." type='text' name="description" ng-model ='$ctrl.modifiedBlog.description'></textarea>
             </form>

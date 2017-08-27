@@ -1,8 +1,21 @@
+*[ui-sref]:hover, li a {
+    cursor: pointer;
+}
+
 .navbar-inverse {
     background-color: #337ab7;
     border-color: #337ab7;
 }
 
+.navbar-inverse .navbar-right > li {
+    &:hover {
+        opacity: 0.5;
+    }
+
+    > a {
+        color: #FFFFFF;
+    }
+}
 
 .navbar-inverse .navbar-nav > li, .navbar-inverse .navbar-brand  {
     color: #FFFFFF;
@@ -37,7 +50,6 @@
     &:hover {
         background-color: #FFFFFF;
         color: #337ab7;
-        cursor: pointer;
     }
 }
 

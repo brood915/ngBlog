@@ -8,7 +8,7 @@
     "express-server": "nodemon ./server/config/server.js --ignore src/",
     "test": "karma start",
     "test-watch": "karma start --auto-watch --no-single-run",
-    "costart": "concurrently \"npm run server\" \"npm run express-server\"",
+    "start": "concurrently \"npm run server\" \"npm run express-server\"",
     "deploy": "npm run build&&gh-pages -d dist"
   },
   "repository": {
@@ -19,6 +19,7 @@
   "dependencies": {
     "@uirouter/angularjs": "^1.0.4",
     "angular": "^1.5.0",
+    "angular-jwt": "^0.1.9",
     "body-parser": "1.17.1",
     "bootstrap": "^3.3.7",
     "dotenv": "4.0.0",
