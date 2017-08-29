@@ -3,15 +3,21 @@ import uuid from 'uuid/v4';
 
 class AddBlogCtrl {
     /* @ngInject */
-  constructor(blogService, $scope, $timeout, $window) {
+  constructor(blogService, $scope, $timeout, $window, $state, userService) {
       this.blogService = blogService;
       this.$scope = $scope;
       this.$timeout = $timeout;
       this.$window = $window;
+      this.$state = $state;
+      this.userService = userService;
   }
 
 
   $onInit () {
+    if (!this.userService.isLoggedIn()) {
+      this.$state.go('401');
+    }
+    console.log(this.userService.isLoggedIn())
     this.blogItems = this.blogService.blogItems;
     this.added = false;
     this.resetForm();

@@ -43,7 +43,12 @@ export const AppModule = angular.module('app', ['angular-jwt', CommonModule, Com
       .state('404', {
         name: '404',
         url: '/404',
-        component: 'error'
+        component: 'notFound'
+      })
+      .state('401', {
+        name: '401',
+        url: '/401',
+        component: 'noAuth'
       })
       
       $locationProvider.html5Mode(true);
