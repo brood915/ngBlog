@@ -18,8 +18,8 @@
         <li><a ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed" ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
       <ul ng-if="$ctrl.user.isLoggedIn" class="nav navbar-nav navbar-right">
-        <li><a>{{$ctrl.user.payload.name}}</a></li>
         <li><a ng-click="$ctrl.logOut()">Logout</a></li>
+        <li><a ui-sref="profile">{{$ctrl.user.payload.name}}</a></li>
       </ul>
     </div>
   </div>

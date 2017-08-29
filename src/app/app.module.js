@@ -23,6 +23,10 @@ export const AppModule = angular.module('app', ['angular-jwt', CommonModule, Com
         url: '/login',
         component: 'login'
       })
+      .state('profile', {
+        url:'/profile',
+        component: 'profile'
+      })
       .state('blog', {
         url: '/blog',
         component: 'blog'
