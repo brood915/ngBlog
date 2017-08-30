@@ -26,10 +26,10 @@ router.post('/login',
 
 //BLOGS
 router.post('/posts/create',
-    auth,
+ 
     postController.createPost);
 
-router.post('/posts/edit',
+router.post('/posts/edit/:id',
     auth,
     postController.editPost);
 

@@ -9,15 +9,15 @@ class BlogCtrl {
   }
 
   $onInit() {
-    // this.filterValue = "";
-    // this.selectOptions = ['titles', 'oldest', 'recent', 'liked' ,'viewed', 'discussed'];
-    // this.blogService.getBlogs()
-    // .then(data => {
-    //   this.blogItems = data;
-    //   this.blogService.blogItems = data;
-    //   this.sortBy = 'recent';
-    //   this.handleSort();
-    // });
+    this.filterValue = "";
+    this.selectOptions = ['titles', 'oldest', 'recent', 'liked' ,'viewed', 'discussed'];
+    this.blogService.getBlogs()
+    .then(data => {
+      this.blogItems = data;
+      this.blogService.blogItems = data;
+      this.sortBy = 'recent';
+      this.handleSort();
+    });
   }
 
   isShort (desc) {

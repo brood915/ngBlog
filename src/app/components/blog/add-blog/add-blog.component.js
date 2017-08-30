@@ -17,6 +17,7 @@ class AddBlogCtrl {
     if (!this.userService.isLoggedIn()) {
       this.$state.go('401');
     }
+    this.user = this.userService.user;
     this.blogItems = this.blogService.blogItems;
     this.added = false;
     this.resetForm();
@@ -34,7 +35,7 @@ class AddBlogCtrl {
       "views": 0,
       "likes": 0,
       "dislikes": 0,
-      "name": "",
+      "name": this.user.payload.name,
       "date":"",
       "description": "",
       "comments": []
@@ -44,7 +45,7 @@ class AddBlogCtrl {
   addBlog () {
     this.blog.id = uuid();
     this.blog.date = this.blogService.getDate();
-    this.blogService.addData('/posts/add', this.blog).then((resp)=>this.blogService.blogItems = resp.data);
+    this.blogService.addData('/api/posts/create', this.blog).then((resp)=>this.blogService.blogItems = resp.data);
     this.resetForm();
 
     this.$timeout(() =>{

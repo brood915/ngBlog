@@ -4,7 +4,9 @@ const Post = mongoose.model('Post');
 //POST
 exports.createPost = async (req,res) => {
     const post = await (new Post(req.body)).save();
-    res.redirect(`/blog/${post._id}`);
+    console.log(post);
+    const posts = await Post.find();
+    res.json(posts);
 }
 
 /*NEED TO ADD LOGICS TO CHECK IF THE USER IS THE ORIGINAL POSTER/ADMIN */
