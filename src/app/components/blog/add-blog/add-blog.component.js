@@ -17,7 +17,6 @@ class AddBlogCtrl {
     if (!this.userService.isLoggedIn()) {
       this.$state.go('401');
     }
-    console.log(this.userService.isLoggedIn())
     this.blogItems = this.blogService.blogItems;
     this.added = false;
     this.resetForm();

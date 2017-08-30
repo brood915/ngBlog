@@ -1,5 +1,5 @@
 <div class="formContainer">
-    <div>
+    <div ng-if="!$ctrl.isLoggedIn">
         <div>
             <h3>Login</h3>
         </div>
@@ -20,6 +20,12 @@
         <div>
             <p class="errorMsg text-success" ng-show="addBlogForm.$submitted && addBlogForm.$valid">Your form is now valid to be submitted!</p>
             <p class="errorMsg text-danger" ng-show="addBlogForm.$submitted && addBlogForm.$invalid">Please fill in all the required fields!</p>
+        </div>
+    </div>
+    <div ng-if="$ctrl.isLoggedIn">
+        <p>You are already logged in!</p>
+         <div class="btn-group">
+            <button ng-click="$ctrl.goBack()" type="button" class="btn btn-primary">Back</button>
         </div>
     </div>
 </div>

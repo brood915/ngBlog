@@ -33,7 +33,10 @@ export const AppModule = angular.module('app', ['angular-jwt', CommonModule, Com
       })
       .state('addBlog', {
         url: '/blog/add',
-        component: 'addBlog'
+        component: 'addBlog',
+        data: {
+        requiresLogin: true
+        }
       })
       .state('blogItem', {
         name: 'blogItem',

@@ -3,15 +3,22 @@ import angular from 'angular';
 
 class LoginCtrl {
   /* @ngInject */
-  constructor($http, userService, $state) {
+  constructor($http, userService, $state, $window) {
     this.$http = $http;
     this.userService = userService;
     this.$state = $state;
+    this.$window = $window;
   }
 
 
   $onInit() {
     this.user = this.userService.user;
+    this.isLoggedIn = this.userService.isLoggedIn();
+  }
+
+  goBack () {
+    this.$window.history.back(); 
+    //go back to where user was right before
   }
 
   logIn () {

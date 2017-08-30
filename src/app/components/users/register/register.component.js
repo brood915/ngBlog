@@ -3,15 +3,21 @@ import angular from 'angular';
 
 class RegisterCtrl {
   /* @ngInject */
-  constructor($http, $window, userService, jwtHelper, $state) {
+  constructor($http, $window, userService, $state) {
     this.$http = $http;
     this.userService = userService;
     this.$state = $state;
-
+    this.$window = $window;
   }
 
   $onInit() {
     this.user = this.userService.user;
+    this.isLoggedIn = this.userService.isLoggedIn();
+  }
+
+  goBack () {
+    this.$window.history.back(); 
+    //go back to where user was right before
   }
 
   register() {
