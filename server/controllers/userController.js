@@ -35,7 +35,6 @@ exports.register = async (req, res) => {
     const token = user.generateJWT();
     res.status(200);
     res.json({token: token});
-
     console.log('user registered!!')
 }
 
