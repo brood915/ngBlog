@@ -33,7 +33,7 @@ router.post('/posts/edit/:id',
     auth,
     postController.editPost);
 
-router.post('/posts/delete',
+router.delete('/posts/delete/:id',
     auth,
     postController.deletePost);  
 

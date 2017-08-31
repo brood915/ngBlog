@@ -10,7 +10,7 @@
     <div class="item-desc">{{$ctrl.item.description}}</div>
     <div class="btn-group">
         <button  class='btn btn-primary' form-name = "editFormContainer" modal>Edit</button>
-        <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog($ctrl.item.id)' type="button" confirm>Delete</button>
+        <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog($ctrl.item._id)' type="button" confirm>Delete</button>
     </div>
     <div class="badgesContainer">
         <div class = "clickable" ng-click="$ctrl.likeBlog()">

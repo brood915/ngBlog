@@ -85,7 +85,7 @@ class BlogCtrl {
 
   deleteBlog (id) {
    this.$scope.$apply(()=>{
-   this.blogService.deleteBlog(id).then(resp => this.blogItems = resp.data);
+   this.blogService.deleteBlog(id).then((resp) => this.blogItems = resp.data);
  })}
 }
 

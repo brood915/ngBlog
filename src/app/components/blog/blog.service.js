@@ -41,6 +41,6 @@ export class BlogService {
   }
 
   deleteBlog(id){
-    return this.$http.delete(`/api/posts/delete/${id}`)
+    return this.$http.delete(`/api/posts/delete/${id}`, this.auth)
   } 
 } 

@@ -18,7 +18,7 @@
         <span class="counts"><i class="fa fa-search" aria-hidden="true"></i></span> {{item.views}}   
       </div>
       <button ui-sref='blogItem({ blogId: item._id })' class='btn btn-primary'>View</button>
-      <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog(item.id)' type="button" confirm>Delete</button>
+      <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog(item._id)' type="button" confirm>Delete</button>
     </li>
   </ul>
   <h3 ng-if="!filtered.length && $ctrl.blogItems.length > 0">Blog posts with that name do not exist</h3>
