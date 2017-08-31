@@ -30,6 +30,8 @@ class LoginCtrl {
     this.userService.logIn(user)
       .then((resp)=> {
         this.userService.saveToken(resp.data.token);
+      })
+      .then(()=> {
         this.user.isLoggedIn = this.userService.isLoggedIn();
         this.user.payload = this.userService.getUser();
         this.$state.go('blog');
