@@ -9,15 +9,15 @@ class BlogCtrl {
   }
 
   $onInit() {
-    // this.filterValue = "";
-    // this.selectOptions = ['titles', 'oldest', 'recent', 'liked' ,'viewed', 'discussed'];
-    // this.blogService.getBlogs()
-    // .then(data => {
-    //   this.blogItems = data;
-    //   this.blogService.blogItems = data;
-    //   this.sortBy = 'recent';
-    //   this.handleSort();
-    // });
+    this.filterValue = "";
+    this.selectOptions = ['titles', 'oldest', 'recent', 'liked' ,'viewed', 'discussed'];
+    this.blogService.getBlogs()
+    .then(data => {
+      this.blogItems = data;
+      this.blogService.blogItems = data;
+      this.sortBy = 'recent';
+      this.handleSort();
+    });
   }
 
   isShort (desc) {
@@ -85,7 +85,7 @@ class BlogCtrl {
 
   deleteBlog (id) {
    this.$scope.$apply(()=>{
-   this.blogService.deleteBlog(id).then(resp => this.blogItems = resp.data);
+   this.blogService.deleteBlog(id).then((resp) => this.blogItems = resp.data);
  })}
 }
 

@@ -1,0 +1,8 @@
+<div>
+    <p ng-if="$ctrl.isLoggedIn">You are not authorized to do that!</p>
+    <p ng-if="!$ctrl.isLoggedIn">You must login first!</p>
+    <div class="btn-group">
+        <button class="btn btn-default" ng-click = "$ctrl.goBack()">Back</button>
+        <button ng-if="!$ctrl.isLoggedIn" class='btn btn-primary' ng-click = "$ctrl.goLogin()">Login</button>
+    </div>
+</div>

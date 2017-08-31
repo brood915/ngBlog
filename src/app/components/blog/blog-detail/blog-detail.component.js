@@ -14,33 +14,32 @@ class BlogDetailCtrl {
 
 
   $onInit() {
-    // this.param = this.$stateParams.blogId;
-    // if (this.blogService.blogItems) {
-    //   this.blogItems = this.blogService.blogItems;
-    //   this.handleInitialLoading(this.blogItems);
-    // }
-    // else {
-    //   this.blogService.getBlogs().then(data => {
-    //   this.blogItems = data;
-    //   this.handleInitialLoading(data);
-    // });
-    // }
+    if (this.blogService.blogItems) {
+      this.blogItems = this.blogService.blogItems;
+      this.getPost();
+    }
+    else {
+      this.blogService.getBlogs().then((data) => {
+      this.blogItems = data;
+      this.getPost();
+      });
+    }
   }
 
-  handleInitialLoading(data) {
-      this.item = data.find(each=>each.id === this.param);
-                
-      if (!this.item) {
-        this.$state.go('404');
-      }
-      else {
-      this.increaseView();
+  handleInitialLoading(data) { 
+      // this.increaseView();
       this.current = this.getCurrentIndex();
-      }
   }
     
   getCurrentIndex () {
-    return this.blogItems.map(each => each.id).indexOf(this.item.id);
+    return this.blogItems.map(each => each._id).indexOf(this.item._id);
+  }
+
+  getPost() {
+    this.blogService.getBlog(this.$stateParams.blogId)
+    .then((data) => this.item = data)
+    .then(()=> this.handleInitialLoading())
+    .catch(() =>console.log('failed to get the blog post'));
   }
 
   increaseView () {

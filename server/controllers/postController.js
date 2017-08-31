@@ -4,7 +4,9 @@ const Post = mongoose.model('Post');
 //POST
 exports.createPost = async (req,res) => {
     const post = await (new Post(req.body)).save();
-    res.redirect(`/blog/${post._id}`);
+    console.log('posted!');
+    const posts = await Post.find();
+    res.json(posts);
 }
 
 /*NEED TO ADD LOGICS TO CHECK IF THE USER IS THE ORIGINAL POSTER/ADMIN */
@@ -17,8 +19,10 @@ exports.editPost = async (req,res) => {
 
 /*NEED TO ADD LOGICS TO CHECK IF THE USER IS THE ORIGINAL POSTER/ADMIN */
 exports.deletePost = async (req,res) => {
-    await Post.findByIdAndRemove(req.params.id);
-    res.redirect(`/blog/${post._id}`);
+    await Post.findByIdAndRemove({_id: req.params.id});
+    console.log('deleted!')
+    const posts = await Post.find();
+    res.json(posts);
 }
 
 

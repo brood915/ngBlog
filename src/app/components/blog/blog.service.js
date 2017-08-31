@@ -1,40 +1,46 @@
 export class BlogService {
     /* @ngInject */
-  constructor($http, $filter) {
+  constructor($http, $filter, userService) {
     this.$http = $http;
     this.$filter = $filter;
     this.typeahead = {
       searchValue: null
     }
     this.blogItems = null;
+    this.userService = userService;
+    this.auth = {
+      headers: {
+        Authorization: 'Bearer ' + this.userService.getToken()
+      }
+    }
   }
 
   addData (url, data) {
     return this.$http.post(url, data);
   }
   
-  update (url ,data) {
-    this.$http.put(`/posts/edit/${url}`, data);
+  update (id ,data) {
+    this.$http.put(`/api/posts/edit/${id}`, data, this.auth);
   }
 
   getBlog (id) {
-    return this.$http.get(`/post/${id}`)
+    return this.$http.get(`/api/posts/${id}`)
     .then(resp=>resp.data);
   }
 
   getBlogs () {
-    return this.$http.get('/posts')
+    return this.$http.get('/api/posts')
     .then((resp)=> resp.data);
   }
 
   getDate() {
     let date = new Date();
-    let formatDate = this.$filter('date');
+    const formatDate = this.$filter('date');
     date = formatDate(date, 'M/d/yy h:mm:ss a');
     return date;
   }
 
   deleteBlog(id){
-    return this.$http.delete(`/posts/delete/${id}`)
+    return this.$http.delete(`/api/posts/delete/${id}`, this.auth)
   } 
 } 

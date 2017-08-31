@@ -23,13 +23,20 @@ export const AppModule = angular.module('app', ['angular-jwt', CommonModule, Com
         url: '/login',
         component: 'login'
       })
+      .state('profile', {
+        url:'/profile',
+        component: 'profile'
+      })
       .state('blog', {
         url: '/blog',
         component: 'blog'
       })
       .state('addBlog', {
         url: '/blog/add',
-        component: 'addBlog'
+        component: 'addBlog',
+        data: {
+        requiresLogin: true
+        }
       })
       .state('blogItem', {
         name: 'blogItem',
@@ -39,7 +46,12 @@ export const AppModule = angular.module('app', ['angular-jwt', CommonModule, Com
       .state('404', {
         name: '404',
         url: '/404',
-        component: 'error'
+        component: 'notFound'
+      })
+      .state('401', {
+        name: '401',
+        url: '/401',
+        component: 'noAuth'
       })
       
       $locationProvider.html5Mode(true);

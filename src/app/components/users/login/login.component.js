@@ -3,15 +3,22 @@ import angular from 'angular';
 
 class LoginCtrl {
   /* @ngInject */
-  constructor($http, userService, $state) {
+  constructor($http, userService, $state, $window) {
     this.$http = $http;
     this.userService = userService;
     this.$state = $state;
+    this.$window = $window;
   }
 
 
   $onInit() {
     this.user = this.userService.user;
+    this.isLoggedIn = this.userService.isLoggedIn();
+  }
+
+  goBack () {
+    this.$window.history.back(); 
+    //go back to where user was right before
   }
 
   logIn () {
@@ -23,12 +30,13 @@ class LoginCtrl {
     this.userService.logIn(user)
       .then((resp)=> {
         this.userService.saveToken(resp.data.token);
+      })
+      .then(()=> {
         this.user.isLoggedIn = this.userService.isLoggedIn();
         this.user.payload = this.userService.getUser();
         this.$state.go('blog');
       })
-      .catch(() => this.loggedIn = false)
-
+      .catch(() => console.log('login failed!'))
   }
 }
 

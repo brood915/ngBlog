@@ -10,15 +10,11 @@
                 </div>
                     <p ng-if = "((addBlogForm.title.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.title.$invalid" class="text-danger errorMsg">Your title must be 2-100 characters long.</p>                  
                 <div class="form-group">                
-                    <input ng-click = "$ctrl.added = false" class= "form-control" autocomplete="off" placeholder="write your name..." type='text' name="name" ng-model = '$ctrl.blog.name' maxlength = "50" ng-minlength = "2" ng-maxlength="50" required/>
-                </div>
-                    <p ng-if = "((addBlogForm.name.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.name.$invalid" class="text-danger errorMsg">Your name must be 2-50 characters long.</p>                 
-                <div class="form-group">                
                     <textarea ng-click = "$ctrl.added = false" placeholder="write description..." type='text' name="description" ng-model ='$ctrl.blog.description' ng-minlength = "100" required></textarea>
                 </div>    
                     <p ng-if = "((addBlogForm.description.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.description.$invalid" class="text-danger errorMsg">Your post needs to be at least 100 characters long.</p>   
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default" form-name = "addFormContainer" ng-click = "$ctrl.goBack()">Back</button>
+                        <button class="btn btn-default" form-name = "addFormContainer" ng-click = "$ctrl.goBack()">Back</button>
                         <button class='btn btn-primary' ng-click = "addBlogForm.$valid && $ctrl.addBlog()">Post</button>
                     </div>
                     <h4 class = "text-primary" ng-show ="$ctrl.added">Your post was submitted!</h4>
@@ -26,7 +22,7 @@
         </div>
         <div>
             <p class="errorMsg text-success" ng-show="addBlogForm.$submitted && addBlogForm.$valid">Your form is now valid to be submitted!</p>
-            <p class="errorMsg text-danger" ng-show="addBlogForm.$submitted && addBlogForm.$invalid">Please fill in all the required fields!</p>
+            <p class="errorMsg text-danger" ng-show="addBlogForm.$submitted && addBlogForm.$invalid">Please make sure all fields are valid!</p>
         </div>
     </div>
 </div>
