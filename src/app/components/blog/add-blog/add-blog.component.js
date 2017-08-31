@@ -1,5 +1,4 @@
 import template from './add-blog.html';
-import uuid from 'uuid/v4';
 
 class AddBlogCtrl {
     /* @ngInject */
@@ -31,26 +30,30 @@ class AddBlogCtrl {
   resetForm () {
     this.blog = {
       "title": "",
-      "id": "",
       "views": 0,
       "likes": 0,
       "dislikes": 0,
       "name": this.user.payload.name,
-      "date":"",
+      "date": this.blogService.getDate(),
       "description": "",
       "comments": []
     }
  }
 
   addBlog () {
-    this.blog.id = uuid();
-    this.blog.date = this.blogService.getDate();
-    this.blogService.addData('/api/posts/create', this.blog).then((resp)=>this.blogService.blogItems = resp.data);
+    this.blogService.addData('/api/posts/create', this.blog)
+    .then((resp)=>{
+        this.blogService.blogItems = resp.data
+    })
+    .then(()=> {
+        this.added = true;
+    })
+    .catch(() => console.log('not posted!'));
+    
     this.resetForm();
 
     this.$timeout(() =>{
       this.$scope.addBlogForm.$setPristine();
-      this.added = true;
     });//resets form
   }
 

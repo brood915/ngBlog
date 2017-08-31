@@ -4,7 +4,7 @@ const Post = mongoose.model('Post');
 //POST
 exports.createPost = async (req,res) => {
     const post = await (new Post(req.body)).save();
-    console.log(post);
+    console.log('posted!');
     const posts = await Post.find();
     res.json(posts);
 }

@@ -10,8 +10,24 @@ const postSchema = new mongoose.Schema({
         trim: true
     },
     date: {
-        type: Date,
-        default: Date.now
+        type: String,
+        trim: true
+    },
+    name: {
+        type: String,
+        trim: true
+    },
+    likes: {
+        type: Number,
+        default: 0
+    },
+    dislikes: {
+        type: Number,
+        default: 0
+    },
+    views: {
+        type: Number,
+        default: 0
     }
 });
 

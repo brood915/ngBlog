@@ -17,7 +17,7 @@
         <span class="counts"><i class="fa fa-pencil" aria-hidden="true"></i></span> {{item.comments.length}}
         <span class="counts"><i class="fa fa-search" aria-hidden="true"></i></span> {{item.views}}   
       </div>
-      <button ui-sref='blogItem({ blogId: item.id })' class='btn btn-primary'>View</button>
+      <button ui-sref='blogItem({ blogId: item._id })' class='btn btn-primary'>View</button>
       <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog(item.id)' type="button" confirm>Delete</button>
     </li>
   </ul>

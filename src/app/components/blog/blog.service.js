@@ -24,7 +24,7 @@ export class BlogService {
   }
 
   getBlog (id) {
-    return this.$http.get(`/api/post/${id}`)
+    return this.$http.get(`/api/posts/${id}`)
     .then(resp=>resp.data);
   }
 
@@ -35,7 +35,7 @@ export class BlogService {
 
   getDate() {
     let date = new Date();
-    let formatDate = this.$filter('date');
+    const formatDate = this.$filter('date');
     date = formatDate(date, 'M/d/yy h:mm:ss a');
     return date;
   }
