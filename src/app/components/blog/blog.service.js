@@ -20,7 +20,7 @@ export class BlogService {
   }
   
   update (id ,data) {
-    this.$http.put(`/api/posts/edit/${id}`, data, this.auth);
+    return this.$http.put(`/api/posts/edit/${id}`, data, this.auth);
   }
 
   getBlog (id) {

@@ -29,7 +29,7 @@ router.post('/posts/create',
  
     postController.createPost);
 
-router.post('/posts/edit/:id',
+router.put('/posts/edit/:id',
     auth,
     postController.editPost);
 

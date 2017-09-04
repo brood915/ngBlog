@@ -13,6 +13,9 @@ const postSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
+    dateEdited: {
+        type: String,
+    },
     name: {
         type: String,
         trim: true
