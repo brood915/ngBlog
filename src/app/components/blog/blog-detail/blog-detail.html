@@ -1,6 +1,6 @@
 <i ng-show='!$ctrl.item' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 <button ui-sref="blog" class='goBackBtn btn btn-primary'><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
-<edit-blog param = "$ctrl.param" edit-blog = '$ctrl.editBlog($event)' blog-item = '$ctrl.item'></edit-blog>
+<edit-blog ng-if="$ctrl.item" param = "$ctrl.param" edit-blog = '$ctrl.editBlog($event)' blog-item = '$ctrl.item'></edit-blog>
 <div class = 'main' id="blogDetail">
     <div class ='blogPostItems bottomBorder'>
     <h1>{{$ctrl.item.title}}</h1>
