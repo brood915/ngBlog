@@ -45,7 +45,8 @@ userSchema.methods.generateJWT = function() {
         email: this.email,
         name: this.name,
         admin: this.admin,
-        exp: parseInt(expiry.getTime()/1000)
+        exp: parseInt(expiry.getTime()/1000),
+        pic: this.gravatar
     }, process.env.secret)
 }
 
