@@ -13,7 +13,7 @@ class LoginCtrl {
 
   $onInit() {
     this.user = this.userService.user;
-    this.isLoggedIn = this.userService.isLoggedIn();
+    this.isLoggedIn = this.user.isLoggedIn;
   }
 
   goBack () {

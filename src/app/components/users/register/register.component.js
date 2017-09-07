@@ -12,7 +12,7 @@ class RegisterCtrl {
 
   $onInit() {
     this.user = this.userService.user;
-    this.isLoggedIn = this.userService.isLoggedIn();
+    this.isLoggedIn = this.user.isLoggedIn;
   }
 
   goBack () {
@@ -31,7 +31,6 @@ class RegisterCtrl {
     this.userService.register(user)
     .then((resp)=> {
       this.userService.saveToken(resp.data.token);
-      console.log(resp.data.token)
     })
     .then(()=> {
       this.user.isLoggedIn = this.userService.isLoggedIn();

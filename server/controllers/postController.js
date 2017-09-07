@@ -14,7 +14,8 @@ exports.editPost = async (req,res) => {
     const post = await Post.findOneAndUpdate({_id:req.params.id}, req.body, {
         new: true, // return the new post instead of old one
         runValidators: true}).exec();
-        res.redirect(`/blog/${post._id}`);
+        console.log('edited!');
+        res.json(post);
 }
 
 /*NEED TO ADD LOGICS TO CHECK IF THE USER IS THE ORIGINAL POSTER/ADMIN */

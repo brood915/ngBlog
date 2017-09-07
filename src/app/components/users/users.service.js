@@ -37,6 +37,7 @@ export class UserService {
       //we want to check if token is NOT expired. So, added !
     }
     else { 
+      this.logOut();
       return false;
     }
   }

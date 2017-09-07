@@ -16,17 +16,17 @@ class EditBlogCtrl {
   handleEdit () { //passes the new value back to blog-detail comp
     const dateEdited = this.blogService.getDate();
     this.modifiedBlog.dateEdited = dateEdited;
-    const copy = angular.copy(this.modifiedBlog);
-    this.blogItem.title = copy.title;
-    this.blogItem.description = copy.description;
-
-    this.editBlog({
-      $event: {
-        blogItem: this.blogItem
-      }
-    });
-
-    this.blogService.update(this.params, this.blogItem);
+    this.blogService.update(this.param, this.modifiedBlog)
+      .then((resp) => {
+        this.editBlog({
+          $event: {
+            blogItem: resp.data
+          }
+        });
+      })
+      .catch(() => {
+        console.log('Editing failed!')
+      })
   }
 
   resetForm () {

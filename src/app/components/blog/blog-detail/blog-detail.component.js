@@ -14,6 +14,7 @@ class BlogDetailCtrl {
 
 
   $onInit() {
+    this.param = this.$stateParams.blogId;
     if (this.blogService.blogItems) {
       this.blogItems = this.blogService.blogItems;
       this.getPost();

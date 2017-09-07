@@ -11,7 +11,7 @@ class ModalDirective {
   link(scope, element, attrs) { //remember that scope value is parsed and evaluted while attrs is always string.
       element.on('click', function() {
           let form = document.getElementById(scope.formName);
-          let content = document.getElementById('blogContainer') || document.getElementById('blogDetail');
+          let content = document.getElementById('blogDetail');
 
          if (form.classList.contains("hide"))
           {

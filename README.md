@@ -1,4 +1,4 @@
-# Simple Blog Built with AngularJS
+# Simple Blog Built with MEAN Stack
 
 * Modified https://github.com/preboot/angular-webpack for my own usage.
 

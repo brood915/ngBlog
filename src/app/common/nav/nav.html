@@ -20,6 +20,7 @@
       <ul ng-if="$ctrl.user.isLoggedIn" class="nav navbar-nav navbar-right">
         <li><a ng-click="$ctrl.logOut()">Logout</a></li>
         <li><a ui-sref="profile">{{$ctrl.user.payload.name}}</a></li>
+        <li id = "profileContainer"><a id = "profile" ui-sref="profile"><img id = "profilePic" ng-src="{{$ctrl.user.payload.pic}}"{/></a></li>
       </ul>
     </div>
   </div>
