@@ -61,7 +61,12 @@ class BlogDetailCtrl {
 
   deleteBlog (id) {
     this.$scope.$apply(()=>{ 
-    this.blogService.deleteBlog(id).then(()=>{this.$state.go('blog')}); 
+    this.blogService.deleteBlog(id).then((resp)=>
+      {
+        this.blogItems = resp.data;
+        this.$state.go('blog');
+        this.current = this.getCurrentIndex();
+      }); 
     });
   }
 

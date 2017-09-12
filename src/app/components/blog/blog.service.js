@@ -19,7 +19,7 @@ export class BlogService {
   }
 
   addData (url, data) {
-    return this.$http.post(url, data);
+    return this.$http.post(url, data, this.auth());
   }
   
   update (id ,data) {
