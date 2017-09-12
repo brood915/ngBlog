@@ -1,15 +1,15 @@
-<i ng-show='!$ctrl.item' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+<i ng-if='!$ctrl.item' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 <button ui-sref="blog" class='goBackBtn btn btn-primary'><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
 <edit-blog ng-if="$ctrl.item" param = "$ctrl.param" edit-blog = '$ctrl.editBlog($event)' blog-item = '$ctrl.item'></edit-blog>
 <div class = 'main' id="blogDetail">
     <div class ='blogPostItems bottomBorder'>
     <h1>{{$ctrl.item.title}}</h1>
     <p class="name blogItemName">{{$ctrl.item.name}}</p>
-    <p class="date blogItemDate"><span ng-show="$ctrl.item.dateEdited">Posted: </span>{{$ctrl.item.date}}</p>
-    <p ng-show="$ctrl.item.dateEdited" class="date blogItemDate">Edited: {{$ctrl.item.dateEdited}}</p>
+    <p class="date blogItemDate"><span ng-if="$ctrl.item.dateEdited">Posted: </span>{{$ctrl.item.date}}</p>
+    <p ng-if="$ctrl.item.dateEdited" class="date blogItemDate">Edited: {{$ctrl.item.dateEdited}}</p>
     <div class="item-desc">{{$ctrl.item.description}}</div>
-    <div class="btn-group">
-        <button  class='btn btn-primary' form-name = "editFormContainer" modal>Edit</button>
+    <div ng-if="$ctrl.user.isLoggedIn" class="btn-group">
+        <button class='btn btn-primary' form-name = "editFormContainer" modal>Edit</button>
         <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog($ctrl.item._id)' type="button" confirm>Delete</button>
     </div>
     <div class="badgesContainer">

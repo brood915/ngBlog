@@ -3,12 +3,14 @@ import template from './blog.html';
 
 class BlogCtrl {
   /* @ngInject */
-  constructor(blogService, $scope) {
+  constructor(blogService, userService, $scope) {
     this.blogService = blogService;
+    this.userService = userService;
     this.$scope = $scope;
   }
 
   $onInit() {
+    this.user = this.userService.user;
     this.filterValue = "";
     this.selectOptions = ['titles', 'oldest', 'recent', 'liked' ,'viewed', 'discussed'];
     this.blogService.getBlogs()

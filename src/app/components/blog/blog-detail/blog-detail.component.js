@@ -3,8 +3,9 @@ import angular from "angular";
 
 class BlogDetailCtrl {
     /* @ngInject */
-  constructor(blogService, $stateParams, $state,$scope, $timeout, $http) {
+  constructor(blogService, userService, $stateParams, $state,$scope, $timeout, $http) {
       this.blogService = blogService;
+      this.userService = userService;
       this.$stateParams = $stateParams;
       this.$state = $state;
       this.$scope = $scope;
@@ -15,6 +16,7 @@ class BlogDetailCtrl {
 
   $onInit() {
     this.param = this.$stateParams.blogId;
+    this.user = this.userService.user;
     if (this.blogService.blogItems) {
       this.blogItems = this.blogService.blogItems;
       this.getPost();
