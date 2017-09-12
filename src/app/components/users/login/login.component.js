@@ -37,7 +37,7 @@ class LoginCtrl {
         this.user.isLoggedIn = this.userService.isLoggedIn();
         this.user.payload = this.userService.getUser();
         console.log(this.user.payload);
-        this.$state.go('blog');
+        this.goBack();
       })
       .catch(() => console.log('login failed!'))
   }
