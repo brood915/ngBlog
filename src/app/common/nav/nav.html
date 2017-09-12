@@ -14,14 +14,14 @@
         <li class="typeahead"><form><input type="text" placeholder="Search..." ng-model="$ctrl.typeahead.searchValue"></form></li>
       </ul>
       <ul ng-if="!$ctrl.user.isLoggedIn" class="nav navbar-nav navbar-right">
-        <li><a ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed" ui-sref="register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed" ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed" ui-sref="register"><i class="fa fa-user" aria-hidden="true"></i> Sign Up</a></li>
+        <li><a ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed" ui-sref="login"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
       </ul>
       <ul ng-if="$ctrl.user.isLoggedIn" class="nav navbar-nav navbar-right">
-        <li ng-if="$ctrl.user.payload.admin"><a>Admin</a></li>
-        <li><a ng-click="$ctrl.logOut()">Logout</a></li>
-        <li><a ui-sref="profile">{{$ctrl.user.payload.name}}</a></li>
-        <li id = "profileContainer"><a id = "profile" ui-sref="profile"><img id = "profilePic" ng-src="{{$ctrl.user.payload.pic}}"{/></a></li>
+        <li><a ng-click="$ctrl.logOut()"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+        <li ng-if="$ctrl.user.payload.admin"><a><i class="fa fa-lock" aria-hidden="true"></i> Admin</a></li>
+        <li><a ui-sref="profile"><i class="fa fa-user-o" aria-hidden="true"></i> {{$ctrl.user.payload.name}}</a></li>
+        <li id = "profileContainer"><a id = "profile" ui-sref="profile"><img id = "profilePic" ng-src="{{$ctrl.user.payload.pic}}"/></a></li>
       </ul>
     </div>
   </div>
