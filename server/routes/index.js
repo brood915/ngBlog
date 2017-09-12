@@ -26,7 +26,7 @@ router.post('/login',
 
 //BLOGS
 router.post('/posts/create',
- 
+    auth,
     postController.createPost);
 
 router.put('/posts/edit/:id',

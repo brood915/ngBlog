@@ -3,9 +3,10 @@ import angular from 'angular';
 
 class LoginCtrl {
   /* @ngInject */
-  constructor($http, userService, $state, $window) {
+  constructor($http, userService, blogService, $state, $window) {
     this.$http = $http;
     this.userService = userService;
+    this.blogService = blogService;
     this.$state = $state;
     this.$window = $window;
   }
@@ -30,10 +31,12 @@ class LoginCtrl {
     this.userService.logIn(user)
       .then((resp)=> {
         this.userService.saveToken(resp.data.token);
+        console.log(resp.data.token);
       })
       .then(()=> {
         this.user.isLoggedIn = this.userService.isLoggedIn();
         this.user.payload = this.userService.getUser();
+        console.log(this.user.payload);
         this.$state.go('blog');
       })
       .catch(() => console.log('login failed!'))

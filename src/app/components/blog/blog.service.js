@@ -8,7 +8,10 @@ export class BlogService {
     }
     this.blogItems = null;
     this.userService = userService;
-    this.auth = {
+  }
+
+  auth() {
+    return {
       headers: {
         Authorization: 'Bearer ' + this.userService.getToken()
       }
@@ -20,7 +23,7 @@ export class BlogService {
   }
   
   update (id ,data) {
-    return this.$http.put(`/api/posts/edit/${id}`, data, this.auth);
+    return this.$http.put(`/api/posts/edit/${id}`, data, this.auth());
   }
 
   getBlog (id) {
@@ -41,6 +44,6 @@ export class BlogService {
   }
 
   deleteBlog(id){
-    return this.$http.delete(`/api/posts/delete/${id}`, this.auth)
+    return this.$http.delete(`/api/posts/delete/${id}`, this.auth())
   } 
 } 
