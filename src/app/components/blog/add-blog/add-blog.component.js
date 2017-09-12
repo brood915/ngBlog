@@ -14,7 +14,7 @@ class AddBlogCtrl {
 
   $onInit () {
     if (!this.userService.isLoggedIn()) {
-      this.$state.go('401');
+      this.$state.go('login');
     }
     this.user = this.userService.user;
     this.blogItems = this.blogService.blogItems;
