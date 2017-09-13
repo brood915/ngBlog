@@ -3,10 +3,11 @@ import template from './blog.html';
 
 class BlogCtrl {
   /* @ngInject */
-  constructor(blogService, userService, $scope) {
+  constructor(blogService, userService, $scope, $state) {
     this.blogService = blogService;
     this.userService = userService;
     this.$scope = $scope;
+    this.$state = $state;
   }
 
   $onInit() {
@@ -16,10 +17,11 @@ class BlogCtrl {
     this.blogService.getBlogs()
     .then(data => {
       this.blogItems = data;
-      this.blogService.blogItems = data;
+      this.blogService.blog.posts = data;
       this.sortBy = 'recent';
       this.handleSort();
-    });
+    })
+    .catch(()=> this.$state.go('500'));
   }
 
   isShort (desc) {
@@ -90,7 +92,7 @@ class BlogCtrl {
    this.blogService.deleteBlog(id).then((resp) => 
    {
      this.blogItems = resp.data;
-     this.blogService.blogItems = resp.data;
+     this.blogService.blog.posts = resp.data;
     });
  })}
 }

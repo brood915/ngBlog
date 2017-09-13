@@ -17,15 +17,17 @@ class BlogDetailCtrl {
   $onInit() {
     this.param = this.$stateParams.blogId;
     this.user = this.userService.user;
-    if (this.blogService.blogItems) {
-      this.blogItems = this.blogService.blogItems;
+    if (this.blogService.blog.posts) {
+      this.blogItems = this.blogService.blog.posts;
       this.getPost();
     }
     else {
-      this.blogService.getBlogs().then((data) => {
+      this.blogService.getBlogs()
+      .then((data) => {
       this.blogItems = data;
       this.getPost();
-      });
+      })
+      .catch(()=> this.$state.go('500'));
     }
   }
 
@@ -42,7 +44,7 @@ class BlogDetailCtrl {
     this.blogService.getBlog(this.$stateParams.blogId)
     .then((data) => this.item = data)
     .then(()=> this.handleInitialLoading())
-    .catch(() =>console.log('failed to get the blog post'));
+    .catch(() => this.$state.go('500'));
   }
 
   increaseView () {

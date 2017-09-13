@@ -6,7 +6,9 @@ export class BlogService {
     this.typeahead = {
       searchValue: null
     }
-    this.blogItems = null;
+    this.blog = {
+      posts: null
+    };
     this.userService = userService;
   }
 
