@@ -48,6 +48,7 @@ class AddBlogCtrl {
 
   addBlog () {
     this.adding = true;
+    this.resetStatus();
     this.blogService.addData('/api/posts/create', this.blog)
     .then((resp)=>{
         this.blogService.blog.posts = resp.data;
