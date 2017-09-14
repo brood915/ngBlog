@@ -19,6 +19,8 @@ class AddBlogCtrl {
     this.user = this.userService.user;
     this.blogItems = this.blogService.blog.posts;
     this.added = false;
+    this.adding = false;
+    this.error = false;
     this.resetForm();
   }
 
@@ -41,20 +43,24 @@ class AddBlogCtrl {
  }
 
   addBlog () {
+    this.adding = true;
     this.blogService.addData('/api/posts/create', this.blog)
     .then((resp)=>{
-        this.blogService.blog.posts = resp.data
+        this.blogService.blog.posts = resp.data;
     })
     .then(()=> {
         this.added = true;
+        this.adding = false;
+        this.resetForm();
+        this.$timeout(() =>{
+          this.$scope.addBlogForm.$setPristine();
+        });//resets form
     })
-    .catch(() => console.log('not posted!'));
-    
-    this.resetForm();
-
-    this.$timeout(() =>{
-      this.$scope.addBlogForm.$setPristine();
-    });//resets form
+    .catch(() => {
+      console.log('not posted!');
+      this.adding = false;
+      this.error = true;
+    });
   }
 
 }

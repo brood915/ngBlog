@@ -17,12 +17,14 @@
                         <button class="btn btn-default" form-name = "addFormContainer" ng-click = "$ctrl.goBack()">Back</button>
                         <button class='btn btn-primary' ng-click = "addBlogForm.$valid && $ctrl.addBlog()">Post</button>
                     </div>
-                    <h4 class = "text-primary" ng-show ="$ctrl.added">Your post was submitted!</h4>
+                    <h4 class = "text-primary" ng-if ="$ctrl.added">Your post was submitted!</h4>
             </form>
         </div>
         <div>
-            <p class="errorMsg text-success" ng-show="addBlogForm.$submitted && addBlogForm.$valid">Your form is now valid to be submitted!</p>
-            <p class="errorMsg text-danger" ng-show="addBlogForm.$submitted && addBlogForm.$invalid">Please make sure all fields are valid!</p>
+            <p ng-if="addBlogForm.$submitted && addBlogForm.$valid && !$ctrl.adding && !$ctrl.error" class="msg text-success">Your form is now valid to be submitted!</p>
+            <i ng-if='$ctrl.adding' class="fa fa-spinner fa-spin fa-2x fa-fw"></i>
+            <p ng-if="addBlogForm.$submitted && addBlogForm.$invalid" class="msg text-danger">Please make sure all fields are valid!</p>
+            <p ng-if="$ctrl.error" class="msg text-danger">Something unexpected happened! Please try again later!</p>
         </div>
     </div>
 </div>

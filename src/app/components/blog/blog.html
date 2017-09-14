@@ -9,7 +9,7 @@
     <li ng-repeat='item in filtered = ($ctrl.blogItems | filter: $ctrl.filterValue | orderBy: $ctrl.sortBy)'>
       <h2>{{item.title}}<span class="new" ng-if="$ctrl.isNew(item.date)">New!</span></h2>
       <p ng-if = '$ctrl.isShort(item.description)' class="desc">{{item.description}}</p>
-      <p ng-if = '!$ctrl.isShort(item.description)' class = "desc">{{$ctrl.shortened}}<span ui-sref='blogItem({ blogId: item.id })' class="readMore">Read More</span></p>
+      <p ng-if = '!$ctrl.isShort(item.description)' class = "desc">{{$ctrl.shortened}}<span ui-sref='blogItem({ blogId: item._id })' class="readMore">Read More</span></p>
       <p class="date"><span>{{item.name}} - </span>{{item.date}}</p>
       <div class="countsContainer">
         <span class="counts"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span> {{item.likes}}
