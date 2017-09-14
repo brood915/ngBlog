@@ -18,15 +18,19 @@ class AddBlogCtrl {
     }
     this.user = this.userService.user;
     this.blogItems = this.blogService.blog.posts;
-    this.added = false;
-    this.adding = false;
-    this.error = false;
     this.resetForm();
+    this.resetStatus();
   }
 
   goBack () {
     this.$window.history.back(); 
     //go back to where user was right before
+  }
+
+  resetStatus () {
+    this.added = false;
+    this.adding = false;
+    this.error = false;
   }
 
   resetForm () {
