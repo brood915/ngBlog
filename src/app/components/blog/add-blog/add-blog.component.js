@@ -14,17 +14,23 @@ class AddBlogCtrl {
 
   $onInit () {
     if (!this.userService.isLoggedIn()) {
-      this.$state.go('401');
+      this.$state.go('login');
     }
     this.user = this.userService.user;
-    this.blogItems = this.blogService.blogItems;
-    this.added = false;
+    this.blogItems = this.blogService.blog.posts;
     this.resetForm();
+    this.resetStatus();
   }
 
   goBack () {
     this.$window.history.back(); 
     //go back to where user was right before
+  }
+
+  resetStatus () {
+    this.added = false;
+    this.adding = false;
+    this.error = false;
   }
 
   resetForm () {
@@ -41,20 +47,25 @@ class AddBlogCtrl {
  }
 
   addBlog () {
+    this.adding = true;
+    this.resetStatus();
     this.blogService.addData('/api/posts/create', this.blog)
     .then((resp)=>{
-        this.blogService.blogItems = resp.data
+        this.blogService.blog.posts = resp.data;
     })
     .then(()=> {
         this.added = true;
+        this.adding = false;
+        this.resetForm();
+        this.$timeout(() =>{
+          this.$scope.addBlogForm.$setPristine();
+        });//resets form
     })
-    .catch(() => console.log('not posted!'));
-    
-    this.resetForm();
-
-    this.$timeout(() =>{
-      this.$scope.addBlogForm.$setPristine();
-    });//resets form
+    .catch(() => {
+      console.log('not posted!');
+      this.adding = false;
+      this.error = true;
+    });
   }
 
 }

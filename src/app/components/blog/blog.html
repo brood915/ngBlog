@@ -4,12 +4,12 @@
     <span class="names">Search:</span><input placeholder='Search...' type='text' ng-model = '$ctrl.filterValue' />
     <span class="names">Sort:</span><select id = "selectOptions" ng-model="$ctrl.sortBy" ng-change="$ctrl.handleSort()" ng-options="x for x in $ctrl.selectOptions"></select>
   </div>
-  <button ui-sref="addBlog" class="addBlogBtn btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+  <button ng-if = "$ctrl.user.isLoggedIn" ui-sref="addBlog" class="addBlogBtn btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
   <ul id = "blogItems" class="blogItems">
     <li ng-repeat='item in filtered = ($ctrl.blogItems | filter: $ctrl.filterValue | orderBy: $ctrl.sortBy)'>
       <h2>{{item.title}}<span class="new" ng-if="$ctrl.isNew(item.date)">New!</span></h2>
       <p ng-if = '$ctrl.isShort(item.description)' class="desc">{{item.description}}</p>
-      <p ng-if = '!$ctrl.isShort(item.description)' class = "desc">{{$ctrl.shortened}}<span ui-sref='blogItem({ blogId: item.id })' class="readMore">Read More</span></p>
+      <p ng-if = '!$ctrl.isShort(item.description)' class = "desc">{{$ctrl.shortened}}<span ui-sref='blogItem({ blogId: item._id })' class="readMore">Read More</span></p>
       <p class="date"><span>{{item.name}} - </span>{{item.date}}</p>
       <div class="countsContainer">
         <span class="counts"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span> {{item.likes}}
@@ -18,7 +18,7 @@
         <span class="counts"><i class="fa fa-search" aria-hidden="true"></i></span> {{item.views}}   
       </div>
       <button ui-sref='blogItem({ blogId: item._id })' class='btn btn-primary'>View</button>
-      <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog(item._id)' type="button" confirm>Delete</button>
+      <button ng-if="$ctrl.user.isLoggedIn" class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog(item._id)' type="button" confirm>Delete</button>
     </li>
   </ul>
   <h3 ng-if="!filtered.length && $ctrl.blogItems.length > 0">Blog posts with that name do not exist</h3>

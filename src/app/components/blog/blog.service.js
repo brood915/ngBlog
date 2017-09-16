@@ -6,9 +6,14 @@ export class BlogService {
     this.typeahead = {
       searchValue: null
     }
-    this.blogItems = null;
+    this.blog = {
+      posts: null
+    };
     this.userService = userService;
-    this.auth = {
+  }
+
+  auth() {
+    return {
       headers: {
         Authorization: 'Bearer ' + this.userService.getToken()
       }
@@ -16,11 +21,11 @@ export class BlogService {
   }
 
   addData (url, data) {
-    return this.$http.post(url, data);
+    return this.$http.post(url, data, this.auth());
   }
   
   update (id ,data) {
-    return this.$http.put(`/api/posts/edit/${id}`, data, this.auth);
+    return this.$http.put(`/api/posts/edit/${id}`, data, this.auth());
   }
 
   getBlog (id) {
@@ -41,6 +46,6 @@ export class BlogService {
   }
 
   deleteBlog(id){
-    return this.$http.delete(`/api/posts/delete/${id}`, this.auth)
+    return this.$http.delete(`/api/posts/delete/${id}`, this.auth())
   } 
 } 

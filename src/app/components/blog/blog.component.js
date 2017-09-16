@@ -3,21 +3,25 @@ import template from './blog.html';
 
 class BlogCtrl {
   /* @ngInject */
-  constructor(blogService, $scope) {
+  constructor(blogService, userService, $scope, $state) {
     this.blogService = blogService;
+    this.userService = userService;
     this.$scope = $scope;
+    this.$state = $state;
   }
 
   $onInit() {
+    this.user = this.userService.user;
     this.filterValue = "";
     this.selectOptions = ['titles', 'oldest', 'recent', 'liked' ,'viewed', 'discussed'];
     this.blogService.getBlogs()
     .then(data => {
       this.blogItems = data;
-      this.blogService.blogItems = data;
+      this.blogService.blog.posts = data;
       this.sortBy = 'recent';
       this.handleSort();
-    });
+    })
+    .catch(()=> this.$state.go('500'));
   }
 
   isShort (desc) {
@@ -85,7 +89,11 @@ class BlogCtrl {
 
   deleteBlog (id) {
    this.$scope.$apply(()=>{
-   this.blogService.deleteBlog(id).then((resp) => this.blogItems = resp.data);
+   this.blogService.deleteBlog(id).then((resp) => 
+   {
+     this.blogItems = resp.data;
+     this.blogService.blog.posts = resp.data;
+    });
  })}
 }
 

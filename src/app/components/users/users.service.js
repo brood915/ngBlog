@@ -24,20 +24,25 @@ export class UserService {
 
   logIn (user) {
     return this.$http.post('/api/login', user);
+    console.log('logged in');
   }
 
   logOut() {
     this.$window.localStorage.removeItem('token');
+    console.log('logged out');
   }
 
   isLoggedIn() {
     const token  = this.getToken();
     if (token) {
-      return !this.jwtHelper.isTokenExpired(token);
-      //we want to check if token is NOT expired. So, added !
+      if (this.jwtHelper.isTokenExpired(token)) {
+        console.log('token expired')
+        this.logOut();
+        return false;
+      }
+        return true;
     }
     else { 
-      this.logOut();
       return false;
     }
   }

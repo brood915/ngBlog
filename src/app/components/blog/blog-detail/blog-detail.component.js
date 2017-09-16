@@ -3,8 +3,9 @@ import angular from "angular";
 
 class BlogDetailCtrl {
     /* @ngInject */
-  constructor(blogService, $stateParams, $state,$scope, $timeout, $http) {
+  constructor(blogService, userService, $stateParams, $state,$scope, $timeout, $http) {
       this.blogService = blogService;
+      this.userService = userService;
       this.$stateParams = $stateParams;
       this.$state = $state;
       this.$scope = $scope;
@@ -15,15 +16,18 @@ class BlogDetailCtrl {
 
   $onInit() {
     this.param = this.$stateParams.blogId;
-    if (this.blogService.blogItems) {
-      this.blogItems = this.blogService.blogItems;
+    this.user = this.userService.user;
+    if (this.blogService.blog.posts) {
+      this.blogItems = this.blogService.blog.posts;
       this.getPost();
     }
     else {
-      this.blogService.getBlogs().then((data) => {
+      this.blogService.getBlogs()
+      .then((data) => {
       this.blogItems = data;
       this.getPost();
-      });
+      })
+      .catch(()=> this.$state.go('500'));
     }
   }
 
@@ -40,7 +44,7 @@ class BlogDetailCtrl {
     this.blogService.getBlog(this.$stateParams.blogId)
     .then((data) => this.item = data)
     .then(()=> this.handleInitialLoading())
-    .catch(() =>console.log('failed to get the blog post'));
+    .catch(() => this.$state.go('500'));
   }
 
   increaseView () {
@@ -61,7 +65,12 @@ class BlogDetailCtrl {
 
   deleteBlog (id) {
     this.$scope.$apply(()=>{ 
-    this.blogService.deleteBlog(id).then(()=>{this.$state.go('blog')}); 
+    this.blogService.deleteBlog(id).then((resp)=>
+      {
+        this.blogItems = resp.data;
+        this.$state.go('blog');
+        this.current = this.getCurrentIndex();
+      }); 
     });
   }
 

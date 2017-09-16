@@ -53,6 +53,11 @@ export const AppModule = angular.module('app', ['angular-jwt', CommonModule, Com
         url: '/401',
         component: 'noAuth'
       })
+      .state('500', {
+        name: '500',
+        url: '/500',
+        component: 'unexpected'
+      })
       
       $locationProvider.html5Mode(true);
       //to remove # from urls
