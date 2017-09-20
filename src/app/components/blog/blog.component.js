@@ -92,6 +92,9 @@ class BlogCtrl {
    this.blogService.deleteBlog(id).then((resp) => 
    {
      this.blogItems = resp.data;
+     this.blogItems.sort(function(a,b){
+       return new Date(b.date) - new Date(a.date);        
+     }); //need to do this to sort data with date posted after deleting a post
      this.blogService.blog.posts = resp.data;
     });
  })}
