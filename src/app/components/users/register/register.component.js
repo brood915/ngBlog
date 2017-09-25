@@ -13,7 +13,15 @@ class RegisterCtrl {
   $onInit() {
     this.user = this.userService.user;
     this.isLoggedIn = this.user.isLoggedIn;
+    this.resetStatus();
   }
+
+  resetStatus() {
+    this.error = false;
+    this.registering = false;
+    this.registered = false;
+  }
+
 
   goBack () {
     this.$window.history.back(); 
@@ -28,16 +36,23 @@ class RegisterCtrl {
       passwordConfirm: this.passwordConfirm
     }
 
+    this.registering = true;
+
     this.userService.register(user)
     .then((resp)=> {
       this.userService.saveToken(resp.data.token);
     })
     .then(()=> {
+      this.registered = true;
+      this.registering = false;
       this.user.isLoggedIn = this.userService.isLoggedIn();
       this.user.payload = this.userService.getUser();
       this.$state.go('blog');
     })
-    .catch(() => console.log('register failed!'));
+    .catch(() => {
+      this.error = true;
+      this.registering = false;
+    });
   }
 }
 export const RegisterComponent = {

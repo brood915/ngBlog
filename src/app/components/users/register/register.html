@@ -6,27 +6,29 @@
         <div>
             <form class='form' novalidate name="registerForm">
                 <div class="form-group">
-                    <input class = "form-control" autocomplete="off" placeholder="display name" type='text' name = "name" ng-model = '$ctrl.name' maxlength = "20" required/>
+                    <input ng-click="$ctrl.resetStatus()" class = "form-control" autocomplete="off" placeholder="display name" type='text' name = "name" ng-model = '$ctrl.name' maxlength = "20" required/>
                 </div>  
                 <div class="form-group">
-                    <input class = "form-control" autocomplete="off" placeholder="email" type='email' name = "email" ng-model = '$ctrl.email' maxlength = "20" required/>
+                    <input ng-click="$ctrl.resetStatus()" class = "form-control" autocomplete="off" placeholder="email" type='email' name = "email" ng-model = '$ctrl.email' maxlength = "20" required/>
                 </div>                
                 <div class="form-group">                
-                    <input class= "form-control" autocomplete="off" placeholder="password" type='password' name = "password" ng-model = '$ctrl.password' maxlength = "20" required/>
+                    <input ng-click="$ctrl.resetStatus()" class= "form-control" autocomplete="off" placeholder="password" type='password' name = "password" ng-model = '$ctrl.password' maxlength = "20" required/>
                 </div>
                 <div class="form-group">
-                    <input class = "form-control" autocomplete="off" placeholder="confirm password" type='password' name="passwordConfirm" ng-model = '$ctrl.passwordConfirm' maxlength = "20" required/>
+                    <input ng-click="$ctrl.resetStatus()" class = "form-control" autocomplete="off" placeholder="confirm password" type='password' name="passwordConfirm" ng-model = '$ctrl.passwordConfirm' maxlength = "20" required/>
                 </div>   
                     <div class="btn-group">
                         <button class="btn btn-default">Back</button>
                         <button class='btn btn-primary' ng-click = "$ctrl.register()">Register</button>
                     </div>
-                    <h4 class = "text-primary" ng-show ="$ctrl.registered">Your account is registered!</h4>
+                    <h4 class = "text-primary" ng-if ="$ctrl.registered">Your account is registered!</h4>
             </form>
         </div>
         <div>
-            <p class="errorMsg text-success" ng-show="registerForm.$submitted && registerForm.$valid">Your form is now valid to be submitted!</p>
-            <p class="errorMsg text-danger" ng-show="registerForm.$submitted && registerForm.$invalid">Please make sure all fields are valid!</p>
+            <p class="errorMsg text-success" ng-if="registerForm.$submitted && registerForm.$valid && !$ctrl.registering && !$ctrl.error">Your form is now valid to be submitted!</p>
+            <i ng-if='$ctrl.registering' class="fa fa-spinner fa-spin fa-2x fa-fw"></i>
+            <p class="errorMsg text-danger" ng-if="registerForm.$submitted && registerForm.$invalid">Please make sure all fields are valid!</p>
+            <p class="errorMsg text-danger" ng-if="$ctrl.error">Something unexpected happened! Try again later!</p>
         </div>
     </div>
     <div ng-if="$ctrl.isLoggedIn">
