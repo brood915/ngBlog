@@ -47,7 +47,7 @@ userSchema.methods.generateJWT = function() {
         admin: this.admin,
         exp: parseInt(expiry.getTime()/1000),
         pic: this.gravatar
-    }, process.env.secret)
+    }, process.env.SECRET)
 }
 
 userSchema.plugin(passportLocalMongoose, {usernameField: "email"});
