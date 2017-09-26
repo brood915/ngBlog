@@ -50,7 +50,7 @@ userSchema.methods.generateJWT = function() {
     }, process.env.SECRET)
 }
 
-userSchema.plugin(passportLocalMongoose, {usernameField: "email"});
+userSchema.plugin(passportLocalMongoose, {usernameField: "email", errorMessages: {UserExistsError: "A user with the given email already exists!"}});
 userSchema.plugin(mongodbErrorHandler);
 
 module.exports = mongoose.model('User', userSchema);

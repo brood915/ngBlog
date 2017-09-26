@@ -25,10 +25,8 @@
             </form>
         </div>
         <div>
-            <p class="errorMsg text-success" ng-if="registerForm.$submitted && registerForm.$valid && !$ctrl.registering && !$ctrl.error">Your form is now valid to be submitted!</p>
             <i ng-if='$ctrl.registering' class="fa fa-spinner fa-spin fa-2x fa-fw"></i>
-            <p class="errorMsg text-danger" ng-if="registerForm.$submitted && registerForm.$invalid">Please make sure all fields are valid!</p>
-            <p class="errorMsg text-danger" ng-if="$ctrl.error">Something unexpected happened! Try again later!</p>
+            <p class="errorMsg text-danger" ng-if="$ctrl.error">{{$ctrl.error}}</p>
         </div>
     </div>
     <div ng-if="$ctrl.isLoggedIn">

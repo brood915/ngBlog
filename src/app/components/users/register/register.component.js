@@ -40,17 +40,22 @@ class RegisterCtrl {
 
     this.userService.register(user)
     .then((resp)=> {
-      this.userService.saveToken(resp.data.token);
-    })
-    .then(()=> {
-      this.registered = true;
-      this.registering = false;
-      this.user.isLoggedIn = this.userService.isLoggedIn();
-      this.user.payload = this.userService.getUser();
-      this.$state.go('blog');
+      console.log(resp)
+      if (resp.data.token) {
+        this.userService.saveToken(resp.data.token);
+        this.registered = true;
+        this.registering = false;
+        this.user.isLoggedIn = this.userService.isLoggedIn();
+        this.user.payload = this.userService.getUser();
+        this.$state.go('blog');
+      }
+      else {
+        this.error = resp.data.msg || resp.data.message;
+        this.registering = false;
+      }
     })
     .catch(() => {
-      this.error = true;
+      this.error = "Something happened on our side. Please try later on!";
       this.registering = false;
     });
   }

@@ -17,7 +17,9 @@ exports.validateRegister = (req, res, next) => {
 
     const errors = req.validationErrors();
     if(errors) {
-        errors.map((each)=>console.log(each.msg));
+        errors.map((each)=>{
+            res.json(each);
+        });
         return;
     }
     next();
@@ -30,12 +32,18 @@ exports.register = async (req, res) => {
     });
     
     const register = promisify(User.register, User);
-    await register(user, req.body.password);
-    
-    const token = user.generateJWT();
-    res.status(200);
-    res.json({token: token});
-    console.log('user registered!!')
+    await register(user, req.body.password, function(err){
+        if (err) {
+            res.json(err); // to send error msg if email already exists
+        }
+        else {
+            const token = user.generateJWT();
+            
+                res.status(200);
+                res.json({token: token});
+                console.log('user registered!!');
+        }     
+    });
 }
 
 exports.changePassword = async (req, res) => {
