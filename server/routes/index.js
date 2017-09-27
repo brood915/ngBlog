@@ -5,7 +5,7 @@ const authController = require('../controllers/authController');
 const router = express.Router();
 const jwt = require('express-jwt');
 const auth = jwt({
-    secret: process.env.secret,
+    secret: process.env.SECRET,
     requestProperty: 'payload'
 });
 
