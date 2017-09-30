@@ -29,6 +29,10 @@ export class UserService {
 
   logOut() {
     this.$window.localStorage.removeItem('token');
+    this.user ={
+      isLoggedIn: this.isLoggedIn(),
+      payload: this.getUser()
+    }
     console.log('logged out');
   }
 

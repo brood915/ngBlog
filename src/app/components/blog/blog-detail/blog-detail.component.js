@@ -34,6 +34,7 @@ class BlogDetailCtrl {
   handleInitialLoading(data) { 
       // this.increaseView();
       this.current = this.getCurrentIndex();
+      this.increaseView();
   }
     
   getCurrentIndex () {
@@ -49,7 +50,7 @@ class BlogDetailCtrl {
 
   increaseView () {
     this.item.views++;
-    this.blogService.update(this.param, this.item);
+    this.blogService.increaseView(this.param, this.item);
     //need to fix this after adding user authentication
   }
 
