@@ -28,6 +28,10 @@ export class BlogService {
     return this.$http.put(`/api/posts/edit/${id}`, data, this.auth());
   }
 
+  increaseView (id ,data) {
+    return this.$http.put(`/api/posts/increaseView/${id}`, data);
+  }
+
   getBlog (id) {
     return this.$http.get(`/api/posts/${id}`)
     .then(resp=>resp.data);

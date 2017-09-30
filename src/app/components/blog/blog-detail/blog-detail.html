@@ -13,13 +13,13 @@
         <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog($ctrl.item._id)' type="button" confirm>Delete</button>
     </div>
     <div class="badgesContainer">
-        <div class = "clickable" ng-click="$ctrl.likeBlog()">
+        <div ng-class = "{'clickable': $ctrl.user.payload}" ng-click="$ctrl.user.payload && $ctrl.likeBlog()">
             <span class="badge">
                 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
             </span>
             {{$ctrl.item.likes}}
         </div>
-        <div class = "clickable" ng-click="$ctrl.dislikeBlog()">
+        <div ng-class = "{'clickable': $ctrl.user.payload}" ng-click="$ctrl.user.payload && $ctrl.dislikeBlog()">
             <span class="badge">
                 <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
             </span>

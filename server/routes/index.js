@@ -33,6 +33,9 @@ router.put('/posts/edit/:id',
     auth,
     postController.editPost);
 
+router.put('/posts/increaseView/:id',
+    postController.increaseView);
+
 router.delete('/posts/delete/:id',
     auth,
     postController.deletePost);  
