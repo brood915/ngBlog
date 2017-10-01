@@ -29,6 +29,7 @@ class BlogDetailCtrl {
       })
       .catch(()=> this.$state.go('500'));
     }
+    
   }
 
   handleInitialLoading(data) { 
