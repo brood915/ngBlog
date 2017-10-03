@@ -44,6 +44,16 @@ exports.getPosts = async (req, res) => {
 }
 
 exports.getPost = async (req, res) => {
-    const post = await Post.findOne({_id: req.params.id}); 
-    res.json(post);
+    try {
+        const post = await Post.findOne({_id: req.params.id}); 
+        if (post) {
+            res.json(post);
+        }
+        else { // if query returns null
+            res.json({msg: "Post with that ID does not exist!"});
+        }
+    }
+    catch(e) {
+        res.json({msg: "Post with that ID does not exist!"});
+    } 
 }

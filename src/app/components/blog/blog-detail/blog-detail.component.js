@@ -44,9 +44,17 @@ class BlogDetailCtrl {
 
   getPost() {
     this.blogService.getBlog(this.$stateParams.blogId)
-    .then((data) => this.item = data)
+    .then((data) => {
+        this.item = data;
+        if (data && data.msg) { //if post not found and error returned by database
+          this.$state.go('404');
+        }
+    })
     .then(()=> this.handleInitialLoading())
-    .catch(() => this.$state.go('500'));
+    .catch(() => {
+      this.$state.go('500');
+      
+    });
   }
 
   increaseView () {
