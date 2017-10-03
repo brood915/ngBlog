@@ -18,6 +18,14 @@ exports.editPost = async (req,res) => {
         res.json(post);
 }
 
+exports.increaseView = async (req,res) => {
+    const post = await Post.findOneAndUpdate({_id:req.params.id}, req.body, {
+        new: true, // return the new post instead of old one
+        runValidators: true}).exec();
+        console.log('view increased!');
+        res.json(post);
+}
+
 /*NEED TO ADD LOGICS TO CHECK IF THE USER IS THE ORIGINAL POSTER/ADMIN */
 exports.deletePost = async (req,res) => {
     await Post.findByIdAndRemove({_id: req.params.id});
@@ -36,6 +44,16 @@ exports.getPosts = async (req, res) => {
 }
 
 exports.getPost = async (req, res) => {
-    const post = await Post.findOne({_id: req.params.id}); 
-    res.json(post);
+    try {
+        const post = await Post.findOne({_id: req.params.id}); 
+        if (post) {
+            res.json(post);
+        }
+        else { // if query returns null
+            res.json({msg: "Post with that ID does not exist!"});
+        }
+    }
+    catch(e) {
+        res.json({msg: "Post with that ID does not exist!"});
+    } 
 }

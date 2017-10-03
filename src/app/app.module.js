@@ -13,7 +13,7 @@ export const AppModule = angular.module('app', ['angular-jwt', CommonModule, Com
   .component('app', AppComponent)
   .config(/* @ngInject */($stateProvider, $urlRouterProvider, $locationProvider) => {
     $urlRouterProvider.when('/', '/blog');
-    $urlRouterProvider.otherwise('/404')
+    $urlRouterProvider.otherwise('/404');
     $stateProvider
       .state('register', {
         url: '/register',
@@ -33,10 +33,11 @@ export const AppModule = angular.module('app', ['angular-jwt', CommonModule, Com
       })
       .state('addBlog', {
         url: '/blog/add',
-        component: 'addBlog',
-        data: {
-        requiresLogin: true
-        }
+        component: 'addBlog'
+      })
+      .state('search', {
+        url: '/blog/search',
+        component: 'search'
       })
       .state('blogItem', {
         name: 'blogItem',

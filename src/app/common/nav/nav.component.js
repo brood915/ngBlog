@@ -16,7 +16,7 @@ class NavCtrl {
 
   logOut () {
     this.userService.logOut();
-    this.user.isLoggedIn = this.userService.isLoggedIn();
+    this.user = this.userService.user;
     this.$state.go('blog');
   }
 }

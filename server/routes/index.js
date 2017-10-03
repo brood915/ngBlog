@@ -5,7 +5,7 @@ const authController = require('../controllers/authController');
 const router = express.Router();
 const jwt = require('express-jwt');
 const auth = jwt({
-    secret: process.env.secret,
+    secret: process.env.SECRET,
     requestProperty: 'payload'
 });
 
@@ -32,6 +32,9 @@ router.post('/posts/create',
 router.put('/posts/edit/:id',
     auth,
     postController.editPost);
+
+router.put('/posts/increaseView/:id',
+    postController.increaseView);
 
 router.delete('/posts/delete/:id',
     auth,
