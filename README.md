@@ -5,9 +5,8 @@
 
 ### To do
 ```bash
-- Make it a fully functioning blog with Node, Express, and MongoDB
-- Add tests
-- Make stylesheets more readable
+- Adding algorithms to suggest posts to users
+- Adding notifications when users' fav authors make new posts
 ```
 
 
