@@ -12,6 +12,35 @@ export class BlogService {
     this.userService = userService;
   }
 
+getDate() {
+    let date = new Date();
+    const formatDate = this.$filter('date');
+    date = formatDate(date, 'M/d/yy h:mm:ss a');
+    return date;
+  }
+
+isShort (desc) {
+    if (desc.length < 100) {
+      return true;
+    }
+
+    this.shortened = desc.substr(0, 99) + "...";
+    return false;
+  }
+
+ isNew(blogDate) {
+    let date = new Date();
+    let isNew = date - new Date(blogDate);
+    let hours = isNew/3600000; //converts ms to hr
+  
+    
+    if(hours < 72 ) {
+      return true;
+    }
+
+    return false;
+  }
+
   auth() {
     return {
       headers: {
@@ -40,13 +69,6 @@ export class BlogService {
   getBlogs () {
     return this.$http.get('/api/posts')
     .then((resp)=> resp.data);
-  }
-
-  getDate() {
-    let date = new Date();
-    const formatDate = this.$filter('date');
-    date = formatDate(date, 'M/d/yy h:mm:ss a');
-    return date;
   }
 
   deleteBlog(id){
