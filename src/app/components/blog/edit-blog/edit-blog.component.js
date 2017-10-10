@@ -10,7 +10,8 @@ class EditBlogCtrl {
   }
 
   $onInit() {
-    this.modifiedBlog = angular.copy(this.blogItem);
+    this.blog = this.blogService.blog;
+    this.modifiedBlog = angular.copy(this.post);
   }
 
   handleEdit () { //passes the new value back to blog-detail comp
@@ -20,7 +21,7 @@ class EditBlogCtrl {
       .then((resp) => {
         this.editBlog({
           $event: {
-            blogItem: resp.data
+            post: resp.data
           }
         });
       })
@@ -30,7 +31,7 @@ class EditBlogCtrl {
   }
 
   resetForm () {
-    this.$scope.$apply(()=>this.modifiedBlog = angular.copy(this.blogItem)); //reset the form if user closes the form
+    this.$scope.$apply(()=>this.modifiedBlog = angular.copy(this.post)); //reset the form if user closes the form
   }
 }
 
@@ -39,8 +40,8 @@ export const EditBlogComponent = {
   controller: EditBlogCtrl,
   template,
   bindings: {
-    blogItem: '<',
-    blogItems: '<',
+    post: '<',
+    posts: '<',
     editBlog:'&',
     param: '<'
   }

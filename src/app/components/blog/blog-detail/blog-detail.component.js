@@ -16,15 +16,15 @@ class BlogDetailCtrl {
 
   $onInit() {
     this.param = this.$stateParams.blogId;
+    this.blog = this.blogService.blog;
     this.user = this.userService.user;
-    if (this.blogService.blog.posts) {
-      this.blogItems = this.blogService.blog.posts;
+    if (this.blog.posts) {
       this.getPost();
     }
     else {
       this.blogService.getBlogs()
       .then((data) => {
-      this.blogItems = data;
+      this.blog.posts = data;
       this.getPost();
       })
       .catch(()=> this.$state.go('500'));
@@ -39,13 +39,13 @@ class BlogDetailCtrl {
   }
     
   getCurrentIndex () {
-    return this.blogItems.map(each => each._id).indexOf(this.item._id);
+    return this.blog.posts.map(each => each._id).indexOf(this.post._id);
   }
 
   getPost() {
     this.blogService.getBlog(this.$stateParams.blogId)
     .then((data) => {
-        this.item = data;
+        this.post = data;
         if (data && data.msg) { //if post not found and error returned by database
           this.$state.go('404');
         }
@@ -58,26 +58,26 @@ class BlogDetailCtrl {
   }
 
   increaseView () {
-    this.item.views++;
-    this.blogService.increaseView(this.param, this.item);
+    this.post.views++;
+    this.blogService.increaseView(this.param, this.post);
     //need to fix this after adding user authentication
   }
 
   likeBlog() {
-    this.item.likes++;
-    this.blogService.update(this.param, this.item);
+    this.post.likes++;
+    this.blogService.update(this.param, this.post);
   }
 
   dislikeBlog() {
-    this.item.dislikes++;
-    this.blogService.update(this.param, this.item);
+    this.post.dislikes++;
+    this.blogService.update(this.param, this.post);
   }
 
   deleteBlog (id) {
     this.$scope.$apply(()=>{ 
     this.blogService.deleteBlog(id).then((resp)=>
       {
-        this.blogItems = resp.data;
+        this.blog.posts = resp.data;
         this.$state.go('blog');
         this.current = this.getCurrentIndex();
       }); 
@@ -86,7 +86,7 @@ class BlogDetailCtrl {
 
 
   editBlog (event) { //passes the function down to edit-blog child comp
-    this.item = event.blogItem;  
+    this.post = event.post; 
   }
 }
 

@@ -17,7 +17,7 @@ class AddBlogCtrl {
       this.$state.go('login');
     }
     this.user = this.userService.user;
-    this.blogItems = this.blogService.blog.posts;
+    this.blog = this.blogService.blog;
     this.resetForm();
     this.resetStatus();
   }
@@ -34,7 +34,7 @@ class AddBlogCtrl {
   }
 
   resetForm () {
-    this.blog = {
+    this.blogPost = {
       "title": "",
       "views": 0,
       "likes": 0,
@@ -48,9 +48,9 @@ class AddBlogCtrl {
 
   addBlog () {
     this.adding = true;
-    this.blogService.addData('/api/posts/create', this.blog)
+    this.blogService.addData('/api/posts/create', this.blogPost)
     .then((resp)=>{
-        this.blogService.blog.posts = resp.data;
+        this.blog.posts = resp.data;
     })
     .then(()=> {
         this.added = true;

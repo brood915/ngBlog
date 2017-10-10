@@ -39,8 +39,8 @@ export const AppModule = angular.module('app', ['angular-jwt', CommonModule, Com
         url: '/blog/search',
         component: 'search'
       })
-      .state('blogItem', {
-        name: 'blogItem',
+      .state('post', {
+        name: 'post',
         url: '/blog/{blogId}',
         component: 'blogDetail'
       })

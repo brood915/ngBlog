@@ -22,23 +22,23 @@ class AddCommentsCtrl {
 
   likeComment(comment) {
     comment.likes++;
-    this.blogService.update(this.param, this.item);
+    this.blogService.update(this.param, this.post);
     
   }
 
   dislikeComment(comment) {
     comment.dislikes++;
-    this.blogService.update(this.param, this.item);
+    this.blogService.update(this.param, this.post);
   }
 
   likeReply(reply) {
     reply.likes++;
-    this.blogService.update(this.param, this.item);
+    this.blogService.update(this.param, this.post);
   }
 
   dislikeReply(reply) {
     reply.dislikes++;
-    this.blogService.update(this.param, this.item);
+    this.blogService.update(this.param, this.post);
   }
 
 
@@ -46,8 +46,8 @@ class AddCommentsCtrl {
     this.comment.date = this.blogService.getDate();
     let comment = angular.copy(this.comment);
     comment.id = uuid();
-    this.item.comments.push(comment);
-    this.blogService.update(this.param, this.item);
+    this.post.comments.push(comment);
+    this.blogService.update(this.param, this.post);
     this.resetComment();
   }
 
@@ -63,20 +63,20 @@ class AddCommentsCtrl {
     comment.replies.push(reply);
     comment.seeReplies = true; //shows replies after adding reply to the comment
     comment.replying = false;
-    this.blogService.update(this.param, this.item);
+    this.blogService.update(this.param, this.post);
     this.resetComment(); 
   }
 
    deleteComment (comment) {
-    this.$scope.$apply(this.deleteItem(comment, this.item.comments)); //apply used to allow confirm directive to update view after running this
-    this.blogService.update(this.param, this.item);
+    this.$scope.$apply(this.deleteItem(comment, this.post.comments)); //apply used to allow confirm directive to update view after running this
+    this.blogService.update(this.param, this.post);
     this.resetComment();
  }
 
   deleteReply (comment, reply) {
     const replies = comment.replies;
     this.$scope.$apply(this.deleteItem(reply, replies));
-    this.blogService.update(this.param, this.item);
+    this.blogService.update(this.param, this.post);
     this.resetComment();
   }
 
@@ -88,7 +88,7 @@ class AddCommentsCtrl {
     comment.editing = !comment.editing;
     }
     comment.edited = true;
-    this.blogService.update(this.param, this.item);
+    this.blogService.update(this.param, this.post);
   }
 
   resetReply (comment) {
@@ -124,8 +124,8 @@ export const AddCommentsComponent = {
   controller: AddCommentsCtrl,
   template,
   bindings: {
-    item: "<", 
-    blogItems: "<",
+    post: "<", 
+    posts: "<",
     param: "<"
   }
 }

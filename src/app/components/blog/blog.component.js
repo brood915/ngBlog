@@ -12,12 +12,12 @@ class BlogCtrl {
 
   $onInit() {
     this.user = this.userService.user;
+    this.blog = this.blogService.blog;
     this.filterValue = "";
     this.selectOptions = ['titles', 'oldest', 'recent', 'liked' ,'viewed', 'discussed'];
     this.blogService.getBlogs()
     .then(data => {
-      this.blogItems = data;
-      this.blogService.blog.posts = data;
+      this.blog.posts = data;
       this.sortBy = 'recent';
       this.handleSort();
     })
@@ -55,32 +55,32 @@ class BlogCtrl {
           else if (title1 > title2) return 1;
           else return 0;
         }
-        this.blogItems.sort(asc);
+        this.blog.posts.sort(asc);
       }
       else if (this.sortBy === 'oldest') {
-        this.blogItems.sort(function(a,b){
+        this.blog.posts.sort(function(a,b){
           return new Date(a.date) - new Date(b.date);
         });
       }
       else if (this.sortBy === 'recent') {
-        this.blogItems.sort(function(a,b){
+        this.blog.posts.sort(function(a,b){
           return new Date(b.date) - new Date(a.date);        
         });
       }
 
       else if (this.sortBy === "liked") {
-        this.blogItems.sort(function(a,b) {
+        this.blog.posts.sort(function(a,b) {
           return b.likes - a.likes;
         });
       }
 
       else if (this.sortBy === "viewed") {
-        this.blogItems.sort(function(a,b) {
+        this.blog.posts.sort(function(a,b) {
           return b.views - a.views;
         });
       }
       else if (this.sortBy === "discussed") {
-        this.blogItems.sort(function(a,b) {
+        this.blog.posts.sort(function(a,b) {
           return b.comments.length - a.comments.length;
         });
       }      
@@ -91,8 +91,8 @@ class BlogCtrl {
    this.$scope.$apply(()=>{
    this.blogService.deleteBlog(id).then((resp) => 
    {
-     this.blogItems = resp.data;
-     this.blogItems.sort(function(a,b){
+     this.blog.posts = resp.data;
+     this.blog.posts.sort(function(a,b){
        return new Date(b.date) - new Date(a.date);        
      }); //need to do this to sort data with date posted after deleting a post
      this.blogService.blog.posts = resp.data;
