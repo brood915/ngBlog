@@ -1,4 +1,5 @@
 <div>
+    <button ng-click="$ctrl.blogService.goBack()" class='goBackBtn btn btn-primary'><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
     <ul id = "blogItems" class="blogItems">
         <li ng-repeat='post in filtered = ($ctrl.blog.posts | filter: $ctrl.typeahead.searchValue)'>
           <h2>{{post.title}}<span class="new" ng-if="$ctrl.blogService.isNew(post.date)">New!</span></h2>

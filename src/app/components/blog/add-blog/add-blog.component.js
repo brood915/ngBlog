@@ -22,11 +22,6 @@ class AddBlogCtrl {
     this.resetStatus();
   }
 
-  goBack () {
-    this.$window.history.back(); 
-    //go back to where user was right before
-  }
-
   resetStatus () {
     this.added = false;
     this.adding = false;

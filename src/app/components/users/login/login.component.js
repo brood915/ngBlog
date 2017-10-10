@@ -3,12 +3,11 @@ import angular from 'angular';
 
 class LoginCtrl {
   /* @ngInject */
-  constructor($http, userService, blogService, $state, $window) {
+  constructor($http, userService, blogService, $state) {
     this.$http = $http;
     this.userService = userService;
     this.blogService = blogService;
     this.$state = $state;
-    this.$window = $window;
   }
 
 
@@ -21,11 +20,6 @@ class LoginCtrl {
   resetStatus () {
     this.error = false;
     this.logging = false;
-  }
-
-  goBack () {
-    this.$window.history.back(); 
-    //go back to where user was right before
   }
 
   logIn () {

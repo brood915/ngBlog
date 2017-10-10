@@ -1,8 +1,9 @@
 export class BlogService {
     /* @ngInject */
-  constructor($http, $filter, userService) {
+  constructor($http, $filter, userService, $window) {
     this.$http = $http;
     this.$filter = $filter;
+    this.$window = $window;
     this.typeahead = {
       searchValue: null
     }
@@ -11,6 +12,11 @@ export class BlogService {
     };
     this.userService = userService;
   }
+
+goBack () {
+    this.$window.history.back(); 
+    //go back to where user was right before
+}
 
 getDate() {
     let date = new Date();

@@ -14,7 +14,7 @@
                 </div>    
                     <p ng-if = "((addBlogForm.description.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.description.$invalid" class="text-danger errorMsg">Your post needs to be at least 100 characters long.</p>   
                     <div class="btn-group">
-                        <button class="btn btn-default" form-name = "addFormContainer" ng-click = "$ctrl.goBack()">Back</button>
+                        <button class="btn btn-default" form-name = "addFormContainer" ng-click = "$ctrl.blogService.goBack()">Back</button>
                         <button class='btn btn-primary' ng-click = "addBlogForm.$valid && $ctrl.addBlog()">Post</button>
                     </div>
                     <h4 class = "text-primary" ng-if ="$ctrl.added">Your post was submitted!</h4>

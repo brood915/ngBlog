@@ -18,7 +18,7 @@
                     <input ng-click="$ctrl.resetStatus()" class = "form-control" autocomplete="off" placeholder="confirm password" type='password' name="passwordConfirm" ng-model = '$ctrl.passwordConfirm' maxlength = "20" required/>
                 </div>   
                     <div class="btn-group">
-                        <button class="btn btn-default">Back</button>
+                        <button ng-click = "$ctrl.blogService.goBack()" class="btn btn-default">Back</button>
                         <button class='btn btn-primary' ng-click = "$ctrl.register()">Register</button>
                     </div>
                     <h4 class = "text-primary" ng-if ="$ctrl.registered">Your account is registered!</h4>
@@ -32,7 +32,7 @@
     <div ng-if="$ctrl.isLoggedIn">
         <p>You are already logged in!</p>
         <div class="btn-group">
-            <button ng-click="$ctrl.goBack()" type="button" class="btn btn-primary">Back</button>
+            <button ng-click="$ctrl.blogService.goBack()" type="button" class="btn btn-primary">Back</button>
         </div>
     </div>
 </div>
