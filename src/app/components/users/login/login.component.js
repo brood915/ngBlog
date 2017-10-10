@@ -35,7 +35,8 @@ class LoginCtrl {
           this.userService.saveToken(resp.data.token);
           this.user.isLoggedIn = this.userService.isLoggedIn();
           this.user.payload = this.userService.getUser();
-          this.goBack();
+          this.blogService.goBack();
+          
         }
         else {
           this.error = resp.data.message;
