@@ -18,11 +18,10 @@ class BlogDetailCtrl {
     this.blog = this.blogService.blog;
     this.user = this.userService.user;
     if (this.blog.posts) {
-      console.log('filtering..');
-      this.filtered = this.blog.posts.filter((each) => {
+      const filtered = this.blog.posts.filter((each) => {
         return each._id === this.$stateParams.blogId;
       });
-      this.post = this.filtered[0];
+      this.post = filtered[0];
       this.handleInitialLoading();
     }
     else {
@@ -90,7 +89,16 @@ class BlogDetailCtrl {
 
 
   editBlog (event) { //passes the function down to edit-blog child comp
-    this.post = event.post; 
+    this.post = event.post;
+    const filtered = this.blog.posts.map((each)=> {
+      if (this.post._id === each._id) {
+        return each = this.post;
+      }
+      else {
+        return each;
+      }
+    });
+    this.blog.posts = filtered; //replace the post with edited post in the list of posts
   }
 }
 
