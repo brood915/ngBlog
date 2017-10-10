@@ -1,45 +1,45 @@
-<i ng-if='!$ctrl.item' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+<i ng-if='!$ctrl.post' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 <button ui-sref="blog" class='goBackBtn btn btn-primary'><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
-<edit-blog ng-if="$ctrl.item" param = "$ctrl.param" edit-blog = '$ctrl.editBlog($event)' blog-item = '$ctrl.item'></edit-blog>
+<edit-blog ng-if="$ctrl.post" param = "$ctrl.param" edit-blog = '$ctrl.editBlog($event)' post = '$ctrl.post'></edit-blog>
 <div class = 'main' id="blogDetail">
     <div class ='blogPostItems bottomBorder'>
-    <h1>{{$ctrl.item.title}}</h1>
-    <p class="name blogItemName">{{$ctrl.item.name}}</p>
-    <p class="date blogItemDate"><span ng-if="$ctrl.item.dateEdited">Posted: </span>{{$ctrl.item.date}}</p>
-    <p ng-if="$ctrl.item.dateEdited" class="date blogItemDate">Edited: {{$ctrl.item.dateEdited}}</p>
-    <div class="item-desc">{{$ctrl.item.description}}</div>
-    <div ng-if="($ctrl.user.isLoggedIn && $ctrl.user.payload.name === $ctrl.item.name) || $ctrl.user.payload.admin" class="btn-group">
+    <h1>{{$ctrl.post.title}}</h1>
+    <p class="name blogItemName">{{$ctrl.post.name}}</p>
+    <p class="date blogItemDate"><span ng-if="$ctrl.post.dateEdited">Posted: </span>{{$ctrl.post.date}}</p>
+    <p ng-if="$ctrl.post.dateEdited" class="date blogItemDate">Edited: {{$ctrl.post.dateEdited}}</p>
+    <div class="item-desc">{{$ctrl.post.description}}</div>
+    <div ng-if="($ctrl.user.isLoggedIn && $ctrl.user.payload.name === $ctrl.post.name) || $ctrl.user.payload.admin" class="btn-group">
         <button class='btn btn-primary' form-name = "editFormContainer" modal>Edit</button>
-        <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog($ctrl.item._id)' type="button" confirm>Delete</button>
+        <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog($ctrl.post._id)' type="button" confirm>Delete</button>
     </div>
     <div class="badgesContainer">
         <div ng-class = "{'clickable': $ctrl.user.payload}" ng-click="$ctrl.user.payload && $ctrl.likeBlog()">
             <span class="badge">
                 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
             </span>
-            {{$ctrl.item.likes}}
+            {{$ctrl.post.likes}}
         </div>
         <div ng-class = "{'clickable': $ctrl.user.payload}" ng-click="$ctrl.user.payload && $ctrl.dislikeBlog()">
             <span class="badge">
                 <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
             </span>
-            {{$ctrl.item.dislikes}}
+            {{$ctrl.post.dislikes}}
         </div>
         <div>
             <span class="badge">
                 <i class="fa fa-search" aria-hidden="true"></i>
             </span>
-            {{$ctrl.item.views}}
+            {{$ctrl.post.views}}
         </div>        
     </div>
     <div class="btn-group">
-        <button ng-if = "$ctrl.current > 0" ui-sref='blogItem({ blogId: $ctrl.blogItems[$ctrl.current-1]._id })' class='btn btn-primary'>Prev</button>
+        <button ng-if = "$ctrl.current > 0" ui-sref='post({ blogId: $ctrl.blog.posts[$ctrl.current-1]._id })' class='btn btn-primary'>Prev</button>
         <button ng-if = "$ctrl.current === 0" class='btn btn-primary' disabled>Prev</button>
         
-        <button ng-if = "$ctrl.current < $ctrl.blogItems.length - 1" ui-sref='blogItem({ blogId: $ctrl.blogItems[$ctrl.current+1]._id })' class='btn btn-primary'>Next</button>
-        <button ng-if = "$ctrl.current === $ctrl.blogItems.length - 1" class='btn btn-primary' disabled>Next</button>
+        <button ng-if = "$ctrl.current < $ctrl.blog.posts.length - 1" ui-sref='post({ blogId: $ctrl.blog.posts[$ctrl.current+1]._id })' class='btn btn-primary'>Next</button>
+        <button ng-if = "$ctrl.current === $ctrl.blog.posts.length - 1" class='btn btn-primary' disabled>Next</button>
     </div>
 </div> 
-    <h3>Comments <span>({{$ctrl.item.comments.length}})</span></h3>
-    <add-comments param = "$ctrl.param" blog-items = "$ctrl.blogItems" item = "$ctrl.item"></add-comments>
+    <h3>Comments <span>({{$ctrl.post.comments.length}})</span></h3>
+    <add-comments param = "$ctrl.param" posts = "$ctrl.blog.posts" item = "$ctrl.post"></add-comments>
 </div>

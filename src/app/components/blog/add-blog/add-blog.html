@@ -6,11 +6,11 @@
         <div>
             <form class='form' novalidate name='addBlogForm'>
                 <div class="form-group">
-                    <input ng-click = "$ctrl.resetStatus()" class = "form-control" autocomplete="off" placeholder="write a title..." type='text' name="title" ng-model = '$ctrl.blog.title' maxlength = "100" ng-minlength = "2" ng-maxlength="100" required/>
+                    <input ng-click = "$ctrl.resetStatus()" class = "form-control" autocomplete="off" placeholder="write a title..." type='text' name="title" ng-model = '$ctrl.blogPost.title' maxlength = "100" ng-minlength = "2" ng-maxlength="100" required/>
                 </div>
                     <p ng-if = "((addBlogForm.title.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.title.$invalid" class="text-danger errorMsg">Your title must be 2-100 characters long.</p>                  
                 <div class="form-group">                
-                    <textarea ng-click = "$ctrl.resetStatus()" placeholder="write description..." type='text' name="description" ng-model ='$ctrl.blog.description' ng-minlength = "100" required></textarea>
+                    <textarea ng-click = "$ctrl.resetStatus()" placeholder="write description..." type='text' name="description" ng-model ='$ctrl.blogPost.description' ng-minlength = "100" required></textarea>
                 </div>    
                     <p ng-if = "((addBlogForm.description.$dirty && addBlogForm.$submitted) || addBlogForm.$submitted) && addBlogForm.description.$invalid" class="text-danger errorMsg">Your post needs to be at least 100 characters long.</p>   
                     <div class="btn-group">
