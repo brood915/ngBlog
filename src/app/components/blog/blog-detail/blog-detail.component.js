@@ -3,14 +3,13 @@ import angular from "angular";
 
 class BlogDetailCtrl {
     /* @ngInject */
-  constructor(blogService, userService, $stateParams, $state,$scope, $timeout, $http) {
+  constructor(blogService, userService, $stateParams, $state,$scope, $timeout) {
       this.blogService = blogService;
       this.userService = userService;
       this.$stateParams = $stateParams;
       this.$state = $state;
       this.$scope = $scope;
       this.$timeout = $timeout;
-      this.$http = $http;
   }
 
 
@@ -19,7 +18,12 @@ class BlogDetailCtrl {
     this.blog = this.blogService.blog;
     this.user = this.userService.user;
     if (this.blog.posts) {
-      this.getPost();
+      console.log('filtering..');
+      this.filtered = this.blog.posts.filter((each) => {
+        return each._id === this.$stateParams.blogId;
+      });
+      this.post = this.filtered[0];
+      this.handleInitialLoading();
     }
     else {
       this.blogService.getBlogs()
@@ -32,7 +36,7 @@ class BlogDetailCtrl {
     
   }
 
-  handleInitialLoading(data) { 
+  handleInitialLoading() { 
       // this.increaseView();
       this.current = this.getCurrentIndex();
       this.increaseView();
