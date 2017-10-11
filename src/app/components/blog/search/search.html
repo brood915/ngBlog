@@ -13,7 +13,7 @@
             <span class="counts"><i class="fa fa-search" aria-hidden="true"></i></span> {{post.views}}   
           </div>
           <button ui-sref='post({ blogId: post._id })' class='btn btn-primary'>View</button>
-          <button ng-if="$ctrl.user.isLoggedIn" class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog(post._id)' type="button" confirm>Delete</button>
+          <button ng-if="($ctrl.user.isLoggedIn && $ctrl.user.payload.name === post.name) || $ctrl.user.payload.admin" class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog(post._id)' type="button" confirm>Delete</button>
         </li>
       </ul>
       <p ng-if="!filtered.length && $ctrl.blog.posts.length > 0">We couldn't find any posts related to the word!</p>
