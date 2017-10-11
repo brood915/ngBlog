@@ -11,6 +11,8 @@ class BlogCtrl {
   }
 
   $onInit() {
+    this.typeahead = this.blogService.typeahead;
+    this.typeahead.searchValue = null; //reset the search value to control what's seen in blog-detail page
     this.user = this.userService.user;
     this.blog = this.blogService.blog;
     this.filterValue = "";
