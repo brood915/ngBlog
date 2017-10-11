@@ -40,6 +40,9 @@ class LoginCtrl {
         }
         else {
           this.error = resp.data.message;
+          if (this.error = "Missing credentials") {
+            this.error = "Please enter valid email and password!"
+          }
           this.logging = false;
         }
       })
