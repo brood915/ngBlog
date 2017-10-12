@@ -11,7 +11,7 @@ exports.createComment = async (req,res) => {
         {
         new: true, // return the new post instead of old one
         runValidators: true}).exec();
-    console.log(req.body)
+    console.log(req.body, post)
     res.json(post);
 }
 

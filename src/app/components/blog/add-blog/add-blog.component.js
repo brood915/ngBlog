@@ -31,18 +31,18 @@ class AddBlogCtrl {
   resetForm () {
     this.blogPost = {
       "title": "",
+      "date": "",
       "views": 0,
       "likes": 0,
       "dislikes": 0,
       "name": this.user.payload.name,
-      "date": this.blogService.getDate(),
-      "description": "",
-      "comments": []
+      "description": ""
     }
  }
 
   addBlog () {
     this.adding = true;
+    this.blogPost.date = this.blogService.getDate();
     this.blogService.addData('/api/posts/create', this.blogPost)
     .then((resp)=>{
         this.blog.posts = resp.data;

@@ -49,7 +49,8 @@ router.get('/posts/:id',
 
 
 //Blog comments/replies
-router.put('/posts/:id/comments/create/',
+router.post('/posts/:id/comments/create/',
+
     commentController.createComment);
 
 

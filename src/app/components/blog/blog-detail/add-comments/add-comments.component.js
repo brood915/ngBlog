@@ -1,6 +1,5 @@
 import template from './add-comments.html';
 import angular from "angular";
-import uuid from 'uuid/v4';
 
 class AddCommentsCtrl {
     /* @ngInject */
@@ -12,6 +11,7 @@ class AddCommentsCtrl {
 
   $onInit() {
     this.resetComment();
+    this.blog = this.blogService.blog;
   }
 
   deleteItem (item, arr) {
@@ -39,15 +39,21 @@ class AddCommentsCtrl {
   dislikeReply(reply) {
     reply.dislikes++;
     this.blogService.update(this.param, this.post);
+  }addData (url, data) {
+    return this.$http.post(url, data, this.auth());
   }
 
 
   addComment () {
     this.comment.date = this.blogService.getDate();
     let comment = angular.copy(this.comment);
-    comment.id = uuid();
     this.post.comments.push(comment);
-    this.blogService.update(this.param, this.post);
+    this.blogService.addData(`/api/posts/${this.param}/comments/create/`, this.comment)
+    .then((resp) => {
+      console.log(resp);
+      console.log('payload:' ,this.user.payload)
+      console.log("cm", this.comment)
+    })
     this.resetComment();
   }
 
@@ -59,7 +65,6 @@ class AddCommentsCtrl {
   addReply (comment) {
     comment.reply.date = this.blogService.getDate();
     let reply = angular.copy(comment.reply);
-    reply.id = uuid();
     comment.replies.push(reply);
     comment.seeReplies = true; //shows replies after adding reply to the comment
     comment.replying = false;
@@ -93,10 +98,9 @@ class AddCommentsCtrl {
 
   resetReply (comment) {
     comment.reply = {
-      "id": "",
       "text": "",
       "name": "",
-      "date":"",
+      "date":this.blogService.getDate(),
       "likes": 0,
       "dislikes": 0
     }
@@ -105,11 +109,9 @@ class AddCommentsCtrl {
   
  resetComment () {
    this.comment = {
-     "id": "",
      "text": "",
-     "replies":[],
-     "name":"",
-     "date" : "",
+     "name": this.user.payload.name,
+     "date" : this.blogService.getDate(),
      "expanding": false,
      "replying": false,
      "seeReplies": false,
@@ -126,7 +128,8 @@ export const AddCommentsComponent = {
   bindings: {
     post: "<", 
     posts: "<",
-    param: "<"
+    param: "<",
+    user: "<"
   }
 }
     

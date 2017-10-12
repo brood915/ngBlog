@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const commentsSchema = new mongoose.Schema({
-    comments: [{
         name: {
             type: String,
             trim: true
@@ -50,9 +49,8 @@ const commentsSchema = new mongoose.Schema({
                 trim: true
             }
         }]
-    }]
+    });
 
-})
 const postSchema = new mongoose.Schema({
     description: {
         type: String,

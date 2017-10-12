@@ -69,9 +69,7 @@
         <button ng-click = "comment.seeReplies = false" ng-if = "comment.replies.length > 0 && comment.seeReplies" class="repliesLabel">Hide Replies</button>
         <!--form for replies-->
         <form ng-submit="addReplyForm.$valid && $ctrl.addReply(comment)" ng-if = "comment.replying" class="replyFormGroup" name = "addReplyForm" novalidate>
-            <input ng-model="comment.reply.name" maxlength = "20" class = "replyInputs" autocomplete="off" placeholder="Name..." name = 'replyName' type='text' required></input>
             <input ng-model="comment.reply.text" class = "replyInputs" autocomplete="off" placeholder="Reply..." name = 'replyText' type='text' required></input>
-            <!--to submit form with enter with multiple inputs-->
             <input type="submit" style="position: absolute; left: -9999px; 
             width: 1px; height: 1px;"/>             
         </form>
@@ -79,9 +77,7 @@
 </ul>
 <!--form for comments-->
 <form class="commentFormGroup" name = 'addCommentForm' novalidate ng-submit='addCommentForm.$valid && $ctrl.addComment()'>
-    <input ng-model="$ctrl.comment.name" maxlength = "20" autocomplete="off" placeholder="Name..." name = 'commentName' type='text' required></input>  
     <input autocomplete="off" placeholder="write a comment..."  name = 'comment' type='text' ng-model='$ctrl.comment.text' required></input>
-    <!--to submit form with enter with multiple inputs-->
     <input type="submit" style="position: absolute; left: -9999px; 
     width: 1px; height: 1px;"/>   
 </form>
