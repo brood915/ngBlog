@@ -31,7 +31,57 @@ const postSchema = new mongoose.Schema({
     views: {
         type: Number,
         default: 0
-    }
+    },
+    comments: [{
+        name: {
+            type: String,
+            trim: true
+        },
+        date: {
+            type: String,
+            trim: true
+        },
+        dateEdited: {
+            type: String,
+        },
+        likes: {
+            type: Number,
+            default: 0
+        },
+        dislikes: {
+            type: Number,
+            default: 0
+        },
+        text: {
+            type: String,
+            trim: true
+        },
+        replies: [{
+            name: {
+                type: String,
+                trim: true
+            },
+            date: {
+                type: String,
+                trim: true
+            },
+            dateEdited: {
+                type: String,
+            },
+            likes: {
+                type: Number,
+                default: 0
+            },
+            dislikes: {
+                type: Number,
+                default: 0
+            },
+            text: {
+                type: String,
+                trim: true
+            }
+        }]
+    }]
 });
 
 module.exports = mongoose.model('Post', postSchema);
