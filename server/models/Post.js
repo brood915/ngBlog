@@ -1,37 +1,6 @@
 const mongoose = require('mongoose');
 
-const postSchema = new mongoose.Schema({
-    description: {
-        type: String,
-        trim: true
-    },
-    title: {
-        type: String,
-        trim: true
-    },
-    date: {
-        type: String,
-        trim: true
-    },
-    dateEdited: {
-        type: String,
-    },
-    name: {
-        type: String,
-        trim: true
-    },
-    likes: {
-        type: Number,
-        default: 0
-    },
-    dislikes: {
-        type: Number,
-        default: 0
-    },
-    views: {
-        type: Number,
-        default: 0
-    },
+const commentsSchema = new mongoose.Schema({
     comments: [{
         name: {
             type: String,
@@ -82,6 +51,41 @@ const postSchema = new mongoose.Schema({
             }
         }]
     }]
+
+})
+const postSchema = new mongoose.Schema({
+    description: {
+        type: String,
+        trim: true
+    },
+    title: {
+        type: String,
+        trim: true
+    },
+    date: {
+        type: String,
+        trim: true
+    },
+    dateEdited: {
+        type: String,
+    },
+    name: {
+        type: String,
+        trim: true
+    },
+    likes: {
+        type: Number,
+        default: 0
+    },
+    dislikes: {
+        type: Number,
+        default: 0
+    },
+    views: {
+        type: Number,
+        default: 0
+    },
+    comments: [commentsSchema]
 });
 
 module.exports = mongoose.model('Post', postSchema);
