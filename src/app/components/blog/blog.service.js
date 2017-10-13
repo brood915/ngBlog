@@ -59,8 +59,8 @@ isShort (desc) {
     return this.$http.post(url, data, this.auth());
   }
   
-  update (id ,data) {
-    return this.$http.put(`/api/posts/edit/${id}`, data, this.auth());
+  update (url ,data) {
+    return this.$http.put(url, data, this.auth());
   }
 
   increaseView (id ,data) {

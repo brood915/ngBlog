@@ -68,12 +68,12 @@ class BlogDetailCtrl {
 
   likeBlog() {
     this.post.likes++;
-    this.blogService.update(this.param, this.post);
+    this.blogService.update(`/api/posts/edit/${this.param}`, this.post);
   }
 
   dislikeBlog() {
     this.post.dislikes++;
-    this.blogService.update(this.param, this.post);
+    this.blogService.update(`/api/posts/edit/${this.param}`, this.post);
   }
 
   deleteBlog (id) {

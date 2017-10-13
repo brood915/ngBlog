@@ -22,12 +22,12 @@
         <div class = "text alignLeft" ng-if = "(comment.text.length < 100 || comment.expanding) && !comment.editing">{{comment.text}}</div>
         <div class="alignLeft" ng-if="comment.editing">
             <input ng-model="comment.text"></input>
-            <button class="btn btn-primary" ng-click="$ctrl.edit(comment)">Edit</button>
+            <button class="btn btn-primary" ng-click="$ctrl.edit(comment, comment)">Edit</button>
         </div>
         <div ng-if = "$ctrl.user.isLoggedIn" class="btn-group commentBtnGroup">               
             <button ng-click = "$ctrl.likeComment(comment)" type="button" class="commentBtns">Like</button>
             <button ng-click = "$ctrl.dislikeComment(comment)" type="button" class="commentBtns">Dislike</button>
-            <button type="button" class="commentBtns" ng-click="$ctrl.edit(comment)">Edit</button>
+            <button type="button" class="commentBtns" ng-click="$ctrl.showEdit(comment)">Edit</button>
             <button message = "Are you sure?" confirmed-click='$ctrl.deleteComment(comment)' type="button" class="commentBtns" confirm>Delete</button>
             <button ng-click = "$ctrl.startReplying(comment)" type="button" class="commentBtns">Reply</button>
         </div>
@@ -55,12 +55,12 @@
                 </div>
                 <div class="alignLeft" ng-if="reply.editing">
                     <input ng-model="reply.text"></input>
-                    <button class="btn btn-primary" ng-click="$ctrl.edit(reply)">Edit</button>
+                    <button class="btn btn-primary" ng-click="$ctrl.edit(comment, reply)">Edit</button>
                 </div>
                 <div ng-if = "$ctrl.user.isLoggedIn" class="btn-group commentBtnGroup">               
-                    <button type="button" ng-click = "$ctrl.likeReply(reply)" class="commentBtns">Like</button>
-                    <button type="button" ng-click = "$ctrl.dislikeReply(reply)" class="commentBtns">Dislike</button>
-                    <button type="button" class="commentBtns" ng-click="$ctrl.edit(reply)">Edit</button>
+                    <button type="button" ng-click = "$ctrl.likeReply(comment)" class="commentBtns">Like</button>
+                    <button type="button" ng-click = "$ctrl.dislikeReply(comment)" class="commentBtns">Dislike</button>
+                    <button type="button" class="commentBtns" ng-click="$ctrl.showEdit(reply, comment)">Edit</button>
                     <button message = "Are you sure?" confirmed-click='$ctrl.deleteReply(comment, reply)' type="button" class="commentBtns" confirm>Delete</button>
                 </div>
             </li>

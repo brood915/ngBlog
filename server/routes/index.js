@@ -50,8 +50,11 @@ router.get('/posts/:id',
 
 //Blog comments/replies
 router.post('/posts/:id/comments/create/',
-
+    auth,
     commentController.createComment);
 
+router.put('/posts/:postId/comments/:commentId/update/',
+    auth,
+    commentController.updateComment);
 
 module.exports = router;

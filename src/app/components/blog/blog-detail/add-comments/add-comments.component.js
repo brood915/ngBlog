@@ -15,7 +15,8 @@ class AddCommentsCtrl {
   }
 
   deleteItem (item, arr) {
-    const ele = arr.find((element) => element.id === item.id);
+   
+    const ele = arr.find((element) => element._id === item._id);
     const index = arr.indexOf(ele);
     arr.splice(index, 1);
   }
@@ -51,9 +52,7 @@ class AddCommentsCtrl {
     this.post.comments.push(comment);
     this.blogService.addData(`/api/posts/${this.param}/comments/create/`, this.comment)
     .then((resp) => {
-      console.log(resp);
-      console.log('payload:' ,this.user.payload)
-      console.log("cm", this.comment)
+      this.post.comments = resp.data;
     })
     this.resetComment();
   }
@@ -68,9 +67,12 @@ class AddCommentsCtrl {
     comment.reply.name = this.user.payload.name;
     let reply = angular.copy(comment.reply);
     comment.replies.push(reply);
-    comment.seeReplies = true; //shows replies after adding reply to the comment
     comment.replying = false;
-    this.blogService.update(this.param, this.post);
+    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment)
+    .then((resp) => {
+      this.post.comments = resp.data;
+      comment.seeReplies = true; //shows replies after adding reply to the comment
+    });
     this.resetComment(); 
   }
 
@@ -83,19 +85,23 @@ class AddCommentsCtrl {
   deleteReply (comment, reply) {
     const replies = comment.replies;
     this.$scope.$apply(this.deleteItem(reply, replies));
-    this.blogService.update(this.param, this.post);
+    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment);
     this.resetComment();
   }
 
-  edit(comment) { //pass comment or reply
+  showEdit(comment) { //pass comment or reply
     if (comment.editing === undefined){
       comment.editing = true;
     }
     else {
     comment.editing = !comment.editing;
     }
+  }
+
+  edit(comment, type) { //we edit comment regardless of whether we r updating the comment or its replies.
     comment.edited = true;
-    this.blogService.update(this.param, this.post);
+    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment);
+    type.editing = false;
   }
 
   resetReply (comment) {
