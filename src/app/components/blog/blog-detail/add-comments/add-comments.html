@@ -58,8 +58,8 @@
                     <button class="btn btn-primary" ng-click="$ctrl.edit(comment, reply)">Edit</button>
                 </div>
                 <div ng-if = "$ctrl.user.isLoggedIn" class="btn-group commentBtnGroup">               
-                    <button type="button" ng-click = "$ctrl.likeReply(comment)" class="commentBtns">Like</button>
-                    <button type="button" ng-click = "$ctrl.dislikeReply(comment)" class="commentBtns">Dislike</button>
+                    <button type="button" ng-click = "$ctrl.likeReply(comment, reply)" class="commentBtns">Like</button>
+                    <button type="button" ng-click = "$ctrl.dislikeReply(comment, reply)" class="commentBtns">Dislike</button>
                     <button type="button" class="commentBtns" ng-click="$ctrl.showEdit(reply, comment)">Edit</button>
                     <button message = "Are you sure?" confirmed-click='$ctrl.deleteReply(comment, reply)' type="button" class="commentBtns" confirm>Delete</button>
                 </div>

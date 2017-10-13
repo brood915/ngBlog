@@ -15,8 +15,7 @@ class AddCommentsCtrl {
   }
 
   deleteItem (item, arr) {
-   
-    const ele = arr.find((element) => element._id === item._id);
+    const ele = arr.find((element) => element === item);
     const index = arr.indexOf(ele);
     arr.splice(index, 1);
   }
@@ -32,16 +31,14 @@ class AddCommentsCtrl {
     this.blogService.update(this.param, this.post);
   }
 
-  likeReply(reply) {
+  likeReply(comment, reply) {
     reply.likes++;
-    this.blogService.update(this.param, this.post);
+     this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment);
   }
 
-  dislikeReply(reply) {
+  dislikeReply(comment, reply) {
     reply.dislikes++;
-    this.blogService.update(this.param, this.post);
-  }addData (url, data) {
-    return this.$http.post(url, data, this.auth());
+     this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment);
   }
 
 
@@ -65,14 +62,11 @@ class AddCommentsCtrl {
   addReply (comment) {
     comment.reply.date = this.blogService.getDate();
     comment.reply.name = this.user.payload.name;
+    comment.seeReplies = true;
     let reply = angular.copy(comment.reply);
     comment.replies.push(reply);
     comment.replying = false;
-    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment)
-    .then((resp) => {
-      this.post.comments = resp.data;
-      comment.seeReplies = true; //shows replies after adding reply to the comment
-    });
+    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment);
     this.resetComment(); 
   }
 
