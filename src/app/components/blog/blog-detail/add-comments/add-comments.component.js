@@ -46,6 +46,7 @@ class AddCommentsCtrl {
 
   addComment () {
     this.comment.date = this.blogService.getDate();
+    this.comment.name = this.user.payload.name;
     let comment = angular.copy(this.comment);
     this.post.comments.push(comment);
     this.blogService.addData(`/api/posts/${this.param}/comments/create/`, this.comment)
@@ -64,6 +65,7 @@ class AddCommentsCtrl {
 
   addReply (comment) {
     comment.reply.date = this.blogService.getDate();
+    comment.reply.name = this.user.payload.name;
     let reply = angular.copy(comment.reply);
     comment.replies.push(reply);
     comment.seeReplies = true; //shows replies after adding reply to the comment
@@ -99,7 +101,6 @@ class AddCommentsCtrl {
   resetReply (comment) {
     comment.reply = {
       "text": "",
-      "name": "",
       "date":this.blogService.getDate(),
       "likes": 0,
       "dislikes": 0
@@ -110,13 +111,13 @@ class AddCommentsCtrl {
  resetComment () {
    this.comment = {
      "text": "",
-     "name": this.user.payload.name,
      "date" : this.blogService.getDate(),
      "expanding": false,
      "replying": false,
      "seeReplies": false,
      "likes": 0,
-     "dislikes": 0
+     "dislikes": 0,
+     "replies": []
    }
  }
 }
