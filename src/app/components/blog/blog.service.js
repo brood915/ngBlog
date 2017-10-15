@@ -78,6 +78,10 @@ isShort (desc) {
   }
 
   deleteBlog(id){
-    return this.$http.delete(`/api/posts/delete/${id}`, this.auth())
-  } 
+    return this.$http.delete(`/api/posts/delete/${id}`, this.auth());
+  }
+  
+  deleteComment(url) {
+    return this.$http.delete(url, this.auth());
+  }
 } 

@@ -22,13 +22,13 @@ class AddCommentsCtrl {
 
   likeComment(comment) {
     comment.likes++;
-    this.blogService.update(this.param, this.post);
+    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment);
     
   }
 
   dislikeComment(comment) {
     comment.dislikes++;
-    this.blogService.update(this.param, this.post);
+    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment);
   }
 
   likeReply(comment, reply) {
@@ -72,7 +72,7 @@ class AddCommentsCtrl {
 
    deleteComment (comment) {
     this.$scope.$apply(this.deleteItem(comment, this.post.comments)); //apply used to allow confirm directive to update view after running this
-    this.blogService.update(this.param, this.post);
+    this.blogService.deleteComment(`/api/posts/${this.param}/comments/${comment._id}/delete/`, comment);
     this.resetComment();
  }
 

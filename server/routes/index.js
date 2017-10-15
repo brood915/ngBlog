@@ -57,4 +57,8 @@ router.put('/posts/:postId/comments/:commentId/update/',
     auth,
     commentController.updateComment);
 
+router.delete('/posts/:postId/comments/:commentId/delete/',
+    auth,
+    commentController.deleteComment);
+
 module.exports = router;
