@@ -3,11 +3,11 @@ import angular from 'angular';
 
 class RegisterCtrl {
   /* @ngInject */
-  constructor($http, $window, userService, $state) {
+  constructor($http, userService, $state, blogService) {
     this.$http = $http;
     this.userService = userService;
+    this.blogService = blogService;
     this.$state = $state;
-    this.$window = $window;
   }
 
   $onInit() {
@@ -20,12 +20,6 @@ class RegisterCtrl {
     this.error = false;
     this.registering = false;
     this.registered = false;
-  }
-
-
-  goBack () {
-    this.$window.history.back(); 
-    //go back to where user was right before
   }
 
   register() {

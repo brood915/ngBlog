@@ -1,8 +1,9 @@
 export class BlogService {
     /* @ngInject */
-  constructor($http, $filter, userService) {
+  constructor($http, $filter, userService, $window) {
     this.$http = $http;
     this.$filter = $filter;
+    this.$window = $window;
     this.typeahead = {
       searchValue: null
     }
@@ -10,6 +11,40 @@ export class BlogService {
       posts: null
     };
     this.userService = userService;
+  }
+
+goBack () {
+    this.$window.history.back(); 
+    //go back to where user was right before
+}
+
+getDate() {
+    let date = new Date();
+    const formatDate = this.$filter('date');
+    date = formatDate(date, 'M/d/yy h:mm:ss a');
+    return date;
+  }
+
+isShort (desc) {
+    if (desc.length < 100) {
+      return true;
+    }
+
+    this.shortened = desc.substr(0, 99) + "...";
+    return false;
+  }
+
+ isNew(blogDate) {
+    let date = new Date();
+    let isNew = date - new Date(blogDate);
+    let hours = isNew/3600000; //converts ms to hr
+  
+    
+    if(hours < 72 ) {
+      return true;
+    }
+
+    return false;
   }
 
   auth() {
@@ -24,8 +59,8 @@ export class BlogService {
     return this.$http.post(url, data, this.auth());
   }
   
-  update (id ,data) {
-    return this.$http.put(`/api/posts/edit/${id}`, data, this.auth());
+  update (url ,data) {
+    return this.$http.put(url, data, this.auth());
   }
 
   increaseView (id ,data) {
@@ -42,14 +77,11 @@ export class BlogService {
     .then((resp)=> resp.data);
   }
 
-  getDate() {
-    let date = new Date();
-    const formatDate = this.$filter('date');
-    date = formatDate(date, 'M/d/yy h:mm:ss a');
-    return date;
-  }
-
   deleteBlog(id){
-    return this.$http.delete(`/api/posts/delete/${id}`, this.auth())
-  } 
+    return this.$http.delete(`/api/posts/delete/${id}`, this.auth());
+  }
+  
+  deleteComment(url) {
+    return this.$http.delete(url, this.auth());
+  }
 } 

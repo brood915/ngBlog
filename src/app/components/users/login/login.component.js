@@ -3,12 +3,11 @@ import angular from 'angular';
 
 class LoginCtrl {
   /* @ngInject */
-  constructor($http, userService, blogService, $state, $window) {
+  constructor($http, userService, blogService, $state) {
     this.$http = $http;
     this.userService = userService;
     this.blogService = blogService;
     this.$state = $state;
-    this.$window = $window;
   }
 
 
@@ -21,11 +20,6 @@ class LoginCtrl {
   resetStatus () {
     this.error = false;
     this.logging = false;
-  }
-
-  goBack () {
-    this.$window.history.back(); 
-    //go back to where user was right before
   }
 
   logIn () {
@@ -41,10 +35,14 @@ class LoginCtrl {
           this.userService.saveToken(resp.data.token);
           this.user.isLoggedIn = this.userService.isLoggedIn();
           this.user.payload = this.userService.getUser();
-          this.goBack();
+          this.blogService.goBack();
+          
         }
         else {
           this.error = resp.data.message;
+          if (this.error = "Missing credentials") {
+            this.error = "Please enter valid email and password!"
+          }
           this.logging = false;
         }
       })

@@ -22,12 +22,12 @@
         <div class = "text alignLeft" ng-if = "(comment.text.length < 100 || comment.expanding) && !comment.editing">{{comment.text}}</div>
         <div class="alignLeft" ng-if="comment.editing">
             <input ng-model="comment.text"></input>
-            <button class="btn btn-primary" ng-click="$ctrl.edit(comment)">Edit</button>
+            <button class="btn btn-primary" ng-click="$ctrl.edit(comment, comment)">Edit</button>
         </div>
-        <div class="btn-group commentBtnGroup">               
+        <div ng-if = "$ctrl.user.isLoggedIn" class="btn-group commentBtnGroup">               
             <button ng-click = "$ctrl.likeComment(comment)" type="button" class="commentBtns">Like</button>
             <button ng-click = "$ctrl.dislikeComment(comment)" type="button" class="commentBtns">Dislike</button>
-            <button type="button" class="commentBtns" ng-click="$ctrl.edit(comment)">Edit</button>
+            <button type="button" class="commentBtns" ng-click="$ctrl.showEdit(comment)">Edit</button>
             <button message = "Are you sure?" confirmed-click='$ctrl.deleteComment(comment)' type="button" class="commentBtns" confirm>Delete</button>
             <button ng-click = "$ctrl.startReplying(comment)" type="button" class="commentBtns">Reply</button>
         </div>
@@ -55,12 +55,12 @@
                 </div>
                 <div class="alignLeft" ng-if="reply.editing">
                     <input ng-model="reply.text"></input>
-                    <button class="btn btn-primary" ng-click="$ctrl.edit(reply)">Edit</button>
+                    <button class="btn btn-primary" ng-click="$ctrl.edit(comment, reply)">Edit</button>
                 </div>
-                <div class="btn-group commentBtnGroup">               
-                    <button type="button" ng-click = "$ctrl.likeReply(reply)" class="commentBtns">Like</button>
-                    <button type="button" ng-click = "$ctrl.dislikeReply(reply)" class="commentBtns">Dislike</button>
-                    <button type="button" class="commentBtns" ng-click="$ctrl.edit(reply)">Edit</button>
+                <div ng-if = "$ctrl.user.isLoggedIn" class="btn-group commentBtnGroup">               
+                    <button type="button" ng-click = "$ctrl.likeReply(comment, reply)" class="commentBtns">Like</button>
+                    <button type="button" ng-click = "$ctrl.dislikeReply(comment, reply)" class="commentBtns">Dislike</button>
+                    <button type="button" class="commentBtns" ng-click="$ctrl.showEdit(reply, comment)">Edit</button>
                     <button message = "Are you sure?" confirmed-click='$ctrl.deleteReply(comment, reply)' type="button" class="commentBtns" confirm>Delete</button>
                 </div>
             </li>
@@ -69,19 +69,15 @@
         <button ng-click = "comment.seeReplies = false" ng-if = "comment.replies.length > 0 && comment.seeReplies" class="repliesLabel">Hide Replies</button>
         <!--form for replies-->
         <form ng-submit="addReplyForm.$valid && $ctrl.addReply(comment)" ng-if = "comment.replying" class="replyFormGroup" name = "addReplyForm" novalidate>
-            <input ng-model="comment.reply.name" maxlength = "20" class = "replyInputs" autocomplete="off" placeholder="Name..." name = 'replyName' type='text' required></input>
             <input ng-model="comment.reply.text" class = "replyInputs" autocomplete="off" placeholder="Reply..." name = 'replyText' type='text' required></input>
-            <!--to submit form with enter with multiple inputs-->
             <input type="submit" style="position: absolute; left: -9999px; 
             width: 1px; height: 1px;"/>             
         </form>
     </li>
 </ul>
 <!--form for comments-->
-<form class="commentFormGroup" name = 'addCommentForm' novalidate ng-submit='addCommentForm.$valid && $ctrl.addComment()'>
-    <input ng-model="$ctrl.comment.name" maxlength = "20" autocomplete="off" placeholder="Name..." name = 'commentName' type='text' required></input>  
+<form ng-if = "$ctrl.user.isLoggedIn" class="commentFormGroup" name = 'addCommentForm' novalidate ng-submit='addCommentForm.$valid && $ctrl.addComment()'>
     <input autocomplete="off" placeholder="write a comment..."  name = 'comment' type='text' ng-model='$ctrl.comment.text' required></input>
-    <!--to submit form with enter with multiple inputs-->
     <input type="submit" style="position: absolute; left: -9999px; 
     width: 1px; height: 1px;"/>   
 </form>

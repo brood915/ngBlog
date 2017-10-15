@@ -17,7 +17,7 @@ class EditBlogCtrl {
   handleEdit () { //passes the new value back to blog-detail comp
     const dateEdited = this.blogService.getDate();
     this.modifiedBlog.dateEdited = dateEdited;
-    this.blogService.update(this.param, this.modifiedBlog)
+    this.blogService.update(`/api/posts/edit/${this.param}`, this.modifiedBlog)
       .then((resp) => {
         this.editBlog({
           $event: {

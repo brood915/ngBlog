@@ -19,7 +19,14 @@ class NavCtrl {
     this.user = this.userService.user;
     this.$state.go('blog');
   }
+
+  handleSubmit () {
+    this.typeahead.searchValue = this.searchValue;
+    this.$state.go('search');
+  }
 }
+
+
 
 
 

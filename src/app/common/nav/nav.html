@@ -11,7 +11,14 @@
     <div class="navbar-collapse" ng-class="{collapse: $ctrl.isCollapsed}">
       <ul class="nav navbar-nav">
         <li ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed" class="add" ui-sref="addBlog">+</li>
-        <li class="typeahead"><form><input type="text" placeholder="Search..." ng-model="$ctrl.typeahead.searchValue"></form></li>
+        <li class="typeahead">
+          <form ng-submit = $ctrl.handleSubmit()>
+            <input type="text" placeholder="Search..." ng-model="$ctrl.searchValue">
+            <input  type="submit" value="submit" 
+            style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
+            hidefocus="true" tabindex="-1"/>
+        </form>
+      </li>
       </ul>
       <ul ng-if="!$ctrl.user.isLoggedIn" class="nav navbar-nav navbar-right">
         <li><a ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed" ui-sref="register"><i class="fa fa-user" aria-hidden="true"></i> Sign Up</a></li>

@@ -11,6 +11,8 @@ class BlogCtrl {
   }
 
   $onInit() {
+    this.typeahead = this.blogService.typeahead;
+    this.typeahead.searchValue = null; //reset the search value to control what's seen in blog-detail page
     this.user = this.userService.user;
     this.blog = this.blogService.blog;
     this.filterValue = "";
@@ -22,28 +24,6 @@ class BlogCtrl {
       this.handleSort();
     })
     .catch(()=> this.$state.go('500'));
-  }
-
-  isShort (desc) {
-    if (desc.length < 100) {
-      return true;
-    }
-
-    this.shortened = desc.substr(0, 99) + "...";
-    return false;
-  }
-
- isNew(blogDate) {
-    let date = new Date();
-    let isNew = date - new Date(blogDate);
-    let hours = isNew/3600000; //converts ms to hr
-  
-    
-    if(hours < 72 ) {
-      return true;
-    }
-
-    return false;
   }
 
   handleSort (){

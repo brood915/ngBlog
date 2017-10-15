@@ -1,5 +1,6 @@
 const express = require('express');
 const postController = require('../controllers/postController');
+const commentController = require('../controllers/commentController');
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
 const router = express.Router();
@@ -24,7 +25,7 @@ router.post('/login',
 
     
 
-//BLOGS
+//Blog posts
 router.post('/posts/create',
     auth,
     postController.createPost);
@@ -45,5 +46,19 @@ router.get('/posts',
 
 router.get('/posts/:id',
     postController.getPost);
+
+
+//Blog comments/replies
+router.post('/posts/:id/comments/create/',
+    auth,
+    commentController.createComment);
+
+router.put('/posts/:postId/comments/:commentId/update/',
+    auth,
+    commentController.updateComment);
+
+router.delete('/posts/:postId/comments/:commentId/delete/',
+    auth,
+    commentController.deleteComment);
 
 module.exports = router;
