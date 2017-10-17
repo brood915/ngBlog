@@ -15,6 +15,10 @@ class EditBlogCtrl {
     this.editing = false;
   }
 
+  $onDestroy() {
+    this.blog.editing = false; //when user leaves the page, close the form
+  }
+
   closeForm() {
     this.$scope.$apply(()=>{ //apply needed to use with the confirm directive
       this.blog.editing = false;
