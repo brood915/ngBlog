@@ -21,24 +21,41 @@ class AddCommentsCtrl {
   }
 
   likeComment(comment) {
-    comment.likes++;
-    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment);
+    
+    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment)
+    .then(() => {
+        comment.likes++;
+    })
+    .catch(()=> {
+      this.error = "Something went wrong with our server!"
+    });
     
   }
 
   dislikeComment(comment) {
-    comment.dislikes++;
-    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment);
+    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment)
+    .then(() => {
+       comment.dislikes++;
+    })
+    .catch(()=> {
+      this.error = "Something went wrong with our server!"
+    });
   }
 
   likeReply(comment, reply) {
     reply.likes++;
-     this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment);
+     this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment)
+      .catch(()=> {
+      this.error = "Something went wrong with our server!"
+    });
   }
 
   dislikeReply(comment, reply) {
     reply.dislikes++;
-     this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment);
+    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment)
+    .catch(()=> {
+    this.error = "Something went wrong with our server!"
+    });
   }
 
 
@@ -46,10 +63,14 @@ class AddCommentsCtrl {
     this.comment.date = this.blogService.getDate();
     this.comment.name = this.user.payload.name;
     let comment = angular.copy(this.comment);
-    this.post.comments.push(comment);
     this.blogService.addData(`/api/posts/${this.param}/comments/create/`, this.comment)
     .then((resp) => {
+      this.post.comments.push(comment);
       this.post.comments = resp.data;
+      this.error = null;
+    })
+    .catch(() => {
+      this.error = "Something went wrong with our server!"
     })
     this.resetComment();
   }
@@ -63,23 +84,41 @@ class AddCommentsCtrl {
     comment.reply.date = this.blogService.getDate();
     comment.reply.name = this.user.payload.name;
     comment.seeReplies = true;
+    comment.replying = false;
     let reply = angular.copy(comment.reply);
     comment.replies.push(reply);
-    comment.replying = false;
-    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment);
+    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment)
+    .then(() => {
+       this.error = null;
+    })
+    .catch(()=> {
+       this.error = "Something went wrong with our server!"
+    });
     this.resetComment(); 
   }
 
    deleteComment (comment) {
-    this.$scope.$apply(this.deleteItem(comment, this.post.comments)); //apply used to allow confirm directive to update view after running this
-    this.blogService.deleteComment(`/api/posts/${this.param}/comments/${comment._id}/delete/`, comment);
+    this.blogService.deleteComment(`/api/posts/${this.param}/comments/${comment._id}/delete/`, comment)
+    .then(() => {
+      this.deleteItem(comment, this.post.comments);
+      this.error = null;
+    })
+    .catch(()=> {
+      this.error = "Something went wrong with our server!"
+    });
     this.resetComment();
  }
 
   deleteReply (comment, reply) {
     const replies = comment.replies;
-    this.$scope.$apply(this.deleteItem(reply, replies));
-    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment);
+    this.deleteItem(reply, replies);
+    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment)
+    .then(() => {
+      this.error = null;
+    })
+    .catch(()=> {
+      this.error = "Something went wrong with our server!"
+    });
     this.resetComment();
   }
 
@@ -93,9 +132,15 @@ class AddCommentsCtrl {
   }
 
   edit(comment, type) { //we edit comment regardless of whether we r updating the comment or its replies.
-    comment.edited = true;
-    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment);
-    type.editing = false;
+    this.blogService.update(`/api/posts/${this.param}/comments/${comment._id}/update/`, comment)
+    .then(()=> {
+      comment.edited = true;
+      this.error = null;
+      type.editing = false;
+    })
+    .catch(()=> {
+      this.error = "Something went wrong with our server!"
+    });
   }
 
   resetReply (comment) {
