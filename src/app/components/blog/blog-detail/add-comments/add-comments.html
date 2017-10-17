@@ -27,8 +27,8 @@
         <div ng-if = "$ctrl.user.isLoggedIn" class="btn-group commentBtnGroup">               
             <button ng-click = "$ctrl.likeComment(comment)" type="button" class="commentBtns">Like</button>
             <button ng-click = "$ctrl.dislikeComment(comment)" type="button" class="commentBtns">Dislike</button>
-            <button type="button" class="commentBtns" ng-click="$ctrl.showEdit(comment)">Edit</button>
-            <button message = "Are you sure?" confirmed-click='$ctrl.deleteComment(comment)' type="button" class="commentBtns" confirm>Delete</button>
+            <button ng-if = "$ctrl.user.payload.admin || comment.name === $ctrl.user.payload.name" type="button" class="commentBtns" ng-click="$ctrl.showEdit(comment)">Edit</button>
+            <button ng-if = "$ctrl.user.payload.admin || comment.name === $ctrl.user.payload.name" message = "Are you sure?" confirmed-click='$ctrl.deleteComment(comment)' type="button" class="commentBtns" confirm>Delete</button>
             <button ng-click = "$ctrl.startReplying(comment)" type="button" class="commentBtns">Reply</button>
         </div>
         <!--replies-->
@@ -60,8 +60,8 @@
                 <div ng-if = "$ctrl.user.isLoggedIn" class="btn-group commentBtnGroup">               
                     <button type="button" ng-click = "$ctrl.likeReply(comment, reply)" class="commentBtns">Like</button>
                     <button type="button" ng-click = "$ctrl.dislikeReply(comment, reply)" class="commentBtns">Dislike</button>
-                    <button type="button" class="commentBtns" ng-click="$ctrl.showEdit(reply, comment)">Edit</button>
-                    <button message = "Are you sure?" confirmed-click='$ctrl.deleteReply(comment, reply)' type="button" class="commentBtns" confirm>Delete</button>
+                    <button ng-if = "$ctrl.user.payload.admin || reply.name === $ctrl.user.payload.name" type="button" class="commentBtns" ng-click="$ctrl.showEdit(reply, comment)">Edit</button>
+                    <button ng-if = "$ctrl.user.payload.admin || reply.name === $ctrl.user.payload.name" message = "Are you sure?" confirmed-click='$ctrl.deleteReply(comment, reply)' type="button" class="commentBtns" confirm>Delete</button>
                 </div>
             </li>
         </ul>
