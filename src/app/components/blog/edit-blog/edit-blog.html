@@ -1,7 +1,7 @@
-<div class='hide formContainer' id = "editFormContainer">
+<div class='formContainer' id = "editFormContainer">
     <div>
         <div>
-            <button type="button" class="close" form-name = "editFormContainer" modal>&times;</button>
+            <button type="button" class="close" message = "Are you sure? You will lose what you just wrote if you close!" confirmed-click = "$ctrl.closeForm()" confirm>&times;</button>
             <h3 class="modal-title">Edit a blog post</h3>
         </div>
         <div>
@@ -15,9 +15,11 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" form-name = "editFormContainer" modal>Close</button>
+            <button type="button" class="btn btn-default" message = "Are you sure? You will lose what you just wrote if you close!" confirmed-click = "$ctrl.closeForm()" confirm>Close</button>
             <button type="button" class='btn btn-danger' message = "Are you sure to reset?" confirmed-click = '$ctrl.resetForm()' confirm>Reset</button>
-            <button class='btn btn-primary' ng-click = '$ctrl.handleEdit()' form-name = "editFormContainer" modal>Edit</button>
+            <button class='btn btn-primary' ng-click = '$ctrl.handleEdit()'>Edit</button>
         </div>
+        <p ng-if="$ctrl.error && !$ctrl.editing" class = "error-msg">{{$ctrl.error}}</p>
+        <i ng-if='$ctrl.editing' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
     </div>
 </div>

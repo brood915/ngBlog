@@ -1,7 +1,7 @@
 <i ng-if='!$ctrl.post' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-<button ng-click="$ctrl.blogService.goBack()" class='goBackBtn btn btn-primary'><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
-<edit-blog ng-if="$ctrl.post" param = "$ctrl.param" edit-blog = '$ctrl.editBlog($event)' post = '$ctrl.post'></edit-blog>
-<div class = 'main' id="blogDetail">
+<button ng-if = "!$ctrl.blog.editing" ng-click="$ctrl.blogService.goBack()" class='goBackBtn btn btn-primary'><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+<edit-blog ng-if="$ctrl.post && $ctrl.blog.editing" param = "$ctrl.param" edit-blog = '$ctrl.editBlog($event)' post = '$ctrl.post'></edit-blog>
+<div ng-if = "!$ctrl.blog.editing" class = 'main' id="blogDetail">
     <div class ='blogPostItems bottomBorder'>
     <h1>{{$ctrl.post.title}}</h1>
     <p class="name blogItemName">{{$ctrl.post.name}}</p>
@@ -9,7 +9,7 @@
     <p ng-if="$ctrl.post.dateEdited" class="date blogItemDate">Edited: {{$ctrl.post.dateEdited}}</p>
     <div class="item-desc">{{$ctrl.post.description}}</div>
     <div ng-if="($ctrl.user.isLoggedIn && $ctrl.user.payload.name === $ctrl.post.name) || $ctrl.user.payload.admin" class="btn-group">
-        <button class='btn btn-primary' form-name = "editFormContainer" modal>Edit</button>
+        <button class='btn btn-primary' ng-click="$ctrl.blog.editing = true">Edit</button>
         <button class = 'btn btn-default' message = "Are you sure?" confirmed-click='$ctrl.deleteBlog($ctrl.post._id)' type="button" confirm>Delete</button>
     </div>
     <div class="badgesContainer">
