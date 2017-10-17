@@ -12,9 +12,17 @@ class EditBlogCtrl {
   $onInit() {
     this.blog = this.blogService.blog;
     this.modifiedBlog = angular.copy(this.post);
+    this.editing = false;
+  }
+
+  closeForm() {
+    this.$scope.$apply(()=>{ //apply needed to use with the confirm directive
+      this.blog.editing = false;
+    });
   }
 
   handleEdit () { //passes the new value back to blog-detail comp
+    this.editing = true;
     const dateEdited = this.blogService.getDate();
     this.modifiedBlog.dateEdited = dateEdited;
     this.blogService.update(`/api/posts/edit/${this.param}`, this.modifiedBlog)
@@ -24,9 +32,13 @@ class EditBlogCtrl {
             post: resp.data
           }
         });
+        this.blog.editing = false; //for hiding/showing the form
+        this.editing = false; //for spinning icon
       })
       .catch(() => {
-        console.log('Editing failed!')
+        this.editing = false;
+        console.log('Editing failed!');
+        this.error = "Editing Failed due to our server problems. Please try again later!";
       })
   }
 
