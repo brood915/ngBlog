@@ -1,5 +1,6 @@
 <i ng-if='!$ctrl.blog.posts' class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 <div id = 'blogContainer' ng-if='$ctrl.blog.posts'>
+  <div ng-if="filtered.length !== $ctrl.blog.posts.length && filtered.length > 0" id = "filteredNumber"><span>Filtered Items:</span> {{filtered.length}}/{{$ctrl.blog.posts.length}}</div>
   <div class='form-group'>
     <span class="names">Search:</span><input placeholder='Search...' type='text' ng-model = '$ctrl.filterValue' />
     <span class="names">Sort:</span><select id = "selectOptions" ng-model="$ctrl.sortBy" ng-change="$ctrl.handleSort()" ng-options="x for x in $ctrl.selectOptions"></select>

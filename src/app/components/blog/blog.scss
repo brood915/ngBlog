@@ -5,6 +5,19 @@
     flex-direction: column;
 }
 
+#filteredNumber {
+    font-family: serif;
+    color: #443D3D;
+    font-size: 12px;
+    span {
+        font-weight: bolder;
+    }
+}
+
+#blogContainer #filteredNumber {
+    padding: 15px;
+}
+
 .error-msg {
     color: #c9302c;
 }
