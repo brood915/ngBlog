@@ -1,4 +1,5 @@
 <div>
+    <div ng-if="filtered.length !== $ctrl.blog.posts.length && filtered.length > 0" id = "filteredNumber"><span>Filtered Items:</span> {{filtered.length}}/{{$ctrl.blog.posts.length}}</div>   
     <button ng-click="$ctrl.blogService.goBack()" class='goBackBtn btn btn-primary'><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
     <ul id = "blogItems" class="blogItems">
         <li ng-repeat='post in filtered = ($ctrl.blog.posts | filter: $ctrl.typeahead.searchValue)'>

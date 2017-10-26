@@ -5,6 +5,19 @@
     flex-direction: column;
 }
 
+#filteredNumber {
+    font-family: serif;
+    color: #443D3D;
+    font-size: 12px;
+    span {
+        font-weight: bolder;
+    }
+}
+
+#blogContainer #filteredNumber {
+    padding: 15px;
+}
+
 .error-msg {
     color: #c9302c;
 }
@@ -21,6 +34,9 @@
     font-weight: bold;
     color: darkgray;
     font-style: italic;
+    display: block;
+    width: 60px;
+    margin: 0 auto;
     cursor: pointer;
     &:hover {
         opacity: 0.5;
@@ -61,6 +77,7 @@
     padding: 20px;
 
     li {
+        position: relative;
         padding: 30px;
         margin: 10px;
         border: 1px solid #ddd;
@@ -74,6 +91,9 @@
     font-weight: bold;
     padding: 10px;
     color: skyblue;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .addBlogBtn {
