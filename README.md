@@ -7,6 +7,7 @@
 ```bash
 - Adding algorithms to suggest posts to users
 - Adding notifications when users' fav authors make new posts
+- Lazy loading/pagination
 ```
 
 
