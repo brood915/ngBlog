@@ -9,6 +9,7 @@ class NavCtrl {
     this.$timeout= $timeout;
   }
   $onInit() {
+    this.blog = this.blogService.blog;
     this.typeahead = this.blogService.typeahead;
     this.isCollapsed = true;
     this.user = this.userService.user;
@@ -22,6 +23,7 @@ class NavCtrl {
 
   handleSubmit () {
     this.typeahead.searchValue = this.searchValue;
+    console.log(this.searchValue)
     this.$state.go('search');
   }
 }

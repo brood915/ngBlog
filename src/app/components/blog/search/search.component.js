@@ -32,7 +32,6 @@ class SearchCtrl {
 
   filterPosts () {
     this.result = this.$filter('filter')(this.blog.posts, this.typeahead.searchValue);
-    console.log(this.result);
   }
 
   goBack () {

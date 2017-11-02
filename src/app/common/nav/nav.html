@@ -13,7 +13,7 @@
         <li ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed" class="add" ui-sref="addBlog">+</li>
         <li class="typeahead">
           <form ng-submit = $ctrl.handleSubmit()>
-            <input type="text" placeholder="Search..." ng-model="$ctrl.searchValue">
+            <input uib-typeahead="post.title as post.title for post in $ctrl.blog.posts | filter:$viewValue | limitTo:8" type="text" placeholder="Search..." ng-model="$ctrl.searchValue">
             <input  type="submit" value="submit" 
             style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
             hidefocus="true" tabindex="-1"/>
