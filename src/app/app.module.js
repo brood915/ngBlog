@@ -8,9 +8,8 @@ import { ComponentsModule } from './components/components.module';
 import { DirectivesModule } from './directives/directives.module';
 import uiRouter from '@uirouter/angularjs';
 import 'angular-jwt';
-import "angular-ui-bootstrap";
 
-export const AppModule = angular.module('app', ['ui.bootstrap','angular-jwt', CommonModule, ComponentsModule, DirectivesModule, uiRouter])
+export const AppModule = angular.module('app', ['angular-jwt', CommonModule, ComponentsModule, DirectivesModule, uiRouter])
   .component('app', AppComponent)
   .config(/* @ngInject */($stateProvider, $urlRouterProvider, $locationProvider) => {
     $urlRouterProvider.when('/', '/blog');

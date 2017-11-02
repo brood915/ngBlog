@@ -9,7 +9,6 @@ class NavCtrl {
     this.$timeout= $timeout;
   }
   $onInit() {
-    this.blog = this.blogService.blog;
     this.typeahead = this.blogService.typeahead;
     this.isCollapsed = true;
     this.user = this.userService.user;
