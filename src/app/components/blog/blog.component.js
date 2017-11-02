@@ -20,6 +20,12 @@ class BlogCtrl {
     this.blogService.getBlogs()
     .then(data => {
       this.blog.posts = data;
+
+      //make a new array of titles without duplicates for typeahead
+      const titles = this.blog.posts.map(each => each.title);
+      const set = new Set(titles);
+      this.blog.titles = [...set];
+
       this.sortBy = 'recent';
       this.handleSort();
     })

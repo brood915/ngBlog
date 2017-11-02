@@ -23,7 +23,6 @@ class NavCtrl {
 
   handleSubmit () {
     this.typeahead.searchValue = this.searchValue;
-    console.log(this.searchValue)
     this.$state.go('search');
   }
 }

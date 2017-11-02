@@ -9,7 +9,8 @@ export class BlogService {
     }
     this.blog = {
       posts: null,
-      editing: false
+      editing: false,
+      titles: null
     };
     this.userService = userService;
   }
